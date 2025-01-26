@@ -1,26 +1,33 @@
-![thumbnail](https://github.com/sloweyyy/react-portfolio/blob/main/public/images/demo.png)
+# SloWey Portfolio 🌟
 
-### Live - https://www.slowey.works
+[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://www.slowey.works)
+![Next.js](https://img.shields.io/badge/Next.js-13.5-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.3-blueviolet)
 
-### Features 
+A modern, performant portfolio website with blog functionality built using Next.js and Tailwind CSS. Showcase your projects, skills, and blog posts in a sleek, minimal design with dark mode support.
 
--   Modern Stack (Next.js + TailwindCSS)
--   Minimal Design
--   Easy To Browse
--   Easy To Customize your details With GUI
--   Blog Crud (Create, Read, Update, Delete blog with easy-to-use UI).
--   Dark Mode
+![Portfolio Demo](https://github.com/sloweyyy/portfolio/blob/main/public/images/demo.png)
 
-### Sections
+## Features ✨
 
--   Header
--   Work
--   Services
--   About
--   Contact
--   Markdown Blog
+- **Modern Stack**: Built with Next.js 13 and Tailwind CSS
+- **Dark Mode**: Built-in dark/light theme toggle
+- **Blog System**: Markdown-based blog with CRUD operations
+- **Responsive Design**: Works flawlessly across all devices
+- **Interactive UI**: Smooth animations and transitions
+- **Contact Form**: Integrated with Google Sheets API
+- **Easy Customization**: Configure through GUI and JSON files
 
-### Tech Stack Used 
+## Tech Stack 💻
 
--   Next.js
--   TailwindCSS
+- **Framework**: Next.js
+- **Styling**: Tailwind CSS
+- **Animation**: GSAP & Framer Motion
+- **State Management**: React Context
+- **Markdown Processing**: Gray Matter & Remark
+- **Form Handling**: Nodemailer
+- **Deployment**: Vercel
+
+## License 📄
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
