@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import { v4 as uuidv4 } from "uuid";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
+import { verifyToken } from "../utils/auth";
 
 import yourData from "../data/portfolio.json";
 import Cursor from "../components/Cursor";
@@ -11,20 +13,157 @@ const Edit = () => {
     const [data, setData] = useState(yourData);
     const [currentTabs, setCurrentTabs] = useState("HEADER");
     const { theme } = useTheme();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [loginData, setLoginData] = useState({
+        username: "",
+        password: "",
+    });
+    const router = useRouter();
 
-    const saveData = () => {
-        if (process.env.NODE_ENV === "development") {
-            fetch("/api/portfolio", {
+    useEffect(() => {
+        const token = localStorage.getItem("auth_token");
+        if (token) {
+            const user = verifyToken(token);
+            if (user && user.role === "admin") {
+                setIsAuthenticated(true);
+            } else {
+                localStorage.removeItem("auth_token");
+                setIsAuthenticated(false);
+            }
+        }
+    }, []);
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await fetch("/api/auth", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(loginData),
             });
-        } else {
-            alert("This thing only works in development mode.");
+
+            const data = await res.json();
+
+            if (res.ok) {
+                localStorage.setItem("auth_token", data.token);
+                setIsAuthenticated(true);
+            } else {
+                alert(data.message || "Login failed");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("Login failed");
         }
     };
+
+    const saveData = async () => {
+        const token = localStorage.getItem("auth_token");
+
+        if (!token) {
+            alert("Please login first");
+            return;
+        }
+
+        try {
+            const res = await fetch("/api/portfolio", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (res.ok) {
+                alert("Changes saved successfully");
+            } else {
+                alert("Failed to save changes");
+            }
+        } catch (error) {
+            console.error("Save error:", error);
+        }
+    };
+
+    if (!isAuthenticated) {
+        return (
+            <div
+                className={`min-h-screen flex items-center justify-center ${
+                    theme === "dark"
+                        ? "bg-gradient-to-br from-gray-900 to-gray-800"
+                        : "bg-gradient-to-br from-gray-100 to-white"
+                }`}
+            >
+                <div
+                    className={`w-full max-w-md p-8 space-y-6 rounded-xl shadow-lg ${
+                        theme === "dark"
+                            ? "bg-gray-800 text-white"
+                            : "bg-white text-gray-900"
+                    }`}
+                >
+                    <h1 className="text-3xl font-bold text-center">
+                        Admin Login
+                    </h1>
+
+                    <div className="space-y-4">
+                        <div>
+                            <label className="text-sm font-medium opacity-75">
+                                Username
+                            </label>
+                            <input
+                                type="text"
+                                value={loginData.username}
+                                onChange={(e) =>
+                                    setLoginData({
+                                        ...loginData,
+                                        username: e.target.value,
+                                    })
+                                }
+                                className={`w-full px-4 py-2 mt-2 rounded-lg border focus:ring-2 focus:ring-opacity-50 focus:outline-none ${
+                                    theme === "dark"
+                                        ? "bg-gray-700 border-gray-600 focus:ring-blue-500"
+                                        : "bg-white border-gray-300 focus:ring-blue-600"
+                                }`}
+                                placeholder="Enter username"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="text-sm font-medium opacity-75">
+                                Password
+                            </label>
+                            <input
+                                type="password"
+                                value={loginData.password}
+                                onChange={(e) =>
+                                    setLoginData({
+                                        ...loginData,
+                                        password: e.target.value,
+                                    })
+                                }
+                                className={`w-full px-4 py-2 mt-2 rounded-lg border focus:ring-2 focus:ring-opacity-50 focus:outline-none ${
+                                    theme === "dark"
+                                        ? "bg-gray-700 border-gray-600 focus:ring-blue-500"
+                                        : "bg-white border-gray-300 focus:ring-blue-600"
+                                }`}
+                                placeholder="Enter password"
+                            />
+                        </div>
+
+                        <Button
+                            onClick={handleLogin}
+                            type="primary"
+                            classes="w-full py-2 text-center"
+                        >
+                            Sign In
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     // Project Handler
     const editProjects = (projectIndex, editProject) => {
