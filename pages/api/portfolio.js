@@ -43,28 +43,31 @@ export default async function handler(req, res) {
             );
 
             try {
-                // Save locally
+                // Save locally first
                 fs.writeFileSync(
                     portfolioPath,
                     JSON.stringify(req.body, null, 2)
                 );
 
-                // Save to GitHub if configured
                 if (process.env.GITHUB_TOKEN) {
                     const octokit = new Octokit({
                         auth: process.env.GITHUB_TOKEN,
                     });
 
-                    const content = Buffer.from(
-                        JSON.stringify(req.body, null, 2)
-                    ).toString("base64");
-
                     try {
+                        const content = Buffer.from(
+                            JSON.stringify(req.body, null, 2)
+                        ).toString("base64");
+
+                        // Test GitHub authentication first
+                        await octokit.rest.users.getAuthenticated();
+
                         const { data: currentFile } =
                             await octokit.repos.getContent({
                                 owner: process.env.GITHUB_OWNER,
                                 repo: process.env.GITHUB_REPO,
                                 path: "data/portfolio.json",
+                                ref: "main",
                             });
 
                         await octokit.repos.createOrUpdateFileContents({
@@ -82,11 +85,11 @@ export default async function handler(req, res) {
                                 "Updated successfully and committed to GitHub",
                         });
                     } catch (error) {
-                        console.error("GitHub update error:", error);
-                        // Still return success if local save worked
-                        return res.status(200).json({
-                            message:
-                                "Updated locally but failed to commit to GitHub",
+                        console.error("GitHub API error:", error);
+                        // Return more specific error message
+                        return res.status(500).json({
+                            message: `GitHub Error: ${error.message}`,
+                            type: "github_error",
                         });
                     }
                 }
@@ -96,9 +99,10 @@ export default async function handler(req, res) {
                     .json({ message: "Updated successfully" });
             } catch (error) {
                 console.error("Save error:", error);
-                return res
-                    .status(500)
-                    .json({ message: "Failed to save changes" });
+                return res.status(500).json({
+                    message: `Save Error: ${error.message}`,
+                    type: "save_error",
+                });
             }
         }
 
