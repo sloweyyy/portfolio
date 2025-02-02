@@ -6,8 +6,12 @@ import { Octokit } from "@octokit/rest";
 
 export default async function handler(req, res) {
     // Set CORS headers
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    res.setHeader(
+        "Access-Control-Allow-Origin",
+        process.env.NODE_ENV === "production" ? "https://www.slowey.works" : "*"
+    );
+    res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
     res.setHeader(
         "Access-Control-Allow-Headers",
         "Content-Type, Authorization"
@@ -19,7 +23,6 @@ export default async function handler(req, res) {
         return;
     }
 
-    // Verify authorization
     try {
         const token = req.headers.authorization?.split(" ")[1];
 
