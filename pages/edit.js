@@ -77,8 +77,15 @@ const Edit = () => {
                     Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(data),
-                credentials: "include",
             });
+
+            // First check if response is JSON
+            const contentType = res.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new Error("Received non-JSON response from server");
+            }
+
+            const result = await res.json();
 
             if (res.status === 401) {
                 setIsAuthenticated(false);
@@ -88,14 +95,13 @@ const Edit = () => {
             }
 
             if (res.ok) {
-                alert("Changes saved successfully");
+                alert(result.message || "Changes saved successfully");
             } else {
-                const error = await res.json();
-                alert(error.message || "Failed to save changes");
+                alert(result.message || "Failed to save changes");
             }
         } catch (error) {
             console.error("Save error:", error);
-            alert("Error saving changes");
+            alert("Error saving changes. Please try again.");
         }
     };
 
