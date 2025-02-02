@@ -4,6 +4,8 @@
 ![Next.js](https://img.shields.io/badge/Next.js-15.1.6-blue)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.3-blueviolet)
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsloweyyy%2Fportfolio&env=MONGODB_URI,MONGODB_DB,JWT_SECRET,GITHUB_TOKEN,GITHUB_OWNER,GITHUB_REPO&demo-title=SloWey%20Portfolio&demo-url=https%3A%2F%2Fwww.slowey.works%2F)
+
 This is a modern and performant personal portfolio website and blog, built with Next.js and Tailwind CSS. It features a clean, minimal design with dark mode support, showcasing projects, skills, and blog posts.
 
 ![Portfolio Demo](https://github.com/sloweyyy/portfolio/blob/main/public/images/demo.png)

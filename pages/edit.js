@@ -77,9 +77,10 @@ const Edit = () => {
                     Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(data),
+                credentials: "include",
             });
 
-            // First check if response is JSON
+            // Check content type
             const contentType = res.headers.get("content-type");
             if (!contentType || !contentType.includes("application/json")) {
                 throw new Error("Received non-JSON response from server");
@@ -101,7 +102,13 @@ const Edit = () => {
             }
         } catch (error) {
             console.error("Save error:", error);
-            alert("Error saving changes. Please try again.");
+            if (error.message.includes("non-JSON")) {
+                setIsAuthenticated(false);
+                localStorage.removeItem("auth_token");
+                alert("Authentication error. Please login again.");
+            } else {
+                alert("Error saving changes. Please try again.");
+            }
         }
     };
 
