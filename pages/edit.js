@@ -43,6 +43,7 @@ const Edit = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(loginData),
+                credentials: "include",
             });
 
             const data = await res.json();
@@ -63,7 +64,8 @@ const Edit = () => {
         const token = localStorage.getItem("auth_token");
 
         if (!token) {
-            alert("Please login first");
+            setIsAuthenticated(false);
+            alert("Session expired. Please login again");
             return;
         }
 
@@ -75,15 +77,25 @@ const Edit = () => {
                     Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(data),
+                credentials: "include",
             });
+
+            if (res.status === 401) {
+                setIsAuthenticated(false);
+                localStorage.removeItem("auth_token");
+                alert("Session expired. Please login again");
+                return;
+            }
 
             if (res.ok) {
                 alert("Changes saved successfully");
             } else {
-                alert("Failed to save changes");
+                const error = await res.json();
+                alert(error.message || "Failed to save changes");
             }
         } catch (error) {
             console.error("Save error:", error);
+            alert("Error saving changes");
         }
     };
 
