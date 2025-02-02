@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Header from "../components/Header";
 import ServiceCard from "../components/ServiceCard";
 import Socials from "../components/Socials";
@@ -10,6 +10,7 @@ import Head from "next/head";
 import Button from "../components/Button";
 import Link from "next/link";
 import Cursor from "../components/Cursor";
+import { useRouter } from "next/router";
 
 // Local Data
 import data from "../data/portfolio.json";
@@ -22,6 +23,71 @@ export default function Home() {
     const textTwo = useRef();
     const textThree = useRef();
     const textFour = useRef();
+    const [konami, setKonami] = useState([]);
+    const [showEdit, setShowEdit] = useState(false);
+    const router = useRouter();
+
+    useEffect(() => {
+        // Secret key combination
+        const konamiCode = [
+            "ArrowUp",
+            "ArrowUp",
+            "ArrowDown",
+            "ArrowDown",
+            "ArrowLeft",
+            "ArrowRight",
+            "ArrowLeft",
+            "ArrowRight",
+            "b",
+            "a",
+        ];
+
+        const handleKeyPress = (event) => {
+            // Original keyboard shortcut
+            if (
+                (event.metaKey && event.key === "e") ||
+                (event.ctrlKey && event.altKey && event.key === "e")
+            ) {
+                event.preventDefault();
+                router.push("/edit");
+            }
+
+            // Konami code handler
+            setKonami((prev) => {
+                const nextKonami = [...prev, event.key];
+                if (nextKonami.length > konamiCode.length) {
+                    return nextKonami.slice(1);
+                }
+                return nextKonami;
+            });
+        };
+
+        window.addEventListener("keydown", handleKeyPress);
+        return () => window.removeEventListener("keydown", handleKeyPress);
+    }, []);
+
+    // Check if konami code is completed
+    useEffect(() => {
+        const konamiCode = [
+            "ArrowUp",
+            "ArrowUp",
+            "ArrowDown",
+            "ArrowDown",
+            "ArrowLeft",
+            "ArrowRight",
+            "ArrowLeft",
+            "ArrowRight",
+            "b",
+            "a",
+        ];
+
+        if (
+            konami.length === konamiCode.length &&
+            konami.every((key, index) => key === konamiCode[index])
+        ) {
+            router.push("/edit");
+        }
+    }, [konami]);
 
     // Handling Scroll
     const handleWorkScroll = () => {
@@ -148,7 +214,7 @@ export default function Home() {
                 </div>
 
                 {/* This button should not go into production */}
-                {process.env.NODE_ENV === "development" && (
+                {showEdit && (
                     <div className="fixed bottom-5 right-5">
                         <Link href="/edit">
                             <Button type="primary">Edit Data</Button>
