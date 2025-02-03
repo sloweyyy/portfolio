@@ -12,11 +12,9 @@ import Link from "next/link";
 import Cursor from "../components/Cursor";
 import { useRouter } from "next/router";
 
-// Local Data
 import data from "../data/portfolio.json";
 
 export default function Home() {
-    // Ref
     const workRef = useRef();
     const aboutRef = useRef();
     const textOne = useRef();
@@ -28,7 +26,6 @@ export default function Home() {
     const router = useRouter();
 
     useEffect(() => {
-        // Secret key combination
         const konamiCode = [
             "ArrowUp",
             "ArrowUp",
@@ -52,7 +49,6 @@ export default function Home() {
                 router.push("/edit");
             }
 
-            // Konami code handler
             setKonami((prev) => {
                 const nextKonami = [...prev, event.key];
                 if (nextKonami.length > konamiCode.length) {
@@ -66,7 +62,6 @@ export default function Home() {
         return () => window.removeEventListener("keydown", handleKeyPress);
     }, []);
 
-    // Check if konami code is completed
     useEffect(() => {
         const konamiCode = [
             "ArrowUp",
@@ -89,7 +84,6 @@ export default function Home() {
         }
     }, [konami]);
 
-    // Handling Scroll
     const handleWorkScroll = () => {
         window.scrollTo({
             top: workRef.current.offsetTop - 25,

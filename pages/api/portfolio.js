@@ -5,7 +5,6 @@ import path from "path";
 import { Octokit } from "@octokit/rest";
 
 export default async function handler(req, res) {
-    // Set CORS headers
     res.setHeader("Access-Control-Allow-Credentials", true);
     res.setHeader(
         "Access-Control-Allow-Origin",
@@ -17,7 +16,6 @@ export default async function handler(req, res) {
         "Content-Type, Authorization"
     );
 
-    // Handle preflight
     if (req.method === "OPTIONS") {
         res.status(200).end();
         return;
@@ -43,7 +41,6 @@ export default async function handler(req, res) {
             );
 
             try {
-                // Save locally first
                 fs.writeFileSync(
                     portfolioPath,
                     JSON.stringify(req.body, null, 2)
@@ -59,7 +56,6 @@ export default async function handler(req, res) {
                             JSON.stringify(req.body, null, 2)
                         ).toString("base64");
 
-                        // Test GitHub authentication first
                         await octokit.rest.users.getAuthenticated();
 
                         const { data: currentFile } =
@@ -86,7 +82,6 @@ export default async function handler(req, res) {
                         });
                     } catch (error) {
                         console.error("GitHub API error:", error);
-                        // Return more specific error message
                         return res.status(500).json({
                             message: `GitHub Error: ${error.message}`,
                             type: "github_error",
