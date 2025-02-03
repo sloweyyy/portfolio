@@ -30,7 +30,7 @@ export default async function handler(req, res) {
             .replace(/{{message}}/g, message);
 
         const mailOptions = {
-            from: process.env.EMAIL_USER,
+            from: `"${process.env.EMAIL_FROM_NAME}" <${process.env.EMAIL_USER}>`,
             to: "truonglevinhphuc2006@gmail.com",
             subject: `New Contact Form Message from ${name}`,
             html: emailTemplate,
