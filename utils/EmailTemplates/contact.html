@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Contact Form Submission</title>
+  <style>
+    .gradient-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 40px;
+      width: 100%;
+      opacity: 0.5;
+      background: radial-gradient(circle, rgba(248, 107, 223, 1) 0%, rgba(107, 107, 248, 0.8) 100%);
+    }
+
+    .gradient-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 30px;
+      width: 100%;
+      opacity: 0.5;
+      background: radial-gradient(circle, rgba(107, 107, 248, 0.8) 0%, rgba(248, 107, 223, 1) 100%);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #1a1a1a !important;
+      }
+
+      .content-wrapper {
+        background-color: #2d2d2d !important;
+      }
+
+      .heading {
+        color: #ffffff !important;
+        border-bottom-color: #444 !important;
+      }
+
+      .info-box {
+        background: #363636 !important;
+      }
+
+      .text-label {
+        color: #e0e0e0 !important;
+      }
+
+      .text-content {
+        color: #cccccc !important;
+      }
+
+      .footer-text {
+        color: #999999 !important;
+        border-top-color: #444 !important;
+      }
+    }
+  </style>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #f6f9fc; position: relative;">
+  <div class="gradient-top"></div>
+  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; position: relative;">
+    <div class="content-wrapper"
+      style="background-color: #ffffff; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden;">
+      <div style="padding: 40px;">
+        <h2 class="heading"
+          style="color: #333; margin: 0; padding-bottom: 20px; border-bottom: 2px solid #eee; font-size: 24px;">
+          New Contact Form Submission
+        </h2>
+
+        <div class="info-box"
+          style="background: #f9f9f9; padding: 25px; border-radius: 10px; margin: 25px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+          <p style="margin: 0 0 15px 0;">
+            <strong class="text-label" style="color: #555; font-size: 16px;">Name:</strong>
+            <span class="text-content" style="color: #666; font-size: 16px;">{{name}}</span>
+          </p>
+          <p style="margin: 0 0 15px 0;">
+            <strong class="text-label" style="color: #555; font-size: 16px;">Email:</strong>
+            <span class="text-content" style="color: #666; font-size: 16px;">{{email}}</span>
+          </p>
+          <div style="margin-top: 25px;">
+            <strong class="text-label" style="color: #555; font-size: 16px;">Message:</strong>
+            <p class="text-content" style="color: #666; margin: 15px 0; line-height: 1.6;">
+              {{message}}</p>
+          </div>
+        </div>
+
+        <div class="footer-text"
+          style="color: #666; font-size: 13px; margin-top: 25px; text-align: center; padding-top: 25px; border-top: 1px solid #eee;">
+          <p style="margin: 0;">This email was sent from your portfolio contact form.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="gradient-bottom"></div>
+</body>
+
+</html>

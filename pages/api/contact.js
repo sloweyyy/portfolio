@@ -1,49 +1,49 @@
-import { google } from "googleapis";
+import nodemailer from "nodemailer";
+import fs from "fs";
+import path from "path";
 
 export default async function handler(req, res) {
-    if (
-        !process.env.CLIENT_EMAIL ||
-        !process.env.PRIVATE_KEY ||
-        !process.env.SPREADSHEET_ID
-    ) {
-        return res
-            .status(500)
-            .json({ error: "Environment variables are not set" });
+    if (req.method !== "POST") {
+        return res.status(405).json({ message: "Method not allowed" });
     }
 
-    const auth = new google.auth.GoogleAuth({
-        credentials: {
-            client_email: process.env.CLIENT_EMAIL,
-            private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"),
+    const { name, email, message } = req.body;
+
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_APP_PASSWORD,
         },
-        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
 
-    const sheets = google.sheets({ version: "v4", auth });
-
     try {
-        const range = "Contact!A2:C2";
-        console.log(
-            `Appending data to range: ${range} in spreadsheet ID: ${process.env.SPREADSHEET_ID}`
+        const templatePath = path.join(
+            process.cwd(),
+            "utils/EmailTemplates/contact.html"
         );
+        let emailTemplate = fs.readFileSync(templatePath, "utf-8");
 
-        await sheets.spreadsheets.values.append({
-            spreadsheetId: process.env.SPREADSHEET_ID,
-            range,
-            valueInputOption: "RAW",
-            resource: {
-                values: [[req.body.name, req.body.email, req.body.message]],
-            },
-        });
-        res.status(200).json({ message: "Data added successfully" });
+        emailTemplate = emailTemplate
+            .replace(/{{name}}/g, name)
+            .replace(/{{email}}/g, email)
+            .replace(/{{message}}/g, message);
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: "truonglevinhphuc2006@gmail.com",
+            subject: `New Contact Form Message from ${name}`,
+            html: emailTemplate,
+            replyTo: email,
+        };
+
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ message: "Email sent successfully" });
     } catch (error) {
-        console.error(
-            "Error adding data to Google Sheets:",
-            error.response ? error.response.data : error.message
-        );
+        console.error("Email sending error:", error);
         res.status(500).json({
-            error: "Error adding data",
-            details: error.response ? error.response.data : error.message,
+            message: "Failed to send email",
+            error: error.message,
         });
     }
 }
