@@ -30,8 +30,6 @@ const ContactForm = ({ onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        setEmailError("");
         setFormError("");
 
         if (!name.trim() || !email.trim() || !message.trim()) {
@@ -53,15 +51,17 @@ const ContactForm = ({ onClose }) => {
                 body: JSON.stringify({ name, email, message }),
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                throw new Error("Failed to submit the form");
+                throw new Error(data.message || "Failed to send message");
             }
 
-            const result = await response.json();
-            console.log("Form submitted:", result);
+            alert("Message sent successfully!");
             handleClose();
         } catch (error) {
             console.error("Error:", error);
+            setFormError("Failed to send message. Please try again later.");
         }
     };
 
