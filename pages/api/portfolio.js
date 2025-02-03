@@ -35,10 +35,11 @@ export default async function handler(req, res) {
         }
 
         if (req.method === "POST") {
-            const portfolioPath = path.join(
-                process.cwd(),
-                "data/portfolio.json"
-            );
+            // const portfolioPath = path.join(
+            //     process.cwd(),
+            //     "data/portfolio.json"
+            // );
+            const portfolioPath = path.join("/tmp", "portfolio.json");
 
             try {
                 fs.writeFileSync(
