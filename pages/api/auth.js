@@ -15,14 +15,12 @@ export default async function handler(req, res) {
         const { username, password } = req.body;
         const { db } = await connectToDatabase();
 
-        // Find user in database
         const user = await db.collection("users").findOne({ username });
 
         if (!user || !verifyPassword(password, user.password)) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
-        // Generate JWT token
         const token = generateToken(user);
 
         res.status(200).json({
