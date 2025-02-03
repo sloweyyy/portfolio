@@ -25,56 +25,61 @@ This is a modern and performant personal portfolio website and blog, built with 
 
 ## Tech Stack 💻
 
--   **Framework:** Next.js 15
--   **Styling:** Tailwind CSS 3.3
--   **Animation:** GSAP & Framer Motion
--   **State Management:** React Context
--   **Markdown Processing:** Gray Matter & Remark
--   **Form Handling:** Nodemailer + Google Sheets API
--   **Database:** MongoDB (for user authentication)
--   **Deployment:** Vercel
+- **Framework:** Next.js 15
+- **Styling:** Tailwind CSS 3.3
+- **Animation:** GSAP & Framer Motion
+- **State Management:** React Context
+- **Markdown Processing:** Gray Matter & Remark
+- **Form Handling:** Nodemailer + Google Sheets API
+- **Database:** MongoDB (for user authentication)
+- **Deployment:** Vercel
 
 ## Getting Started 🚀
 
-1.  **Clone the repository:**
+1. **Clone the repository:**
 
     ```bash
     git clone https://github.com/sloweyyy/portfolio.git
     ```
 
-2.  **Navigate to the project directory:**
+2. **Navigate to the project directory:**
 
     ```bash
     cd portfolio
     ```
 
-3.  **Install dependencies:**
+3. **Install dependencies:**
 
     ```bash
     npm install
     ```
 
-4.  **Set up environment variables:**
+4. **Set up environment variables:**
 
     Create a `.env.local` file in the root directory and add the following variables:
 
     ```env
-    MONGODB_URI=<YOUR_MONGODB_URI>
-    MONGODB_DB=<YOUR_MONGODB_DATABASE_NAME>
-    JWT_SECRET=<YOUR_JWT_SECRET>
-    CLIENT_EMAIL=<YOUR_GOOGLE_SERVICE_ACCOUNT_EMAIL>
-    PRIVATE_KEY=<YOUR_GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY>
-    SPREADSHEET_ID=<YOUR_GOOGLE_SHEET_ID>
+    MONGODB_URI=<your_mongodb_uri>
+    MONGODB_DB=<your_mongodb_db>
+    JWT_SECRET=<your_jwt_secret>
+    GITHUB_TOKEN=<your_github_token>
+    GITHUB_OWNER=<your_github_username>
+    GITHUB_REPO=<your_github_repo>
+    EMAIL_USER=<your_email>
+    EMAIL_FROM_NAME=<"your_name">
+    EMAIL_APP_PASSWORD=<your_email_app_password>
     ```
 
-    *   **MONGODB_URI:** Your MongoDB connection string.
-    *   **MONGODB_DB:** The name of your MongoDB database.
-    *   **JWT_SECRET:** A secret key for JWT token generation.
-    *   **CLIENT_EMAIL:** Email address for your Google Service Account.
-    *   **PRIVATE_KEY:** Private key for your Google Service Account (ensure this is secure).
-    *  **SPREADSHEET_ID:** ID of your Google Sheet.
-
-5.  **Run the development server:**
+    - **MONGODB_URI:** Your MongoDB connection string.
+    - **MONGODB_DB:** The name of your MongoDB database.
+    - **JWT_SECRET:** A secret key for JWT token generation.
+    - **GITHUB_TOKEN:** A personal access token for GitHub API.
+    - **GITHUB_OWNER:** Your GitHub username.
+    - **GITHUB_REPO:** The repository name for the blog posts.
+    - **EMAIL_USER:** Your email address.
+    - **EMAIL_FROM_NAME:** Your name.
+    - **EMAIL_APP_PASSWORD:** Your email app password.x
+5. **Run the development server:**
 
     ```bash
     npm run dev
@@ -84,23 +89,23 @@ This is a modern and performant personal portfolio website and blog, built with 
 
 ## Key Configuration Points
 
-*   **`data/portfolio.json`:** Contains the main data for the portfolio (projects, services, about, socials, etc.).
-*   **`_posts/`:** Directory holding all blog posts as Markdown files.
-*   **`pages/api/`:** API routes for user authentication, contact form handling and data management.
-*   **`components/`:** Contains all the reusable react components.
+- **`data/portfolio.json`:** Contains the main data for the portfolio (projects, services, about, socials, etc.).
+- **`_posts/`:** Directory holding all blog posts as Markdown files.
+- **`pages/api/`:** API routes for user authentication, contact form handling and data management.
+- **`components/`:** Contains all the reusable react components.
 
 ## Admin Access
 
-*  **Login Page:** Access by navigating to `/edit` while the development environment is running.
-*   **Credentials:** You can seed a new admin user by using `npm run seed` in terminal.
-* **Konami Code:** Special key combination `Up, Up, Down, Down, Left, Right, Left, Right, B, A` can also be used to navigate to the admin panel.
+- **Login Page:** Access by navigating to `/edit` while the development environment is running.
+- **Credentials:** You can seed a new admin user by using `npm run seed` in terminal.
+- **Konami Code:** Special key combination `Up, Up, Down, Down, Left, Right, Left, Right, B, A` can also be used to navigate to the admin panel.
 
 ## Customization
 
-*   **Modify `data/portfolio.json`:**  Update the portfolio content, resume details, etc.
-*   **Add/Edit Blog Posts:** Create or edit Markdown files in the `_posts` directory.
-*  **Styling:** Make customizations using Tailwind config in `tailwind.config.js` or by modifying CSS in `/styles/`
-*   **Theme**: Customize the dark mode and theme in general with `components/Header/index.js`, `components/Button/index.js`
+- **Modify `data/portfolio.json`:**  Update the portfolio content, resume details, etc.
+- **Add/Edit Blog Posts:** Create or edit Markdown files in the `_posts` directory.
+- **Styling:** Make customizations using Tailwind config in `tailwind.config.js` or by modifying CSS in `/styles/`
+- **Theme**: Customize the dark mode and theme in general with `components/Header/index.js`, `components/Button/index.js`
 
 ## Deployment 🚀
 
