@@ -78,7 +78,7 @@ This is a modern and performant personal portfolio website and blog, built with 
     - **GITHUB_REPO:** The repository name for the blog posts.
     - **EMAIL_USER:** Your email address.
     - **EMAIL_FROM_NAME:** Your name.
-    - **EMAIL_APP_PASSWORD:** Your email app password.x
+    - **EMAIL_APP_PASSWORD:** Your email app password.
 5. **Run the development server:**
 
     ```bash
