@@ -101,3 +101,21 @@ body {
     font-family: "Be Vietnam Pro", sans-serif;
     font-weight: 700;
 }
+
+.Toastify__toast {
+    border-radius: 10px;
+    font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.Toastify__toast--success {
+    background: #4CAF50;
+}
+
+.Toastify__toast--error {
+    background: #F44336;
+}
+
+.dark .Toastify__toast {
+    background: #333;
+    color: #fff;
+}

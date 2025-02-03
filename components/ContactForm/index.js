@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import Button from "../Button";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ContactForm = ({ onClose }) => {
     const [name, setName] = useState("");
@@ -30,15 +32,32 @@ const ContactForm = ({ onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setFormError("");
 
         if (!name.trim() || !email.trim() || !message.trim()) {
-            setFormError("All fields are required.");
+            toast.error("All fields are required.", {
+                position: "bottom-right",
+                style: {
+                    fontFamily: "Be Vietnam Pro",
+                },
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: theme === "dark" ? "dark" : "light",
+            });
             return;
         }
 
         if (!validateEmail(email)) {
-            setEmailError("Please enter a valid email address.");
+            toast.error("Please enter a valid email address.", {
+                position: "bottom-right",
+                style: {
+                    fontFamily: "Be Vietnam Pro",
+                },
+                autoClose: 5000,
+                theme: theme === "dark" ? "dark" : "light",
+            });
             return;
         }
 
@@ -57,11 +76,32 @@ const ContactForm = ({ onClose }) => {
                 throw new Error(data.message || "Failed to send message");
             }
 
-            alert("Message sent successfully!");
-            handleClose();
+            toast.success("Message sent successfully!", {
+                position: "bottom-right",
+                style: {
+                    fontFamily: "Be Vietnam Pro",
+                },
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: theme === "dark" ? "dark" : "light",
+            });
+
+            setTimeout(() => {
+                handleClose();
+            }, 500);
         } catch (error) {
             console.error("Error:", error);
-            setFormError("Failed to send message. Please try again later.");
+            toast.error("Failed to send message. Please try again later.", {
+                position: "bottom-right",
+                style: {
+                    fontFamily: "Be Vietnam Pro",
+                },
+                autoClose: 5000,
+                theme: theme === "dark" ? "dark" : "light",
+            });
         }
     };
 
