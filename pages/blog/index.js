@@ -13,15 +13,6 @@ const Blog = ({ posts }) => {
     const text = useRef();
     const router = useRouter();
     const [mounted, setMounted] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-        const token = localStorage.getItem("auth_token");
-        if (token) {
-            setIsAuthenticated(true);
-        }
-    }, []);
 
     useIsomorphicLayoutEffect(() => {
         stagger(
@@ -35,73 +26,40 @@ const Blog = ({ posts }) => {
 
     useEffect(() => {
         setMounted(true);
-        const token = localStorage.getItem("auth_token");
-        if (token) {
-            setIsAuthenticated(true);
-        }
     }, []);
 
     const createBlog = () => {
-        const token = localStorage.getItem("auth_token");
-        if (!token) {
-            alert("Please login to create blog posts");
-            return;
-        }
-
-        fetch("/api/blog", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-        })
-            .then((res) => {
-                if (res.status === 401) {
-                    setIsAuthenticated(false);
-                    localStorage.removeItem("auth_token");
-                    alert("Session expired. Please login again");
-                    return;
-                }
+        if (process.env.NODE_ENV === "development") {
+            fetch("/api/blog", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(() => {
                 router.reload(window.location.pathname);
-            })
-            .catch((err) => {
-                console.error("Create blog error:", err);
-                alert("Failed to create blog post");
             });
+        } else {
+            alert("This thing only works in development mode.");
+        }
     };
 
     const deleteBlog = (slug) => {
-        const token = localStorage.getItem("auth_token");
-        if (!token) {
-            alert("Please login to delete blog posts");
-            return;
-        }
-
-        fetch("/api/blog", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-                slug,
-            }),
-        })
-            .then((res) => {
-                if (res.status === 401) {
-                    setIsAuthenticated(false);
-                    localStorage.removeItem("auth_token");
-                    alert("Session expired. Please login again");
-                    return;
-                }
+        if (process.env.NODE_ENV === "development") {
+            fetch("/api/blog", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    slug,
+                }),
+            }).then(() => {
                 router.reload(window.location.pathname);
-            })
-            .catch((err) => {
-                console.error("Delete blog error:", err);
-                alert("Failed to delete blog post");
             });
+        } else {
+            alert("This thing only works in development mode.");
+        }
     };
-
     return (
         showBlog.current && (
             <>
@@ -168,10 +126,10 @@ const Blog = ({ posts }) => {
                         </div>
                     </div>
                 </div>
-                {isAuthenticated && (
-                    <div className="fixed bottom-0 right-0 m-5">
+                {process.env.NODE_ENV === "development" && mounted && (
+                    <div className="fixed bottom-6 right-6">
                         <Button onClick={createBlog} type={"primary"}>
-                            Create Blog
+                            Add New Post +{" "}
                         </Button>
                     </div>
                 )}
