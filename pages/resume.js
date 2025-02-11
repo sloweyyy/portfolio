@@ -23,9 +23,9 @@ const Resume = () => {
         }
     }, []);
 
-    const handleDownloadPdf = () => {
+    const handleViewPdf = () => {
         window.open(
-            "https://docs.google.com/uc?export=download&id=1CC3ocp3PnQtlNHxtB6mgSi8Y9rzRMCZF",
+            "https://drive.google.com/file/d/14VcPD_mXkNDaLmYK5KaqwgBboKu0CQcC/view?usp=sharing",
             "_blank"
         );
     };
@@ -44,8 +44,8 @@ const Resume = () => {
             )}
             {process.env.NODE_ENV === "production" && (
                 <div className="fixed bottom-6 right-6">
-                    <Button onClick={handleDownloadPdf} type={"primary"}>
-                        Download PDF
+                    <Button onClick={handleViewPdf} type={"primary"}>
+                        View PDF
                     </Button>
                 </div>
             )}
