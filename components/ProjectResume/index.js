@@ -2,9 +2,11 @@ import React from "react";
 import Button from "../Button";
 
 const ProjectResume = ({ dates, type, position, bullets }) => {
-    const bulletsArray = Array.isArray(bullets)
-        ? bullets
-        : bullets.split(",").map((bullet) => bullet.trim());
+    const bulletsArray = bullets
+        ? Array.isArray(bullets)
+            ? bullets
+            : bullets.split(",").map((bullet) => bullet.trim())
+        : [];
 
     return (
         <div className="mt-5 w-full flex mob:flex-col desktop:flex-row justify-between">
@@ -17,7 +19,10 @@ const ProjectResume = ({ dates, type, position, bullets }) => {
                 {bulletsArray.length > 0 && (
                     <ul className="list-disc ml-5">
                         {bulletsArray.map((bullet, index) => (
-                            <li key={index} className="text-sm my-1 opacity-70">
+                            <li
+                                key={`bullet-${index}`}
+                                className="text-sm my-1 opacity-70"
+                            >
                                 {bullet}
                             </li>
                         ))}
