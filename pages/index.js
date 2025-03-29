@@ -159,44 +159,44 @@ export default function Home() {
                         handleWorkScroll={handleWorkScroll}
                         handleAboutScroll={handleAboutScroll}
                     />
-                    <div className="laptop:mt-20 mt-10">
-                        <div className="mt-5">
+                    <div className="laptop:mt-30 mt-20">
+                        <div className="mt-10 tagline-container space-y-0">
                             <h1
                                 ref={textOne}
-                                className="text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-4/5 mob:w-full laptop:w-4/5"
+                                className="tagline text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-4/5 mob:w-full laptop:w-4/5 mb-0 laptop:mb-1"
                             >
                                 {data.headerTaglineOne}
                             </h1>
                             <h1
                                 ref={textTwo}
-                                className="text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5"
+                                className="tagline text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5 mb-0 laptop:mb-1"
                             >
                                 {data.headerTaglineTwo}
                             </h1>
                             <h1
                                 ref={textThree}
-                                className="text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5"
+                                className="tagline text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5 mb-0 laptop:mb-1"
                             >
                                 {data.headerTaglineThree}
                             </h1>
                             <h1
                                 ref={textFour}
-                                className="text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5"
+                                className="tagline text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5"
                             >
                                 {data.headerTaglineFour}
                             </h1>
                         </div>
 
-                        <Socials className="mt-2 laptop:mt-5" />
+                        <Socials className="mt-8 laptop:mt-12" />
                     </div>
 
                     <div
-                        className="mt-10 laptop:mt-30 p-2 laptop:p-0"
+                        className="mt-20 laptop:mt-60 p-2 laptop:p-0"
                         ref={workRef}
                     >
-                        <h1 className="text-2xl text-bold">Work.</h1>
+                        <h1 className="text-2xl text-bold mb-4">Work.</h1>
 
-                        <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-5">
+                        <div className="mt-8 laptop:mt-14 grid grid-cols-1 tablet:grid-cols-2 gap-6">
                             {data.projects.map((project) => (
                                 <WorkCard
                                     key={project.id}
@@ -209,10 +209,10 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
+                    <div className="mt-20 laptop:mt-60 p-2 laptop:p-0">
                         <div className="ml-2 laptop:ml-0">
-                            <h1 className="text-2xl mb-2">Services.</h1>
-                            <div className="mt-5 grid grid-cols-1 laptop:grid-cols-2 gap-6">
+                            <h1 className="text-2xl mb-4">Services.</h1>
+                            <div className="mt-8 laptop:mt-14 grid grid-cols-1 laptop:grid-cols-2 gap-6">
                                 {data.services.map((service, index) => (
                                     <ServiceCard
                                         key={index}
@@ -233,11 +233,11 @@ export default function Home() {
                         </div>
                     )}
                     <div
-                        className="mt-10 laptop:mt-40 p-2 laptop:p-0"
+                        className="mt-20 laptop:mt-60 p-2 laptop:p-0"
                         ref={aboutRef}
                     >
                         <div className="mx-2 laptop:mx-0 laptop:w-3/5">
-                            <h1 className="text-2xl mb-2">About.</h1>
+                            <h1 className="text-2xl mb-4">About.</h1>
                             <p className="text-lg laptop:text-2xl font-light">
                                 {data.aboutpara}
                             </p>

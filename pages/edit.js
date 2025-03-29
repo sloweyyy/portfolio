@@ -21,19 +21,58 @@ const Edit = () => {
         password: "",
     });
     const router = useRouter();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem("auth_token");
-        if (token) {
-            const user = verifyToken(token);
-            if (user && user.role === "admin") {
-                setIsAuthenticated(true);
-            } else {
-                localStorage.removeItem("auth_token");
+        const checkAuth = async () => {
+            try {
+                setLoading(true);
+                const token = localStorage.getItem("auth_token");
+
+                if (!token) {
+                    setIsAuthenticated(false);
+                    setLoading(false);
+                    return;
+                }
+
+                try {
+                    const user = verifyToken(token);
+                    if (user && user.role === "admin") {
+                        setIsAuthenticated(true);
+                    } else {
+                        localStorage.removeItem("auth_token");
+                        setIsAuthenticated(false);
+                        console.log(
+                            "Token verification failed or not an admin user"
+                        );
+                        toast.error(
+                            "Your session has expired. Please login again.",
+                            {
+                                position: "bottom-right",
+                                theme: theme === "dark" ? "dark" : "light",
+                            }
+                        );
+                    }
+                } catch (error) {
+                    console.error("Error verifying token:", error);
+                    localStorage.removeItem("auth_token");
+                    setIsAuthenticated(false);
+                    toast.error("Authentication error. Please login again.", {
+                        position: "bottom-right",
+                        theme: theme === "dark" ? "dark" : "light",
+                    });
+                }
+
+                setLoading(false);
+            } catch (error) {
+                console.error("Auth check error:", error);
                 setIsAuthenticated(false);
+                setLoading(false);
             }
-        }
-    }, []);
+        };
+
+        checkAuth();
+    }, [theme]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -116,7 +155,6 @@ const Edit = () => {
                 credentials: "include",
             });
 
-            // Check content type
             const contentType = res.headers.get("content-type");
             if (!contentType || !contentType.includes("application/json")) {
                 throw new Error("Received non-JSON response from server");
@@ -147,6 +185,23 @@ const Edit = () => {
             }
         }
     };
+
+    if (loading) {
+        return (
+            <div
+                className={`min-h-screen flex items-center justify-center ${
+                    theme === "dark"
+                        ? "bg-gray-900 text-white"
+                        : "bg-gray-100 text-gray-900"
+                }`}
+            >
+                <div className="text-center">
+                    <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <p>Loading...</p>
+                </div>
+            </div>
+        );
+    }
 
     if (!isAuthenticated) {
         return (
@@ -272,7 +327,6 @@ const Edit = () => {
     };
 
     // Services Handler
-
     const editServices = (serviceIndex, editService) => {
         let copyServices = data.services;
         copyServices[serviceIndex] = { ...editService };
@@ -301,7 +355,6 @@ const Edit = () => {
     };
 
     // Socials Handler
-
     const editSocials = (socialIndex, editSocial) => {
         let copySocials = data.socials;
         copySocials[socialIndex] = { ...editSocial };
@@ -329,7 +382,6 @@ const Edit = () => {
     };
 
     // Resume
-
     const handleAddExperiences = () => {
         setData({
             ...data,
@@ -933,7 +985,11 @@ const Edit = () => {
                                                     {experiences.position}
                                                 </h1>
                                                 <Button
-                                                    // onClick={() => deleteProject(project.id)}
+                                                    onClick={() =>
+                                                        deleteProject(
+                                                            experiences.id
+                                                        )
+                                                    }
                                                     type="primary"
                                                 >
                                                     Delete

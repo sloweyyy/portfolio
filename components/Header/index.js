@@ -4,12 +4,11 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import ContactForm from "../ContactForm";
-// Local Data
 import data from "../../data/portfolio.json";
 
 const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
     const router = useRouter();
-    const { theme, setTheme } = useTheme();
+    const { theme, resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
     const { name, showBlog, showResume } = data;
@@ -19,11 +18,8 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
         setMounted(true);
     }, []);
 
-    useEffect(() => {
-        if (mounted) {
-            document.documentElement.classList.toggle("dark", theme === "dark");
-        }
-    }, [mounted, theme]);
+    // Use currentTheme to avoid hydration mismatch
+    const currentTheme = mounted ? theme || resolvedTheme : "light";
 
     const handleScheduleCallClick = () => {
         setShowForm(true);
@@ -47,11 +43,11 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                             </h1>
 
                             <div className="flex items-center">
-                                {data.darkMode && (
+                                {data.darkMode && mounted && (
                                     <Button
                                         onClick={() =>
                                             setTheme(
-                                                theme === "dark"
+                                                currentTheme === "dark"
                                                     ? "light"
                                                     : "dark"
                                             )
@@ -60,7 +56,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                                         <img
                                             className="h-6"
                                             src={`/images/${
-                                                theme === "dark"
+                                                currentTheme === "dark"
                                                     ? "moon.svg"
                                                     : "sun.svg"
                                             }`}
@@ -73,10 +69,10 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                                         className="h-5"
                                         src={`/images/${
                                             !open
-                                                ? theme === "dark"
+                                                ? currentTheme === "dark"
                                                     ? "menu-white.svg"
                                                     : "menu.svg"
-                                                : theme === "light"
+                                                : currentTheme === "light"
                                                 ? "cancel.svg"
                                                 : "cancel-white.svg"
                                         }`}
@@ -86,7 +82,9 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                         </div>
                         <Popover.Panel
                             className={`absolute right-0 z-10 w-11/12 p-4 ${
-                                theme === "dark" ? "bg-slate-800" : "bg-white"
+                                currentTheme === "dark"
+                                    ? "bg-slate-800"
+                                    : "bg-white"
                             } shadow-md rounded-md`}
                         >
                             {!isBlog ? (
@@ -157,8 +155,8 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
             </Popover>
             <div
                 className={`sticky-header mt-10 hidden flex-row items-center justify-between ${
-                    theme === "light" ? "bg-white" : ""
-                } dark:text-white top-0 z-10 tablet:flex`}
+                    currentTheme === "light" ? "bg-white" : ""
+                } dark:text-white top-0 z-40 tablet:flex`}
             >
                 <h1
                     onClick={() => router.push("/")}
@@ -187,18 +185,20 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                         <Button onClick={handleScheduleCallClick}>
                             Contact
                         </Button>
-                        {mounted && theme && data.darkMode && (
+                        {mounted && data.darkMode && (
                             <Button
                                 onClick={() =>
                                     setTheme(
-                                        theme === "dark" ? "light" : "dark"
+                                        currentTheme === "dark"
+                                            ? "light"
+                                            : "dark"
                                     )
                                 }
                             >
                                 <img
                                     className="h-6"
                                     src={`/images/${
-                                        theme === "dark"
+                                        currentTheme === "dark"
                                             ? "moon.svg"
                                             : "sun.svg"
                                     }`}
@@ -227,18 +227,20 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                             Contact
                         </Button>
 
-                        {mounted && theme && data.darkMode && (
+                        {mounted && data.darkMode && (
                             <Button
                                 onClick={() =>
                                     setTheme(
-                                        theme === "dark" ? "light" : "dark"
+                                        currentTheme === "dark"
+                                            ? "light"
+                                            : "dark"
                                     )
                                 }
                             >
                                 <img
                                     className="h-6"
                                     src={`/images/${
-                                        theme === "dark"
+                                        currentTheme === "dark"
                                             ? "moon.svg"
                                             : "sun.svg"
                                     }`}
@@ -249,8 +251,10 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                 )}
             </div>
             {showForm && (
-                <div className="fixed top-0 left-0 w-full h-full z-50 flex items-center justify-center bg-black bg-opacity-50">
-                    <ContactForm onClose={handleCloseForm} />
+                <div className="fixed top-0 left-0 w-full h-full z-40 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="relative bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg max-w-md w-full">
+                        <ContactForm onClose={handleCloseForm} />
+                    </div>
                 </div>
             )}
         </>
