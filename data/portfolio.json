@@ -4,7 +4,7 @@
   "headerTaglineTwo": "I'm Truong Le Vinh Phuc",
   "headerTaglineThree": "developer & designer",
   "headerTaglineFour": " based in Ho Chi Minh city, Vietnam.",
-  "showCursor": false,
+  "showCursor": true,
   "showBlog": true,
   "darkMode": true,
   "showResume": true,
