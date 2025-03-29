@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import { verifyToken } from "../utils/auth";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
+import { Toaster } from "../components/Toaster";
 
 import yourData from "../data/portfolio.json";
 import Cursor from "../components/Cursor";
@@ -46,21 +46,14 @@ const Edit = () => {
                             "Token verification failed or not an admin user"
                         );
                         toast.error(
-                            "Your session has expired. Please login again.",
-                            {
-                                position: "bottom-right",
-                                theme: theme === "dark" ? "dark" : "light",
-                            }
+                            "Your session has expired. Please login again."
                         );
                     }
                 } catch (error) {
                     console.error("Error verifying token:", error);
                     localStorage.removeItem("auth_token");
                     setIsAuthenticated(false);
-                    toast.error("Authentication error. Please login again.", {
-                        position: "bottom-right",
-                        theme: theme === "dark" ? "dark" : "light",
-                    });
+                    toast.error("Authentication error. Please login again.");
                 }
 
                 setLoading(false);
@@ -92,46 +85,13 @@ const Edit = () => {
             if (res.ok) {
                 localStorage.setItem("auth_token", data.token);
                 setIsAuthenticated(true);
-                toast.success("Login successful", {
-                    position: "bottom-right",
-                    style: {
-                        fontFamily: "Be Vietnam Pro",
-                    },
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    theme: theme === "dark" ? "dark" : "light",
-                });
+                toast.success("Login successful");
             } else {
-                toast.error(data.message || "Login failed. Please try again.", {
-                    position: "bottom-right",
-                    style: {
-                        fontFamily: "Be Vietnam Pro",
-                    },
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    theme: theme === "dark" ? "dark" : "light",
-                });
+                toast.error(data.message || "Login failed. Please try again.");
             }
         } catch (error) {
             console.error("Login error:", error);
-            toast.error("Login failed. Please try again.", {
-                position: "bottom-right",
-                style: {
-                    fontFamily: "Be Vietnam Pro",
-                },
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                theme: theme === "dark" ? "dark" : "light",
-            });
+            toast.error("Login failed. Please try again.");
         }
     };
 
@@ -140,7 +100,7 @@ const Edit = () => {
 
         if (!token) {
             setIsAuthenticated(false);
-            alert("Session expired. Please login again");
+            toast.error("Session expired. Please login again");
             return;
         }
 
@@ -165,23 +125,23 @@ const Edit = () => {
             if (res.status === 401) {
                 setIsAuthenticated(false);
                 localStorage.removeItem("auth_token");
-                alert("Session expired. Please login again");
+                toast.error("Session expired. Please login again");
                 return;
             }
 
             if (res.ok) {
-                alert(result.message || "Changes saved successfully");
+                toast.success(result.message || "Changes saved successfully");
             } else {
-                alert(result.message || "Failed to save changes");
+                toast.error(result.message || "Failed to save changes");
             }
         } catch (error) {
             console.error("Save error:", error);
             if (error.message.includes("non-JSON")) {
                 setIsAuthenticated(false);
                 localStorage.removeItem("auth_token");
-                alert("Authentication error. Please login again.");
+                toast.error("Authentication error. Please login again.");
             } else {
-                alert("Error saving changes. Please try again.");
+                toast.error("Error saving changes. Please try again.");
             }
         }
     };
@@ -206,18 +166,7 @@ const Edit = () => {
     if (!isAuthenticated) {
         return (
             <>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme={theme === "dark" ? "dark" : "light"}
-                />
+                <Toaster />
                 <div
                     className={`min-h-screen flex items-center justify-center ${
                         theme === "dark"
@@ -414,18 +363,7 @@ const Edit = () => {
 
     return (
         <>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme={theme === "dark" ? "dark" : "light"}
-            />
+            <Toaster />
             <div
                 className={`container mx-auto ${
                     data.showCursor && "cursor-none"
@@ -538,6 +476,83 @@ const Edit = () => {
                                     type="text"
                                 ></input>
                             </div>
+
+                            {/* Alternate Taglines Two */}
+                            <div className="mt-8 mb-4">
+                                <div className="flex items-center">
+                                    <label className="w-1/5 text-lg opacity-50">
+                                        Alternate Taglines Two
+                                    </label>
+                                    <div className="w-4/5 ml-10">
+                                        <Button
+                                            onClick={() => {
+                                                const updated = [
+                                                    ...(data.alternateTaglinesTwo ||
+                                                        []),
+                                                    "",
+                                                ];
+                                                setData({
+                                                    ...data,
+                                                    alternateTaglinesTwo:
+                                                        updated,
+                                                });
+                                            }}
+                                        >
+                                            Add Alternate
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                {(data.alternateTaglinesTwo || []).map(
+                                    (tagline, index) => (
+                                        <div
+                                            key={index}
+                                            className="mt-3 flex items-center"
+                                        >
+                                            <div className="w-1/5"></div>
+                                            <div className="w-4/5 ml-10 flex items-center">
+                                                <input
+                                                    value={tagline}
+                                                    onChange={(e) => {
+                                                        const updated = [
+                                                            ...data.alternateTaglinesTwo,
+                                                        ];
+                                                        updated[index] =
+                                                            e.target.value;
+                                                        setData({
+                                                            ...data,
+                                                            alternateTaglinesTwo:
+                                                                updated,
+                                                        });
+                                                    }}
+                                                    className="flex-grow p-2 rounded-md shadow-lg border-2"
+                                                    type="text"
+                                                />
+                                                <Button
+                                                    classes="ml-2 bg-red-500 text-white hover:bg-red-600"
+                                                    onClick={() => {
+                                                        const updated = [
+                                                            ...data.alternateTaglinesTwo,
+                                                        ];
+                                                        updated.splice(
+                                                            index,
+                                                            1
+                                                        );
+                                                        setData({
+                                                            ...data,
+                                                            alternateTaglinesTwo:
+                                                                updated,
+                                                        });
+                                                    }}
+                                                >
+                                                    Delete
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+
                             <div className="mt-5 flex items-center">
                                 <label className="w-1/5 text-lg opacity-50">
                                     Header Tagline Three
@@ -554,6 +569,83 @@ const Edit = () => {
                                     type="text"
                                 ></input>
                             </div>
+
+                            {/* Alternate Taglines Three */}
+                            <div className="mt-8 mb-4">
+                                <div className="flex items-center">
+                                    <label className="w-1/5 text-lg opacity-50">
+                                        Alternate Taglines Three
+                                    </label>
+                                    <div className="w-4/5 ml-10">
+                                        <Button
+                                            onClick={() => {
+                                                const updated = [
+                                                    ...(data.alternateTaglinesThree ||
+                                                        []),
+                                                    "",
+                                                ];
+                                                setData({
+                                                    ...data,
+                                                    alternateTaglinesThree:
+                                                        updated,
+                                                });
+                                            }}
+                                        >
+                                            Add Alternate
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                {(data.alternateTaglinesThree || []).map(
+                                    (tagline, index) => (
+                                        <div
+                                            key={index}
+                                            className="mt-3 flex items-center"
+                                        >
+                                            <div className="w-1/5"></div>
+                                            <div className="w-4/5 ml-10 flex items-center">
+                                                <input
+                                                    value={tagline}
+                                                    onChange={(e) => {
+                                                        const updated = [
+                                                            ...data.alternateTaglinesThree,
+                                                        ];
+                                                        updated[index] =
+                                                            e.target.value;
+                                                        setData({
+                                                            ...data,
+                                                            alternateTaglinesThree:
+                                                                updated,
+                                                        });
+                                                    }}
+                                                    className="flex-grow p-2 rounded-md shadow-lg border-2"
+                                                    type="text"
+                                                />
+                                                <Button
+                                                    classes="ml-2 bg-red-500 text-white hover:bg-red-600"
+                                                    onClick={() => {
+                                                        const updated = [
+                                                            ...data.alternateTaglinesThree,
+                                                        ];
+                                                        updated.splice(
+                                                            index,
+                                                            1
+                                                        );
+                                                        setData({
+                                                            ...data,
+                                                            alternateTaglinesThree:
+                                                                updated,
+                                                        });
+                                                    }}
+                                                >
+                                                    Delete
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+
                             <div className="mt-5 flex items-center">
                                 <label className="w-1/5 text-lg opacity-50">
                                     Header Tagline Four

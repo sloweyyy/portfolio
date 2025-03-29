@@ -93,7 +93,7 @@ const Cursor = () => {
         <>
             <div
                 ref={cursorRef}
-                className={`fixed pointer-events-none z-[9999] h-8 w-8 rounded-full border border-solid transition-transform duration-200 ease-out ${
+                className={`fixed pointer-events-none z-[10000] h-8 w-8 rounded-full border border-solid transition-transform duration-200 ease-out ${
                     isVisible ? "opacity-100" : "opacity-0"
                 }`}
                 style={{
@@ -106,7 +106,7 @@ const Cursor = () => {
             />
             <div
                 ref={cursorDotRef}
-                className={`fixed pointer-events-none z-[9999] h-2 w-2 rounded-full transition-transform duration-100 ease-out ${
+                className={`fixed pointer-events-none z-[10000] h-2 w-2 rounded-full transition-transform duration-100 ease-out ${
                     isVisible ? "opacity-100" : "opacity-0"
                 }`}
                 style={{

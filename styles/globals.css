@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --popover: white;
+    --popover-foreground: #333;
+    --border: #e2e8f0;
+}
+
+.dark {
+    --popover: #1e293b;
+    --popover-foreground: white;
+    --border: #334155;
+}
+
 * {
     font-family: "Be Vietnam Pro", sans-serif;
 }
@@ -21,6 +33,25 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0;
+}
+
+/* Animations for taglines */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
 }
 
 /* Responsive adjustments for taglines */
@@ -136,45 +167,33 @@ body {
     font-weight: 700;
 }
 
-/* Toast notification styles */
-.Toastify__toast {
-    border-radius: 6px;
+/* Customize Sonner toast */
+.toaster {
     font-family: "Be Vietnam Pro", sans-serif;
-    font-size: 14px;
+}
+
+.toaster [data-sonner-toast] {
+    border-radius: 6px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     padding: 12px 16px;
 }
 
-.Toastify__toast--success {
-    background: #f8f9fa;
-    color: #2e7d32;
+.toaster [data-sonner-toast][data-type="success"] {
     border-left: 4px solid #2e7d32;
 }
 
-.Toastify__toast--error {
-    background: #f8f9fa;
-    color: #d32f2f;
+.toaster [data-sonner-toast][data-type="error"] {
     border-left: 4px solid #d32f2f;
 }
 
-.dark .Toastify__toast {
-    background: #2d3748;
-    color: #e2e8f0;
-}
-
-.dark .Toastify__toast--success {
+.dark .toaster [data-sonner-toast][data-type="success"] {
     border-left: 4px solid #4CAF50;
 }
 
-.dark .Toastify__toast--error {
+.dark .toaster [data-sonner-toast][data-type="error"] {
     border-left: 4px solid #F44336;
 }
 
-.Toastify__close-button {
-    color: #718096;
+.toaster [data-sonner-toast] [data-close-button] {
     opacity: 0.7;
-}
-
-.Toastify__toast-icon {
-    margin-right: 12px;
 }
