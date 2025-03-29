@@ -123,7 +123,7 @@ export default function Home() {
 
         window.addEventListener("keydown", handleKeyPress);
         return () => window.removeEventListener("keydown", handleKeyPress);
-    }, []);
+    }, [router]);
 
     useEffect(() => {
         const konamiCode = [
@@ -145,7 +145,7 @@ export default function Home() {
         ) {
             router.push("/edit");
         }
-    }, [konami]);
+    }, [konami, router]);
 
     const handleWorkScroll = () => {
         window.scrollTo({

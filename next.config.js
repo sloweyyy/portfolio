@@ -1,11 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-    api: {
-        bodyParser: {
-            sizeLimit: "1mb",
-        },
-    },
     async headers() {
         return [
             {
@@ -37,6 +32,11 @@ const nextConfig = {
     },
     serverRuntimeConfig: {
         JWT_SECRET: process.env.JWT_SECRET,
+        api: {
+            bodyParser: {
+                sizeLimit: "1mb",
+            },
+        },
     },
     publicRuntimeConfig: {
         // Add any client-side environment variables here (but NOT secrets)

@@ -168,77 +168,183 @@ const Edit = () => {
             <>
                 <Toaster />
                 <div
-                    className={`min-h-screen flex items-center justify-center ${
-                        theme === "dark"
-                            ? "bg-gradient-to-br from-gray-900 to-gray-800"
-                            : "bg-gradient-to-br from-gray-100 to-white"
-                    }`}
+                    className={`min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden`}
                 >
-                    <div
-                        className={`w-full max-w-md p-8 space-y-6 rounded-xl shadow-lg ${
-                            theme === "dark"
-                                ? "bg-gray-800 text-white"
-                                : "bg-white text-gray-900"
-                        }`}
-                    >
-                        <h1 className="text-3xl font-bold text-center">
-                            Admin Login
-                        </h1>
+                    {/* Background elements - more subtle */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                        {/* Subtler gradient circles */}
+                        <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-gray-200/40 to-blue-100/30 dark:from-gray-800/40 dark:to-gray-700/30 blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+                        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-gray-100/30 to-gray-200/40 dark:from-gray-800/30 dark:to-gray-700/40 blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
 
-                        <div className="space-y-4">
-                            <div>
-                                <label className="text-sm font-medium opacity-75">
-                                    Username
-                                </label>
-                                <input
-                                    type="text"
-                                    value={loginData.username}
-                                    onChange={(e) =>
-                                        setLoginData({
-                                            ...loginData,
-                                            username: e.target.value,
-                                        })
-                                    }
-                                    className={`w-full px-4 py-2 mt-2 rounded-lg border focus:ring-2 focus:ring-opacity-50 focus:outline-none ${
-                                        theme === "dark"
-                                            ? "bg-gray-700 border-gray-600 focus:ring-blue-500"
-                                            : "bg-white border-gray-300 focus:ring-blue-600"
-                                    }`}
-                                    placeholder="Enter username"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="text-sm font-medium opacity-75">
-                                    Password
-                                </label>
-                                <input
-                                    type="password"
-                                    value={loginData.password}
-                                    onChange={(e) =>
-                                        setLoginData({
-                                            ...loginData,
-                                            password: e.target.value,
-                                        })
-                                    }
-                                    className={`w-full px-4 py-2 mt-2 rounded-lg border focus:ring-2 focus:ring-opacity-50 focus:outline-none ${
-                                        theme === "dark"
-                                            ? "bg-gray-700 border-gray-600 focus:ring-blue-500"
-                                            : "bg-white border-gray-300 focus:ring-blue-600"
-                                    }`}
-                                    placeholder="Enter password"
-                                />
-                            </div>
-
-                            <Button
-                                onClick={handleLogin}
-                                type="primary"
-                                classes="w-full py-2 text-center"
-                            >
-                                Sign In
-                            </Button>
-                        </div>
+                        {/* Subtle grid overlay */}
+                        <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-[0.015] dark:opacity-[0.03]"></div>
                     </div>
+
+                    <div className="w-full max-w-md p-8 space-y-6 relative z-10">
+                        <div className="relative bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-lg overflow-hidden backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
+                            {/* Subtle top border */}
+                            <div className="h-1 w-full bg-gradient-to-r from-gray-300 via-blue-400 to-gray-300 dark:from-gray-700 dark:via-blue-600 dark:to-gray-700 bg-size-200 animate-shimmer"></div>
+
+                            <div className="p-8">
+                                <div className="flex flex-col items-center mb-8">
+                                    <div className="w-16 h-16 mb-5 bg-blue-500 dark:bg-blue-600 rounded-xl flex items-center justify-center shadow-md">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-8 w-8 text-white"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth={2}
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+                                        Admin Login
+                                    </h1>
+                                    <p className="text-gray-500 dark:text-gray-400 text-center mt-2">
+                                        Enter your credentials to access the
+                                        admin dashboard
+                                    </p>
+                                </div>
+
+                                <form
+                                    onSubmit={handleLogin}
+                                    className="space-y-5"
+                                >
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 ml-1">
+                                            Username
+                                        </label>
+                                        <div className="relative">
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-5 w-5 text-gray-400 dark:text-gray-500"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                value={loginData.username}
+                                                onChange={(e) =>
+                                                    setLoginData({
+                                                        ...loginData,
+                                                        username:
+                                                            e.target.value,
+                                                    })
+                                                }
+                                                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none transition-all duration-200 bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white backdrop-blur-sm border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20"
+                                                placeholder="Enter username"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 ml-1">
+                                            Password
+                                        </label>
+                                        <div className="relative">
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-5 w-5 text-gray-400 dark:text-gray-500"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </div>
+                                            <input
+                                                type="password"
+                                                value={loginData.password}
+                                                onChange={(e) =>
+                                                    setLoginData({
+                                                        ...loginData,
+                                                        password:
+                                                            e.target.value,
+                                                    })
+                                                }
+                                                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none transition-all duration-200 bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white backdrop-blur-sm border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20"
+                                                placeholder="Enter password"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        className="w-full py-3 px-4 flex items-center justify-center rounded-lg text-white font-medium transition-all duration-200 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform hover:scale-[1.01] active:scale-[0.99]"
+                                    >
+                                        Sign In
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        {/* Footer text */}
+                        <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+                            Protected area. Only authorized personnel.
+                        </p>
+                    </div>
+
+                    {/* CSS for grid pattern */}
+                    <style jsx global>{`
+                        .bg-grid-pattern {
+                            background-image: linear-gradient(
+                                    to right,
+                                    ${theme === "dark"
+                                            ? "rgba(255,255,255,0.05)"
+                                            : "rgba(0,0,0,0.05)"}
+                                        1px,
+                                    transparent 1px
+                                ),
+                                linear-gradient(
+                                    to bottom,
+                                    ${theme === "dark"
+                                            ? "rgba(255,255,255,0.05)"
+                                            : "rgba(0,0,0,0.05)"}
+                                        1px,
+                                    transparent 1px
+                                );
+                        }
+
+                        .bg-size-200 {
+                            background-size: 200% 200%;
+                        }
+
+                        .animate-shimmer {
+                            animation: shimmer 3s linear infinite;
+                        }
+
+                        @keyframes shimmer {
+                            0% {
+                                background-position: 0% 50%;
+                            }
+                            50% {
+                                background-position: 100% 50%;
+                            }
+                            100% {
+                                background-position: 0% 50%;
+                            }
+                        }
+                    `}</style>
                 </div>
             </>
         );
