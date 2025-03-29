@@ -1,194 +1,194 @@
 {
-    "name": "SloWey",
-    "headerTaglineOne": "Hello 👋",
-    "headerTaglineTwo": "I'm Truong Le Vinh Phuc",
-    "headerTaglineThree": "developer & designer",
-    "headerTaglineFour": " based in Ho Chi Minh city, Vietnam.",
-    "showCursor": false,
-    "showBlog": true,
-    "darkMode": true,
-    "showResume": true,
-    "socials": [
-        {
-            "id": "1",
-            "title": "Github",
-            "link": "https://github.com/sloweyyy"
-        },
-        {
-            "id": "2",
-            "title": "LinkedIn",
-            "link": "https://www.linkedin.com/in/sloweyne/"
-        },
-        {
-            "id": "5",
-            "title": "Email",
-            "link": "mailto:sloweycontact@gmail.com"
-        }
-    ],
-    "projects": [
-        {
-            "id": "1",
-            "title": "Enigma",
-            "description": "Mobile Development",
-            "imageSrc": "https://i.imgur.com/8lxnQ3M.png",
-            "url": "https://github.com/FiveD-SE/Enigma-Frontend"
-        },
-        {
-            "id": "2",
-            "title": "FiveD Coffee",
-            "description": "Mobile Development",
-            "imageSrc": "https://i.imgur.com/Pmq3vdX.png",
-            "url": "https://cfbe.up.railway.app/"
-        },
-        {
-            "id": "3",
-            "title": "Musicify",
-            "description": "Mobile Development",
-            "imageSrc": "https://i.imgur.com/dTv6tP7.png",
-            "url": "https://github.com/bichngoc55/MusicAppJava"
-        },
-        {
-            "id": "4",
-            "title": "Designer Portfolio Website",
-            "description": "Web Development",
-            "imageSrc": "https://i.imgur.com/9Ey2YnQ.png",
-            "url": "https://www.slowey.studio/"
-        },
-        {
-            "id": "69630a8c-8305-4c81-8299-09533bf64a1d",
-            "title": "EmotionSense",
-            "description": "Mobile Development & Machine Learning",
-            "imageSrc": "https://i.imgur.com/g4JrTXM.png",
-            "url": "https://github.com/sloweyyy/EmotionSense"
-        },
-        {
-            "id": "f86976a4-8070-49d2-a023-a8806b36a4fb",
-            "title": "Blockchain-based Online Notarization Platform",
-            "description": "Web Development & Blockchain",
-            "imageSrc": "https://i.imgur.com/SAcA5ZG.png",
-            "url": "https://congchungonline.netlify.app/"
-        },
-        {
-            "id": "57fbdcf3-5441-4de7-8931-b750a28d5a94",
-            "title": "Online Contest Management System",
-            "description": "Web Development",
-            "imageSrc": "https://i.imgur.com/sglOtCF.png",
-            "url": "https://eventis.vercel.app/"
-        },
-        {
-            "id": "a5f5d89a-4d30-4825-ab9a-1120ef109f96",
-            "title": "Resort Management System",
-            "description": "Web Development",
-            "imageSrc": "https://i.imgur.com/917TiJn.png",
-            "url": "https://schoolstay.netlify.app/"
-        }
-    ],
-    "services": [
-        {
-            "id": "1",
-            "title": "Software Development",
-            "description": "I specialize in creating and developing innovative software solutions tailored to meet your specific business needs. By focusing on functionality and user experience, I ensure that your software is both efficient and user-friendly."
-        },
-        {
-            "id": "2",
-            "title": "Web Development",
-            "description": "I design and develop robust websites that serve as the digital face of your business. From crafting unique brand elements like logos and color schemes to implementing advanced features, I make sure your website stands out and performs seamlessly."
-        },
-        {
-            "id": "3",
-            "title": "UI/UX Design",
-            "description": "I enhance your online presence by designing intuitive and engaging user interfaces. By focusing on user experience, I ensure that your website or application is not only visually appealing but also easy to navigate, providing a seamless experience for your users."
-        },
-        {
-            "id": "4",
-            "title": "Graphic Design",
-            "description": "I combine creative design with technical expertise to create captivating visual content. Whether it's 3D visualizations, marketing materials, or brand assets, I bring your ideas to life with striking and impactful designs."
-        }
-    ],
-    "aboutpara": "I’m Truong Le Vinh Phuc, a Backend Software Engineer with a focus on scalable, reliable solutions. Currently in my third year at UIT, I’ve achieved a GPA of 8.44/10 and gained hands-on experience leading teams and managing complex projects. Skilled in Node.js, NestJS, Spring Boot, and cloud platforms like Railway and Netlify, I specialize in backend development, DevOps, and system optimization. My work spans e-commerce platforms, blockchain-based systems, and AI-powered apps. I’m passionate about innovation, continuous learning, and contributing to impactful projects.",
-    "resume": {
-        "tagline": "👋  I'm a Software Engineer, Graphic Designer.",
-        "description": "Backend Software Engineer with a strong focus on building scalable and reliable solutions. Experienced in leading teams and managing complex projects, including designing systems and implementing DevOps practices. Skilled in problem-solving, system optimization, and delivering innovative solutions to meet business needs. Dedicated to continuous learning and contributing to impactful projects.",
-        "experiences": [
-            {
-                "id": "21db0dbb-119d-4c97-959d-4d36dbb88c6a",
-                "dates": "January 2025 - Present",
-                "type": "Full Time",
-                "position": "Technical Product Support at Katalon",
-                "bullets": [
-                    "Provide customers with exact solutions and information; respond promptly to customer inquiries using the support system.",
-                    "Manage and update the online FAQ/support knowledge base for better customer self-service.",
-                    "Coordinate with cross-functional teams, such as Product, Engineering, and Account Management, to ensure alignment and effective issue resolution.",
-                    "Test products; report bugs and document test results as part of the effort to continuously improve product quality.",
-                    "Assist with administrative tasks and any other responsibilities that the customer support team needs help with.",
-                    "Continuously improve processes and contribute to the betterment of the overall customer experience."
-                ]
-            },
-            {
-                "id": "9de4b233-228d-43e3-b02f-e96f5dc2129d",
-                "dates": "November 2024 - January 2025",
-                "type": "Intern",
-                "position": "Java Backend Developer at FPT Software",
-                "bullets": [
-                    "Led a team of 7 as Scrum Master to develop RESTful APIs for an online course platform using Spring Boot.",
-                    "Optimized PostgreSQL database performance, enhancing system efficiency.",
-                    "Streamlined deployment processes using CI/CD pipelines."
-                ]
-            },
-            {
-                "id": "1",
-                "dates": "January 2024 - Present",
-                "type": "Part time",
-                "position": "Graphic Designer at UIT - InSecLab",
-                "bullets": [
-                    "Designed and printed promotional materials for faculty initiatives and events resulting in increased event attendance and engagement."
-                ]
-            },
-            {
-                "id": "d495c23b-4f65-479a-9b8a-cfbc1c089725",
-                "dates": "July 2022 - September 2022",
-                "type": "Full Time",
-                "position": "Graphic Designer at The Big Nest F&B",
-                "bullets": [
-                    "Created a detailed style guide that standardized the design and branding of all company materials ensuring a consistent visual identity across all channels.",
-                    "Collaborated with the marketing team to understand requirements and deliver high-quality designs that aligned with the company's goals and target audience."
-                ]
-            }
-        ],
-        "education": {
-            "universityName": "University of Information Technology - Vietnam National University",
-            "universityDate": "2022 - 2025",
-            "universityPara": "Consistently achieved \"Very Good\" grades in both semesters of the 2022-2023 and 2023-2024 academic years, demonstrating a strong academic performance and commitment to excellence."
-        },
-        "languages": [
-            "Javascript",
-            "C#",
-            "C/C++",
-            "Python",
-            "Dart",
-            "Java",
-            "Kotlin",
-            "Typescript"
-        ],
-        "frameworks": [
-            "React",
-            "ASP.NET",
-            "NodeJs",
-            "React Native",
-            "Flutter",
-            "Spring Boot"
-        ],
-        "others": [
-            "Figma",
-            "Photoshop",
-            "AWS",
-            "Firebase",
-            "MongoDB",
-            "Jenkins",
-            "Github",
-            "Github Action",
-            "Agile",
-            "Docker"
-        ]
+  "name": "SloWey",
+  "headerTaglineOne": "Hello 👋",
+  "headerTaglineTwo": "I'm Truong Le Vinh Phuc",
+  "headerTaglineThree": "developer & designer",
+  "headerTaglineFour": " based in Ho Chi Minh city, Vietnam.",
+  "showCursor": false,
+  "showBlog": true,
+  "darkMode": true,
+  "showResume": true,
+  "socials": [
+    {
+      "id": "1",
+      "title": "Github",
+      "link": "https://github.com/sloweyyy"
+    },
+    {
+      "id": "2",
+      "title": "LinkedIn",
+      "link": "https://www.linkedin.com/in/sloweyne/"
+    },
+    {
+      "id": "5",
+      "title": "Email",
+      "link": "mailto:sloweycontact@gmail.com"
     }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "title": "Enigma",
+      "description": "Mobile Development",
+      "imageSrc": "https://i.imgur.com/8lxnQ3M.png",
+      "url": "https://github.com/FiveD-SE/Enigma-Frontend"
+    },
+    {
+      "id": "2",
+      "title": "FiveD Coffee",
+      "description": "Mobile Development",
+      "imageSrc": "https://i.imgur.com/Pmq3vdX.png",
+      "url": "https://cfbe.up.railway.app/"
+    },
+    {
+      "id": "3",
+      "title": "Musicify",
+      "description": "Mobile Development",
+      "imageSrc": "https://i.imgur.com/dTv6tP7.png",
+      "url": "https://github.com/bichngoc55/MusicAppJava"
+    },
+    {
+      "id": "4",
+      "title": "Designer Portfolio Website",
+      "description": "Web Development",
+      "imageSrc": "https://i.imgur.com/9Ey2YnQ.png",
+      "url": "https://www.slowey.studio/"
+    },
+    {
+      "id": "69630a8c-8305-4c81-8299-09533bf64a1d",
+      "title": "EmotionSense",
+      "description": "Mobile Development & Machine Learning",
+      "imageSrc": "https://i.imgur.com/g4JrTXM.png",
+      "url": "https://github.com/sloweyyy/EmotionSense"
+    },
+    {
+      "id": "f86976a4-8070-49d2-a023-a8806b36a4fb",
+      "title": "Blockchain-based Online Notarization Platform",
+      "description": "Web Development & Blockchain",
+      "imageSrc": "https://i.imgur.com/SAcA5ZG.png",
+      "url": "https://congchungonline.netlify.app/"
+    },
+    {
+      "id": "57fbdcf3-5441-4de7-8931-b750a28d5a94",
+      "title": "Online Contest Management System",
+      "description": "Web Development",
+      "imageSrc": "https://i.imgur.com/sglOtCF.png",
+      "url": "https://eventis.vercel.app/"
+    },
+    {
+      "id": "a5f5d89a-4d30-4825-ab9a-1120ef109f96",
+      "title": "Resort Management System",
+      "description": "Web Development",
+      "imageSrc": "https://i.imgur.com/917TiJn.png",
+      "url": "https://schoolstay.netlify.app/"
+    }
+  ],
+  "services": [
+    {
+      "id": "1",
+      "title": "Software Development",
+      "description": "I specialize in creating and developing innovative software solutions tailored to meet your specific business needs. By focusing on functionality and user experience, I ensure that your software is both efficient and user-friendly."
+    },
+    {
+      "id": "2",
+      "title": "Web Development",
+      "description": "I design and develop robust websites that serve as the digital face of your business. From crafting unique brand elements like logos and color schemes to implementing advanced features, I make sure your website stands out and performs seamlessly."
+    },
+    {
+      "id": "3",
+      "title": "UI/UX Design",
+      "description": "I enhance your online presence by designing intuitive and engaging user interfaces. By focusing on user experience, I ensure that your website or application is not only visually appealing but also easy to navigate, providing a seamless experience for your users."
+    },
+    {
+      "id": "4",
+      "title": "Graphic Design",
+      "description": "I combine creative design with technical expertise to create captivating visual content. Whether it's 3D visualizations, marketing materials, or brand assets, I bring your ideas to life with striking and impactful designs."
+    }
+  ],
+  "aboutpara": "I’m Truong Le Vinh Phuc, a Backend Software Engineer with a focus on scalable, reliable solutions. Currently in my third year at UIT, I’ve achieved a GPA of 8.44/10 and gained hands-on experience leading teams and managing complex projects. Skilled in Node.js, NestJS, Spring Boot, and cloud platforms like Railway and Netlify, I specialize in backend development, DevOps, and system optimization. My work spans e-commerce platforms, blockchain-based systems, and AI-powered apps. I’m passionate about innovation, continuous learning, and contributing to impactful projects.",
+  "resume": {
+    "tagline": "👋  I'm a Software Engineer, Graphic Designer.",
+    "description": "Backend Software Engineer with a strong focus on building scalable and reliable solutions. Experienced in leading teams and managing complex projects, including designing systems and implementing DevOps practices. Skilled in problem-solving, system optimization, and delivering innovative solutions to meet business needs. Dedicated to continuous learning and contributing to impactful projects.",
+    "experiences": [
+      {
+        "id": "21db0dbb-119d-4c97-959d-4d36dbb88c6a",
+        "dates": "January 2025 - Present",
+        "type": "Full Time",
+        "position": "Technical Product Support at Katalon",
+        "bullets": [
+          "Provide customers with exact solutions and information; respond promptly to customer inquiries using the support system.",
+          "Manage and update the online FAQ/support knowledge base for better customer self-service.",
+          "Coordinate with cross-functional teams, such as Product, Engineering, and Account Management, to ensure alignment and effective issue resolution.",
+          "Test products; report bugs and document test results as part of the effort to continuously improve product quality.",
+          "Assist with administrative tasks and any other responsibilities that the customer support team needs help with.",
+          "Continuously improve processes and contribute to the betterment of the overall customer experience."
+        ]
+      },
+      {
+        "id": "9de4b233-228d-43e3-b02f-e96f5dc2129d",
+        "dates": "November 2024 - January 2025",
+        "type": "Intern",
+        "position": "Java Backend Developer at FPT Software",
+        "bullets": [
+          "Led a team of 7 as Scrum Master to develop RESTful APIs for an online course platform using Spring Boot.",
+          "Optimized PostgreSQL database performance, enhancing system efficiency.",
+          "Streamlined deployment processes using CI/CD pipelines."
+        ]
+      },
+      {
+        "id": "1",
+        "dates": "January 2024 - January 2025",
+        "type": "Part time",
+        "position": "Graphic Designer at UIT - InSecLab",
+        "bullets": [
+          "Designed and printed promotional materials for faculty initiatives and events resulting in increased event attendance and engagement."
+        ]
+      },
+      {
+        "id": "d495c23b-4f65-479a-9b8a-cfbc1c089725",
+        "dates": "July 2022 - September 2022",
+        "type": "Full Time",
+        "position": "Graphic Designer at The Big Nest F&B",
+        "bullets": [
+          "Created a detailed style guide that standardized the design and branding of all company materials ensuring a consistent visual identity across all channels.",
+          "Collaborated with the marketing team to understand requirements and deliver high-quality designs that aligned with the company's goals and target audience."
+        ]
+      }
+    ],
+    "education": {
+      "universityName": "University of Information Technology - Vietnam National University",
+      "universityDate": "2022 - 2025",
+      "universityPara": "Consistently achieved \"Very Good\" grades in both semesters of the 2022-2023 and 2023-2024 academic years, demonstrating a strong academic performance and commitment to excellence."
+    },
+    "languages": [
+      "Javascript",
+      "C#",
+      "C/C++",
+      "Python",
+      "Dart",
+      "Java",
+      "Kotlin",
+      "Typescript"
+    ],
+    "frameworks": [
+      "React",
+      "ASP.NET",
+      "NodeJs",
+      "React Native",
+      "Flutter",
+      "Spring Boot"
+    ],
+    "others": [
+      "Figma",
+      "Photoshop",
+      "AWS",
+      "Firebase",
+      "MongoDB",
+      "Jenkins",
+      "Github",
+      "Github Action",
+      "Agile",
+      "Docker"
+    ]
+  }
 }
