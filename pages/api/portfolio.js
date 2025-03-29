@@ -3,8 +3,19 @@ import { verifyToken } from "../../utils/auth";
 import fs from "fs";
 import path from "path";
 import { Octokit } from "@octokit/rest";
+import checkRequiredEnvVars from "../../utils/checkEnv";
 
 export default async function handler(req, res) {
+    try {
+        checkRequiredEnvVars();
+    } catch (error) {
+        console.error("Environment variable error:", error);
+        return res.status(500).json({
+            message: "Server configuration error",
+            error: "env_vars_missing",
+        });
+    }
+
     res.setHeader("Access-Control-Allow-Credentials", true);
     res.setHeader(
         "Access-Control-Allow-Origin",
@@ -30,17 +41,25 @@ export default async function handler(req, res) {
 
         const decoded = verifyToken(token);
 
-        if (!decoded || decoded.role !== "admin") {
-            return res.status(403).json({ message: "Not authorized" });
+        if (!decoded) {
+            return res.status(401).json({
+                message: "Invalid or expired token",
+                error: "token_verification_failed",
+            });
+        }
+
+        if (decoded.role !== "admin") {
+            return res.status(403).json({
+                message: "Not authorized. Admin privileges required.",
+                error: "insufficient_permissions",
+            });
         }
 
         if (req.method === "POST") {
-            // const portfolioPath = path.join(
-            //     process.cwd(),
-            //     "data/portfolio.json"
-            // );
-            const portfolioPath = path.join("/tmp", "portfolio.json");
-
+            const portfolioPath = path.join(
+                process.cwd(),
+                "data/portfolio.json"
+            );
             try {
                 fs.writeFileSync(
                     portfolioPath,
@@ -105,6 +124,12 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: "Method not allowed" });
     } catch (error) {
         console.error("Auth error:", error);
-        return res.status(401).json({ message: "Invalid token" });
+        return res.status(500).json({
+            message: "Server error occurred during authentication",
+            error:
+                process.env.NODE_ENV === "development"
+                    ? error.message
+                    : "auth_error",
+        });
     }
 }

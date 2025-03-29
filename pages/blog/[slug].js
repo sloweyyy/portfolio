@@ -31,12 +31,12 @@ const BlogPost = ({ post }) => {
             {data.showCursor && <Cursor />}
 
             <div
-                className={`container mx-auto mt-10 ${
+                className={`container mx-auto mt-16 ${
                     data.showCursor && "cursor-none"
                 }`}
             >
                 <Header isBlog={true} />
-                <div className="mt-10 flex flex-col">
+                <div className="mt-16 flex flex-col">
                     <img
                         className="w-full h-96 rounded-lg shadow-lg object-cover"
                         src={post.image}
@@ -44,18 +44,20 @@ const BlogPost = ({ post }) => {
                     ></img>
                     <h1
                         ref={textOne}
-                        className="mt-10 text-4xl mob:text-2xl laptop:text-6xl text-bold"
+                        className="mt-14 text-4xl mob:text-2xl laptop:text-6xl text-bold"
                     >
                         {post.title}
                     </h1>
                     <h2
                         ref={textTwo}
-                        className="mt-2 text-xl max-w-4xl text-darkgray opacity-50"
+                        className="mt-6 text-xl max-w-4xl text-darkgray opacity-50"
                     >
                         {post.tagline}
                     </h2>
                 </div>
-                <ContentSection content={post.content}></ContentSection>
+                <div className="mt-12">
+                    <ContentSection content={post.content}></ContentSection>
+                </div>
                 <Footer />
             </div>
             {process.env.NODE_ENV === "development" && (

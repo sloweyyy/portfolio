@@ -73,14 +73,14 @@ const Blog = ({ posts }) => {
                     }`}
                 >
                     <Header isBlog={true}></Header>
-                    <div className="mt-10">
+                    <div className="mt-16">
                         <h1
                             ref={text}
                             className="mx-auto mob:p-2 text-bold text-6xl laptop:text-8xl w-full"
                         >
                             Blog.
                         </h1>
-                        <div className="mt-10 grid grid-cols-1 mob:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 justify-between gap-10">
+                        <div className="mt-16 grid grid-cols-1 mob:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 justify-between gap-12">
                             {posts &&
                                 posts.map((post) => (
                                     <div
@@ -95,13 +95,13 @@ const Blog = ({ posts }) => {
                                             src={post.image}
                                             alt={post.title}
                                         ></img>
-                                        <h2 className="mt-5 text-4xl">
+                                        <h2 className="mt-8 text-4xl">
                                             {post.title}
                                         </h2>
-                                        <p className="mt-2 opacity-50 text-lg">
+                                        <p className="mt-4 opacity-50 text-lg">
                                             {post.preview}
                                         </p>
-                                        <span className="text-sm mt-5 opacity-25">
+                                        <span className="text-sm mt-6 opacity-25 block">
                                             {ISOToDate(post.date)}
                                         </span>
                                         {process.env.NODE_ENV ===

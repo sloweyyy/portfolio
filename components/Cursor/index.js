@@ -1,40 +1,121 @@
-import React, { useEffect, useState } from "react";
-import CustomCursor from "custom-cursor-react";
-import "custom-cursor-react/dist/index.css";
+import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 
 const Cursor = () => {
-    const theme = useTheme();
-    const [mount, setMount] = useState();
+    const { theme, resolvedTheme } = useTheme();
+    const cursorRef = useRef(null);
+    const cursorDotRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [mounted, setMounted] = useState(false);
 
-    const getCusomColor = () => {
-        if (theme.theme === "dark") {
-            return "#fff";
-        } else if (theme.theme === "light") {
-            return "#000";
-        }
+    // Get current theme, safely handling SSR
+    const currentTheme = mounted ? theme || resolvedTheme || "light" : "light";
+
+    const getCursorColor = () => {
+        return currentTheme === "dark" ? "#fff" : "#000";
     };
 
+    // Handle mounting to prevent hydration mismatch
     useEffect(() => {
-        setMount(true);
+        setMounted(true);
     }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
+
+        const onMouseMove = (e) => {
+            setMousePosition({ x: e.clientX, y: e.clientY });
+            setIsVisible(true);
+        };
+
+        const onMouseEnter = () => setIsVisible(true);
+        const onMouseLeave = () => setIsVisible(false);
+
+        const onMouseDown = () => setIsActive(true);
+        const onMouseUp = () => setIsActive(false);
+
+        const handleLinkHover = () => {
+            setIsActive(true);
+        };
+
+        const handleLinkLeave = () => {
+            setIsActive(false);
+        };
+
+        // Add event listeners
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseenter", onMouseEnter);
+        document.addEventListener("mouseleave", onMouseLeave);
+        document.addEventListener("mousedown", onMouseDown);
+        document.addEventListener("mouseup", onMouseUp);
+
+        // Handle links
+        const links = document.querySelectorAll(".link");
+        links.forEach((link) => {
+            link.addEventListener("mouseenter", handleLinkHover);
+            link.addEventListener("mouseleave", handleLinkLeave);
+        });
+
+        return () => {
+            // Remove event listeners on cleanup
+            document.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mouseenter", onMouseEnter);
+            document.removeEventListener("mouseleave", onMouseLeave);
+            document.removeEventListener("mousedown", onMouseDown);
+            document.removeEventListener("mouseup", onMouseUp);
+
+            links.forEach((link) => {
+                link.removeEventListener("mouseenter", handleLinkHover);
+                link.removeEventListener("mouseleave", handleLinkLeave);
+            });
+        };
+    }, [mounted]);
+
+    useEffect(() => {
+        if (!mounted || !cursorRef.current || !cursorDotRef.current) return;
+
+        // Apply smooth animation to main cursor
+        cursorRef.current.style.transform = `translate(${mousePosition.x}px, ${
+            mousePosition.y
+        }px) scale(${isActive ? 2 : 1})`;
+
+        // Position the dot cursor (follows more directly)
+        cursorDotRef.current.style.transform = `translate(${mousePosition.x}px, ${mousePosition.y}px)`;
+    }, [mousePosition, isActive, mounted]);
+
+    if (!mounted) return null;
+
+    const color = getCursorColor();
+
     return (
         <>
-            {mount && (
-                <CustomCursor
-                    targets={[".link"]}
-                    customClass="custom-cursor"
-                    dimensions={30}
-                    fill={getCusomColor()}
-                    smoothness={{
-                        movement: 0.2,
-                        scale: 0.1,
-                        opacity: 0.2,
-                    }}
-                    targetOpacity={0.5}
-                    targetScale={2}
-                />
-            )}
+            <div
+                ref={cursorRef}
+                className={`fixed pointer-events-none z-[9999] h-8 w-8 rounded-full border border-solid transition-transform duration-200 ease-out ${
+                    isVisible ? "opacity-100" : "opacity-0"
+                }`}
+                style={{
+                    borderColor: color,
+                    transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+                    transitionProperty: "transform, opacity, background-color",
+                    top: "-16px",
+                    left: "-16px",
+                }}
+            />
+            <div
+                ref={cursorDotRef}
+                className={`fixed pointer-events-none z-[9999] h-2 w-2 rounded-full transition-transform duration-100 ease-out ${
+                    isVisible ? "opacity-100" : "opacity-0"
+                }`}
+                style={{
+                    backgroundColor: color,
+                    transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+                    top: "-1px",
+                    left: "-1px",
+                }}
+            />
         </>
     );
 };
