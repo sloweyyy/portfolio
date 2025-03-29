@@ -7,7 +7,7 @@
 
 This is a modern and performant personal portfolio website and blog, built with Next.js and Tailwind CSS. It features a clean, minimal design with dark mode support, showcasing projects, skills, and blog posts.
 
-![Portfolio Demo](https://github.com/sloweyyy/portfolio/blob/main/public/images/demo.png)
+![Portfolio Demo](public/images/Blog.png)
 
 ## Features ✨
 
