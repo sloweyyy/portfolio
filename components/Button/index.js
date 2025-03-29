@@ -6,16 +6,13 @@ const Button = ({ children, type, onClick, classes }) => {
     const { theme, resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
-    // Add useEffect to handle mounting state
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    // Use current theme only after component has mounted to avoid hydration mismatch
     const currentTheme = mounted ? theme || resolvedTheme : "light";
 
     if (!mounted) {
-        // Return a placeholder with similar dimensions during SSR to avoid layout shift
         return (
             <button
                 type="button"

@@ -12,8 +12,8 @@ import Button from "../components/Button";
 import Link from "next/link";
 import Cursor from "../components/Cursor";
 import { useRouter } from "next/router";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "../components/Toaster";
+import { toast } from "sonner";
 
 import data from "../data/portfolio.json";
 
@@ -28,6 +28,65 @@ export default function Home() {
     const [konami, setKonami] = useState([]);
     const [showEdit, setShowEdit] = useState(false);
     const router = useRouter();
+
+    // Alternating taglines state
+    const [currentTaglineTwo, setCurrentTaglineTwo] = useState(0);
+    const [currentTaglineThree, setCurrentTaglineThree] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    // Prepare the tagline options with fallbacks to the main taglines
+    const taglineTwoOptions = [
+        data.headerTaglineTwo,
+        ...(data.alternateTaglinesTwo || []),
+    ];
+
+    const taglineThreeOptions = [
+        data.headerTaglineThree,
+        ...(data.alternateTaglinesThree || []),
+    ];
+
+    // Animation for cycling through taglines
+    useEffect(() => {
+        // Only run the animation if we have alternate taglines
+        if (taglineTwoOptions.length <= 1) return;
+
+        const taglineTwoInterval = setInterval(() => {
+            setIsAnimating(true);
+            setTimeout(() => {
+                setCurrentTaglineTwo(
+                    (prev) => (prev + 1) % taglineTwoOptions.length
+                );
+                setIsAnimating(false);
+            }, 500); // Half a second for fade out
+        }, 3000); // Change every 3 seconds
+
+        return () => clearInterval(taglineTwoInterval);
+    }, [taglineTwoOptions.length]);
+
+    useEffect(() => {
+        // Only run the animation if we have alternate taglines
+        if (taglineThreeOptions.length <= 1) return;
+
+        const taglineThreeInterval = setInterval(() => {
+            setIsAnimating(true);
+            setTimeout(() => {
+                setCurrentTaglineThree(
+                    (prev) => (prev + 1) % taglineThreeOptions.length
+                );
+                setIsAnimating(false);
+            }, 500);
+        }, 3000);
+
+        // Start the third tagline cycle with a slight delay
+        const initialDelay = setTimeout(() => {
+            return () => clearInterval(taglineThreeInterval);
+        }, 1500);
+
+        return () => {
+            clearInterval(taglineThreeInterval);
+            clearTimeout(initialDelay);
+        };
+    }, [taglineThreeOptions.length]);
 
     useEffect(() => {
         const konamiCode = [
@@ -119,18 +178,7 @@ export default function Home() {
 
     return (
         <>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme={theme === "dark" ? "dark" : "light"}
-            />
+            <Toaster />
             <div className={`relative ${data.showCursor && "cursor-none"}`}>
                 {data.showCursor && <Cursor />}
                 <Head>
@@ -169,15 +217,19 @@ export default function Home() {
                             </h1>
                             <h1
                                 ref={textTwo}
-                                className="tagline text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5 mb-0 laptop:mb-1"
+                                className={`tagline text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5 mb-0 laptop:mb-1 ${
+                                    isAnimating ? "fade-out" : "fade-in"
+                                }`}
                             >
-                                {data.headerTaglineTwo}
+                                {taglineTwoOptions[currentTaglineTwo]}
                             </h1>
                             <h1
                                 ref={textThree}
-                                className="tagline text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5 mb-0 laptop:mb-1"
+                                className={`tagline text-3xl tablet:text-5xl laptop:text-6xl laptopl:text-7xl p-1 tablet:p-2 w-full laptop:w-4/5 mb-0 laptop:mb-1 ${
+                                    isAnimating ? "fade-out" : "fade-in"
+                                }`}
                             >
-                                {data.headerTaglineThree}
+                                {taglineThreeOptions[currentTaglineThree]}
                             </h1>
                             <h1
                                 ref={textFour}
