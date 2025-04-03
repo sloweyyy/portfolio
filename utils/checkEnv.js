@@ -1,5 +1,10 @@
 const checkRequiredEnvVars = () => {
     const requiredVars = ["JWT_SECRET", "MONGODB_URI"];
+
+    if (process.env.NODE_ENV === "production") {
+        requiredVars.push("GITHUB_TOKEN", "GITHUB_OWNER", "GITHUB_REPO");
+    }
+
     const missing = [];
 
     requiredVars.forEach((varName) => {
