@@ -61,10 +61,13 @@ export default async function handler(req, res) {
                 "data/portfolio.json"
             );
             try {
-                fs.writeFileSync(
-                    portfolioPath,
-                    JSON.stringify(req.body, null, 2)
-                );
+                // Only write to local file system in development environment
+                if (process.env.NODE_ENV !== "production") {
+                    fs.writeFileSync(
+                        portfolioPath,
+                        JSON.stringify(req.body, null, 2)
+                    );
+                }
 
                 if (process.env.GITHUB_TOKEN) {
                     const octokit = new Octokit({
@@ -107,6 +110,13 @@ export default async function handler(req, res) {
                             type: "github_error",
                         });
                     }
+                } else if (process.env.NODE_ENV === "production") {
+                    // In production without GitHub token, we can't save changes
+                    return res.status(500).json({
+                        message:
+                            "Cannot save changes in production without GitHub integration",
+                        type: "config_error",
+                    });
                 }
 
                 return res
