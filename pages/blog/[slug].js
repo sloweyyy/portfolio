@@ -37,7 +37,7 @@ const BlogPost = ({ post }) => {
             >
                 <Header isBlog={true} />
                 <div className="mt-16 flex flex-col">
-                    <div className="w-full overflow-hidden rounded-lg shadow-lg max-h-[500px] flex items-center justify-center bg-gray-100 dark:bg-slate-800">
+                    <div className="w-full overflow-hidden rounded-lg shadow-lg max-h-[500px] flex items-center justify-center bg-gray-100 dark:bg-gray-900 border border-transparent dark:border-gray-800">
                         <img
                             className="w-full object-contain max-h-[500px]"
                             src={post.image}
@@ -46,18 +46,18 @@ const BlogPost = ({ post }) => {
                     </div>
                     <h1
                         ref={textOne}
-                        className="mt-14 text-4xl mob:text-2xl laptop:text-6xl text-bold"
+                        className="mt-14 text-4xl mob:text-2xl laptop:text-6xl text-bold dark:text-white"
                     >
                         {post.title}
                     </h1>
                     <h2
                         ref={textTwo}
-                        className="mt-6 text-xl max-w-4xl text-darkgray opacity-50"
+                        className="mt-6 text-xl max-w-4xl text-darkgray dark:text-gray-300 opacity-50 dark:opacity-80"
                     >
                         {post.tagline}
                     </h2>
                 </div>
-                <div className="mt-12">
+                <div className="mt-12 dark:text-gray-200">
                     <ContentSection content={post.content}></ContentSection>
                 </div>
                 <Footer />

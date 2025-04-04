@@ -86,7 +86,7 @@ const Blog = ({ posts }) => {
                             {posts &&
                                 posts.map((post) => (
                                     <motion.div
-                                        className="cursor-pointer relative bg-white dark:bg-slate-800 rounded-xl overflow-hidden flex flex-col h-full"
+                                        className="cursor-pointer relative bg-white dark:bg-gray-900 rounded-xl overflow-hidden flex flex-col h-full border border-transparent dark:border-gray-800"
                                         key={post.slug}
                                         onClick={() =>
                                             Router.push(`/blog/${post.slug}`)
@@ -126,7 +126,7 @@ const Blog = ({ posts }) => {
                                         </div>
                                         <div className="p-6 flex-grow flex flex-col">
                                             <motion.h2
-                                                className="text-2xl font-bold mb-3"
+                                                className="text-2xl font-bold mb-3 dark:text-white"
                                                 whileHover={{ x: 3 }}
                                                 transition={{
                                                     type: "spring",
@@ -135,10 +135,10 @@ const Blog = ({ posts }) => {
                                             >
                                                 {post.title}
                                             </motion.h2>
-                                            <p className="text-base opacity-70 mb-4 flex-grow">
+                                            <p className="text-base opacity-70 dark:text-gray-300 dark:opacity-90 mb-4 flex-grow">
                                                 {post.preview}
                                             </p>
-                                            <span className="text-sm opacity-50 mt-auto">
+                                            <span className="text-sm opacity-50 dark:text-gray-400 dark:opacity-80 mt-auto">
                                                 {ISOToDate(post.date)}
                                             </span>
                                         </div>
