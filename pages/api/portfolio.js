@@ -56,121 +56,68 @@ export default async function handler(req, res) {
         }
 
         if (req.method === "POST") {
-            // In production, only use GitHub API approach
-            if (process.env.NODE_ENV === "production") {
-                if (!process.env.GITHUB_TOKEN) {
-                    return res.status(500).json({
-                        message:
-                            "GitHub token not configured for production environment",
-                        type: "configuration_error",
-                    });
-                }
+            const portfolioPath = path.join(
+                process.cwd(),
+                "data/portfolio.json"
+            );
+            try {
+                fs.writeFileSync(
+                    portfolioPath,
+                    JSON.stringify(req.body, null, 2)
+                );
 
-                try {
+                if (process.env.GITHUB_TOKEN) {
                     const octokit = new Octokit({
                         auth: process.env.GITHUB_TOKEN,
                     });
 
-                    const content = Buffer.from(
-                        JSON.stringify(req.body, null, 2)
-                    ).toString("base64");
+                    try {
+                        const content = Buffer.from(
+                            JSON.stringify(req.body, null, 2)
+                        ).toString("base64");
 
-                    await octokit.rest.users.getAuthenticated();
+                        await octokit.rest.users.getAuthenticated();
 
-                    const { data: currentFile } =
-                        await octokit.repos.getContent({
-                            owner: process.env.GITHUB_OWNER,
-                            repo: process.env.GITHUB_REPO,
-                            path: "data/portfolio.json",
-                            ref: "main",
-                        });
-
-                    await octokit.repos.createOrUpdateFileContents({
-                        owner: process.env.GITHUB_OWNER,
-                        repo: process.env.GITHUB_REPO,
-                        path: "data/portfolio.json",
-                        message: "Update portfolio data [automated]",
-                        content,
-                        sha: currentFile.sha,
-                        branch: "main",
-                    });
-
-                    return res.status(200).json({
-                        message: "Updated successfully via GitHub API",
-                    });
-                } catch (error) {
-                    console.error("GitHub API error:", error);
-                    return res.status(500).json({
-                        message: `GitHub Error: ${error.message}`,
-                        type: "github_error",
-                    });
-                }
-            } else {
-                // Development environment - use file system
-                const portfolioPath = path.join(
-                    process.cwd(),
-                    "data/portfolio.json"
-                );
-                try {
-                    fs.writeFileSync(
-                        portfolioPath,
-                        JSON.stringify(req.body, null, 2)
-                    );
-
-                    // Continue with GitHub update if token exists (optional in dev)
-                    if (process.env.GITHUB_TOKEN) {
-                        const octokit = new Octokit({
-                            auth: process.env.GITHUB_TOKEN,
-                        });
-
-                        try {
-                            const content = Buffer.from(
-                                JSON.stringify(req.body, null, 2)
-                            ).toString("base64");
-
-                            await octokit.rest.users.getAuthenticated();
-
-                            const { data: currentFile } =
-                                await octokit.repos.getContent({
-                                    owner: process.env.GITHUB_OWNER,
-                                    repo: process.env.GITHUB_REPO,
-                                    path: "data/portfolio.json",
-                                    ref: "main",
-                                });
-
-                            await octokit.repos.createOrUpdateFileContents({
+                        const { data: currentFile } =
+                            await octokit.repos.getContent({
                                 owner: process.env.GITHUB_OWNER,
                                 repo: process.env.GITHUB_REPO,
                                 path: "data/portfolio.json",
-                                message: "Update portfolio data [automated]",
-                                content,
-                                sha: currentFile.sha,
-                                branch: "main",
+                                ref: "main",
                             });
 
-                            return res.status(200).json({
-                                message:
-                                    "Updated successfully and committed to GitHub",
-                            });
-                        } catch (error) {
-                            console.error("GitHub API error:", error);
-                            return res.status(500).json({
-                                message: `GitHub Error: ${error.message}`,
-                                type: "github_error",
-                            });
-                        }
+                        await octokit.repos.createOrUpdateFileContents({
+                            owner: process.env.GITHUB_OWNER,
+                            repo: process.env.GITHUB_REPO,
+                            path: "data/portfolio.json",
+                            message: "Update portfolio data [automated]",
+                            content,
+                            sha: currentFile.sha,
+                            branch: "main",
+                        });
+
+                        return res.status(200).json({
+                            message:
+                                "Updated successfully and committed to GitHub",
+                        });
+                    } catch (error) {
+                        console.error("GitHub API error:", error);
+                        return res.status(500).json({
+                            message: `GitHub Error: ${error.message}`,
+                            type: "github_error",
+                        });
                     }
-
-                    return res
-                        .status(200)
-                        .json({ message: "Updated successfully" });
-                } catch (error) {
-                    console.error("Save error:", error);
-                    return res.status(500).json({
-                        message: `Save Error: ${error.message}`,
-                        type: "save_error",
-                    });
                 }
+
+                return res
+                    .status(200)
+                    .json({ message: "Updated successfully" });
+            } catch (error) {
+                console.error("Save error:", error);
+                return res.status(500).json({
+                    message: `Save Error: ${error.message}`,
+                    type: "save_error",
+                });
             }
         }
 
