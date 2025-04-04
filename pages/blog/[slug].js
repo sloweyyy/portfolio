@@ -37,11 +37,13 @@ const BlogPost = ({ post }) => {
             >
                 <Header isBlog={true} />
                 <div className="mt-16 flex flex-col">
-                    <img
-                        className="w-full h-96 rounded-lg shadow-lg object-cover"
-                        src={post.image}
-                        alt={post.title}
-                    ></img>
+                    <div className="w-full overflow-hidden rounded-lg shadow-lg max-h-[500px] flex items-center justify-center bg-gray-100 dark:bg-slate-800">
+                        <img
+                            className="w-full object-contain max-h-[500px]"
+                            src={post.image}
+                            alt={post.title}
+                        />
+                    </div>
                     <h1
                         ref={textOne}
                         className="mt-14 text-4xl mob:text-2xl laptop:text-6xl text-bold"

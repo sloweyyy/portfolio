@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
 
 const Cursor = () => {
     const { theme, resolvedTheme } = useTheme();
+    const router = useRouter();
     const cursorRef = useRef(null);
     const cursorDotRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -20,14 +22,48 @@ const Cursor = () => {
     // Handle mounting to prevent hydration mismatch
     useEffect(() => {
         setMounted(true);
+
+        // Retrieve stored mouse position, if available
+        if (typeof window !== "undefined") {
+            const storedX = parseFloat(sessionStorage.getItem("cursorX"));
+            const storedY = parseFloat(sessionStorage.getItem("cursorY"));
+
+            if (!isNaN(storedX) && !isNaN(storedY)) {
+                setMousePosition({ x: storedX, y: storedY });
+                setIsVisible(true);
+            }
+        }
     }, []);
+
+    // Store cursor position before navigation
+    useEffect(() => {
+        const handleBeforeRouteChange = () => {
+            if (typeof window !== "undefined") {
+                sessionStorage.setItem("cursorX", mousePosition.x);
+                sessionStorage.setItem("cursorY", mousePosition.y);
+            }
+        };
+
+        router.events.on("routeChangeStart", handleBeforeRouteChange);
+
+        return () => {
+            router.events.off("routeChangeStart", handleBeforeRouteChange);
+        };
+    }, [mousePosition, router.events]);
 
     useEffect(() => {
         if (!mounted) return;
 
         const onMouseMove = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
+            const position = { x: e.clientX, y: e.clientY };
+            setMousePosition(position);
             setIsVisible(true);
+
+            // Store position in session storage for page transitions
+            if (typeof window !== "undefined") {
+                sessionStorage.setItem("cursorX", position.x);
+                sessionStorage.setItem("cursorY", position.y);
+            }
         };
 
         const onMouseEnter = () => setIsVisible(true);

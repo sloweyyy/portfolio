@@ -8,6 +8,8 @@ import Header from "../../components/Header";
 import data from "../../data/portfolio.json";
 import { ISOToDate, useIsomorphicLayoutEffect } from "../../utils";
 import { getAllPosts } from "../../utils/api";
+import { motion } from "framer-motion";
+
 const Blog = ({ posts }) => {
     const showBlog = useRef(data.showBlog);
     const text = useRef();
@@ -83,31 +85,70 @@ const Blog = ({ posts }) => {
                         <div className="mt-16 grid grid-cols-1 mob:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 justify-between gap-12">
                             {posts &&
                                 posts.map((post) => (
-                                    <div
-                                        className="cursor-pointer relative"
+                                    <motion.div
+                                        className="cursor-pointer relative bg-white dark:bg-slate-800 rounded-xl overflow-hidden flex flex-col h-full"
                                         key={post.slug}
                                         onClick={() =>
                                             Router.push(`/blog/${post.slug}`)
                                         }
+                                        whileHover={{
+                                            y: -8,
+                                            boxShadow:
+                                                "0 20px 30px rgba(0,0,0,0.15)",
+                                        }}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 260,
+                                            damping: 20,
+                                            duration: 0.3,
+                                        }}
+                                        style={{
+                                            boxShadow:
+                                                "0 4px 15px rgba(0,0,0,0.08)",
+                                        }}
                                     >
-                                        <img
-                                            className="w-full h-60 rounded-lg shadow-lg object-cover"
-                                            src={post.image}
-                                            alt={post.title}
-                                        ></img>
-                                        <h2 className="mt-8 text-4xl">
-                                            {post.title}
-                                        </h2>
-                                        <p className="mt-4 opacity-50 text-lg">
-                                            {post.preview}
-                                        </p>
-                                        <span className="text-sm mt-6 opacity-25 block">
-                                            {ISOToDate(post.date)}
-                                        </span>
+                                        <div className="overflow-hidden">
+                                            <motion.img
+                                                className="w-full h-60 object-cover"
+                                                src={post.image}
+                                                alt={post.title}
+                                                whileHover={{
+                                                    scale: 1.08,
+                                                }}
+                                                transition={{
+                                                    type: "tween",
+                                                    ease: "easeOut",
+                                                    duration: 0.6,
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="p-6 flex-grow flex flex-col">
+                                            <motion.h2
+                                                className="text-2xl font-bold mb-3"
+                                                whileHover={{ x: 3 }}
+                                                transition={{
+                                                    type: "spring",
+                                                    stiffness: 400,
+                                                }}
+                                            >
+                                                {post.title}
+                                            </motion.h2>
+                                            <p className="text-base opacity-70 mb-4 flex-grow">
+                                                {post.preview}
+                                            </p>
+                                            <span className="text-sm opacity-50 mt-auto">
+                                                {ISOToDate(post.date)}
+                                            </span>
+                                        </div>
                                         {process.env.NODE_ENV ===
                                             "development" &&
                                             mounted && (
-                                                <div className="absolute top-0 right-0">
+                                                <motion.div
+                                                    className="absolute top-3 right-3"
+                                                    whileHover={{ scale: 1.05 }}
+                                                >
                                                     <Button
                                                         onClick={(e) => {
                                                             deleteBlog(
@@ -119,9 +160,9 @@ const Blog = ({ posts }) => {
                                                     >
                                                         Delete
                                                     </Button>
-                                                </div>
+                                                </motion.div>
                                             )}
-                                    </div>
+                                    </motion.div>
                                 ))}
                         </div>
                     </div>
