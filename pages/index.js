@@ -14,6 +14,7 @@ import Cursor from "../components/Cursor";
 import { useRouter } from "next/router";
 import { Toaster } from "../components/Toaster";
 import { toast } from "sonner";
+import DescriptiveWords from "../components/DescriptiveWords/index";
 
 import data from "../data/portfolio.json";
 
@@ -238,6 +239,8 @@ export default function Home() {
                                 {data.headerTaglineFour}
                             </h1>
                         </div>
+
+                        <DescriptiveWords />
 
                         <Socials className="mt-8 laptop:mt-12" />
                     </div>
