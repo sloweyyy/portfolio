@@ -12,18 +12,15 @@ const Cursor = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [mounted, setMounted] = useState(false);
 
-    // Get current theme, safely handling SSR
     const currentTheme = mounted ? theme || resolvedTheme || "light" : "light";
 
     const getCursorColor = () => {
         return currentTheme === "dark" ? "#fff" : "#000";
     };
 
-    // Handle mounting to prevent hydration mismatch
     useEffect(() => {
         setMounted(true);
 
-        // Retrieve stored mouse position, if available
         if (typeof window !== "undefined") {
             const storedX = parseFloat(sessionStorage.getItem("cursorX"));
             const storedY = parseFloat(sessionStorage.getItem("cursorY"));
@@ -35,7 +32,6 @@ const Cursor = () => {
         }
     }, []);
 
-    // Store cursor position before navigation
     useEffect(() => {
         const handleBeforeRouteChange = () => {
             if (typeof window !== "undefined") {
@@ -59,7 +55,6 @@ const Cursor = () => {
             setMousePosition(position);
             setIsVisible(true);
 
-            // Store position in session storage for page transitions
             if (typeof window !== "undefined") {
                 sessionStorage.setItem("cursorX", position.x);
                 sessionStorage.setItem("cursorY", position.y);
@@ -80,14 +75,12 @@ const Cursor = () => {
             setIsActive(false);
         };
 
-        // Add event listeners
         document.addEventListener("mousemove", onMouseMove);
         document.addEventListener("mouseenter", onMouseEnter);
         document.addEventListener("mouseleave", onMouseLeave);
         document.addEventListener("mousedown", onMouseDown);
         document.addEventListener("mouseup", onMouseUp);
 
-        // Handle links
         const links = document.querySelectorAll(".link");
         links.forEach((link) => {
             link.addEventListener("mouseenter", handleLinkHover);
@@ -95,7 +88,6 @@ const Cursor = () => {
         });
 
         return () => {
-            // Remove event listeners on cleanup
             document.removeEventListener("mousemove", onMouseMove);
             document.removeEventListener("mouseenter", onMouseEnter);
             document.removeEventListener("mouseleave", onMouseLeave);
@@ -112,12 +104,10 @@ const Cursor = () => {
     useEffect(() => {
         if (!mounted || !cursorRef.current || !cursorDotRef.current) return;
 
-        // Apply smooth animation to main cursor
         cursorRef.current.style.transform = `translate(${mousePosition.x}px, ${
             mousePosition.y
         }px) scale(${isActive ? 2 : 1})`;
 
-        // Position the dot cursor (follows more directly)
         cursorDotRef.current.style.transform = `translate(${mousePosition.x}px, ${mousePosition.y}px)`;
     }, [mousePosition, isActive, mounted]);
 

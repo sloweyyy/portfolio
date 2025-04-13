@@ -16,7 +16,6 @@ const ContactForm = ({ onClose }) => {
     const formRef = useRef(null);
     const modalRoot = useRef(null);
 
-    // Clean immediate close without animations to avoid glitches
     const handleClose = useCallback(() => {
         onClose();
     }, [onClose]);
@@ -33,7 +32,6 @@ const ContactForm = ({ onClose }) => {
     useEffect(() => {
         setMounted(true);
 
-        // Use existing portal element or create a new one
         let el = document.getElementById("contact-form-portal");
         if (!el) {
             el = document.createElement("div");
@@ -44,7 +42,6 @@ const ContactForm = ({ onClose }) => {
         modalRoot.current = el;
         setPortalElement(el);
 
-        // Delay adding event listener to avoid initial render issues
         const timer = setTimeout(() => {
             document.addEventListener("mousedown", handleClickOutside);
         }, 100);
@@ -52,7 +49,6 @@ const ContactForm = ({ onClose }) => {
         return () => {
             clearTimeout(timer);
             document.removeEventListener("mousedown", handleClickOutside);
-            // Only remove if we created it and it still exists
             if (el && el.parentElement && el.childElementCount === 0) {
                 el.parentElement.removeChild(el);
             }
@@ -61,7 +57,6 @@ const ContactForm = ({ onClose }) => {
 
     const currentTheme = mounted ? theme || resolvedTheme : "light";
 
-    // Event handlers with proper stopPropagation
     const handleNameChange = (e) => {
         e.stopPropagation();
         setName(e.target.value);
@@ -122,7 +117,6 @@ const ContactForm = ({ onClose }) => {
         return re.test(String(email).toLowerCase());
     };
 
-    // Don't render anything until mounted and portal element is created
     if (!mounted || !portalElement) return null;
 
     const formContent = (
