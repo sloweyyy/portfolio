@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { Toaster } from "../components/Toaster";
 import { toast } from "sonner";
 import DescriptiveWords from "../components/DescriptiveWords/index";
+import VariableProximity from "../components/VariableProximity";
 
 import data from "../data/portfolio.json";
 
@@ -22,6 +23,7 @@ export default function Home() {
     const { theme } = useTheme();
     const workRef = useRef();
     const aboutRef = useRef();
+    const aboutTextRef = useRef();
     const textOne = useRef();
     const textTwo = useRef();
     const textThree = useRef();
@@ -30,12 +32,10 @@ export default function Home() {
     const [showEdit, setShowEdit] = useState(false);
     const router = useRouter();
 
-    // Alternating taglines state
     const [currentTaglineTwo, setCurrentTaglineTwo] = useState(0);
     const [currentTaglineThree, setCurrentTaglineThree] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
 
-    // Prepare the tagline options with fallbacks to the main taglines
     const taglineTwoOptions = [
         data.headerTaglineTwo,
         ...(data.alternateTaglinesTwo || []),
@@ -46,9 +46,7 @@ export default function Home() {
         ...(data.alternateTaglinesThree || []),
     ];
 
-    // Animation for cycling through taglines
     useEffect(() => {
-        // Only run the animation if we have alternate taglines
         if (taglineTwoOptions.length <= 1) return;
 
         const taglineTwoInterval = setInterval(() => {
@@ -58,14 +56,13 @@ export default function Home() {
                     (prev) => (prev + 1) % taglineTwoOptions.length
                 );
                 setIsAnimating(false);
-            }, 500); // Half a second for fade out
-        }, 3000); // Change every 3 seconds
+            }, 500);
+        }, 3000);
 
         return () => clearInterval(taglineTwoInterval);
     }, [taglineTwoOptions.length]);
 
     useEffect(() => {
-        // Only run the animation if we have alternate taglines
         if (taglineThreeOptions.length <= 1) return;
 
         const taglineThreeInterval = setInterval(() => {
@@ -78,7 +75,6 @@ export default function Home() {
             }, 500);
         }, 3000);
 
-        // Start the third tagline cycle with a slight delay
         const initialDelay = setTimeout(() => {
             return () => clearInterval(taglineThreeInterval);
         }, 1500);
@@ -104,7 +100,6 @@ export default function Home() {
         ];
 
         const handleKeyPress = (event) => {
-            // Original keyboard shortcut
             if (
                 (event.metaKey && event.key === "e") ||
                 (event.ctrlKey && event.altKey && event.key === "e")
@@ -246,7 +241,7 @@ export default function Home() {
                     </div>
 
                     <div
-                        className="mt-20 laptop:mt-60 p-2 laptop:p-0"
+                        className="mt-12 laptop:mt-24 p-2 laptop:p-0"
                         ref={workRef}
                     >
                         <h1 className="text-2xl text-bold mb-4">Work.</h1>
@@ -264,7 +259,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="mt-20 laptop:mt-60 p-2 laptop:p-0">
+                    <div className="mt-12 laptop:mt-36 p-2 laptop:p-0">
                         <div className="ml-2 laptop:ml-0">
                             <h1 className="text-2xl mb-4">Services.</h1>
                             <div className="mt-8 laptop:mt-14 grid grid-cols-1 laptop:grid-cols-2 gap-6">
@@ -288,14 +283,25 @@ export default function Home() {
                         </div>
                     )}
                     <div
-                        className="mt-20 laptop:mt-60 p-2 laptop:p-0"
+                        className="mt-12 laptop:mt-36 p-2 laptop:p-0"
                         ref={aboutRef}
                     >
                         <div className="mx-2 laptop:mx-0 laptop:w-3/5">
                             <h1 className="text-2xl mb-4">About.</h1>
-                            <p className="text-lg laptop:text-2xl font-light">
-                                {data.aboutpara}
-                            </p>
+                            <div
+                                className="variable-text-parent"
+                                ref={aboutTextRef}
+                            >
+                                <VariableProximity
+                                    label={data.aboutpara}
+                                    fromFontVariationSettings="'wght' 400, 'wdth' 100, 'slnt' 0"
+                                    toFontVariationSettings="'wght' 700, 'wdth' 125, 'slnt' 0"
+                                    containerRef={aboutTextRef}
+                                    radius={100}
+                                    falloff="exponential"
+                                    className="text-lg laptop:text-2xl font-light leading-relaxed"
+                                />
+                            </div>
                         </div>
                     </div>
 

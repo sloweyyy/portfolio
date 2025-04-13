@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import ContactForm from "../ContactForm";
 import data from "../../data/portfolio.json";
+import ThemeToggleButton from "../ThemeToggleButton";
 
 const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
     const router = useRouter();
@@ -18,7 +19,6 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
         setMounted(true);
     }, []);
 
-    // Use currentTheme to avoid hydration mismatch
     const currentTheme = mounted ? theme || resolvedTheme : "light";
 
     const handleScheduleCallClick = () => {
@@ -44,24 +44,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
 
                             <div className="flex items-center">
                                 {data.darkMode && mounted && (
-                                    <Button
-                                        onClick={() =>
-                                            setTheme(
-                                                currentTheme === "dark"
-                                                    ? "light"
-                                                    : "dark"
-                                            )
-                                        }
-                                    >
-                                        <img
-                                            className="h-6"
-                                            src={`/images/${
-                                                currentTheme === "dark"
-                                                    ? "moon.svg"
-                                                    : "sun.svg"
-                                            }`}
-                                        ></img>
-                                    </Button>
+                                    <ThemeToggleButton />
                                 )}
 
                                 <Popover.Button>
@@ -183,26 +166,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                         <Button onClick={handleScheduleCallClick}>
                             Contact
                         </Button>
-                        {mounted && data.darkMode && (
-                            <Button
-                                onClick={() =>
-                                    setTheme(
-                                        currentTheme === "dark"
-                                            ? "light"
-                                            : "dark"
-                                    )
-                                }
-                            >
-                                <img
-                                    className="h-6"
-                                    src={`/images/${
-                                        currentTheme === "dark"
-                                            ? "moon.svg"
-                                            : "sun.svg"
-                                    }`}
-                                ></img>
-                            </Button>
-                        )}
+                        {mounted && data.darkMode && <ThemeToggleButton />}
                     </div>
                 ) : (
                     <div className="flex">
@@ -225,26 +189,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                             Contact
                         </Button>
 
-                        {mounted && data.darkMode && (
-                            <Button
-                                onClick={() =>
-                                    setTheme(
-                                        currentTheme === "dark"
-                                            ? "light"
-                                            : "dark"
-                                    )
-                                }
-                            >
-                                <img
-                                    className="h-6"
-                                    src={`/images/${
-                                        currentTheme === "dark"
-                                            ? "moon.svg"
-                                            : "sun.svg"
-                                    }`}
-                                ></img>
-                            </Button>
-                        )}
+                        {mounted && data.darkMode && <ThemeToggleButton />}
                     </div>
                 )}
             </div>

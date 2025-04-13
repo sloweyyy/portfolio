@@ -24,9 +24,45 @@ body {
     @apply dark:bg-black dark:text-white;
 }
 
+/* VariableProximity component styles */
+.variable-text {
+    font-family: 'Roboto Flex', sans-serif;
+    transition: font-variation-settings 0.3s ease;
+}
+
+.variable-text-container {
+    cursor: default;
+    position: relative;
+    overflow: visible;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Resume page specific styles */
+.variable-text-parent {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.variable-text-parent:hover {
+    opacity: 1;
+}
+
+.variable-text-parent .variable-text {
+    line-height: 1.4;
+}
+
 /* Tagline styles for better spacing */
 .tagline {
     line-height: 1.1;
+}
+
+/* Resume text container styles */
+.max-w-4xl .variable-text-container {
+    max-width: 100%;
+    text-align: justify;
+    word-break: normal;
+    line-height: 1.6;
 }
 
 .tagline-container {

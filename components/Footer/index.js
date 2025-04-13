@@ -15,7 +15,6 @@ const Footer = ({}) => {
         setMounted(true);
     }, []);
 
-    // Use current theme only after component has mounted to avoid hydration mismatch
     const currentTheme = mounted ? theme || resolvedTheme : "light";
 
     const handleScheduleCallClick = () => {

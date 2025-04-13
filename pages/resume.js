@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Cursor from "../components/Cursor";
 import Header from "../components/Header";
 import ProjectResume from "../components/ProjectResume";
 import Socials from "../components/Socials";
 import Button from "../components/Button";
+import VariableProximity from "../components/VariableProximity";
 import { useTheme } from "next-themes";
 import data from "../data/portfolio.json";
 import { motion, useInView } from "framer-motion";
@@ -13,6 +14,7 @@ const Resume = () => {
     const router = useRouter();
     const theme = useTheme();
     const [mount, setMount] = useState(false);
+    const descriptionContainerRef = useRef(null);
 
     useEffect(() => {
         setMount(true);
@@ -28,7 +30,6 @@ const Resume = () => {
         );
     };
 
-    // Animation variants
     const fadeInVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -37,7 +38,6 @@ const Resume = () => {
         },
     };
 
-    // Scroll animation component that reveals content as it scrolls into view
     const ScrollReveal = ({
         children,
         threshold = 0.1,
@@ -61,7 +61,7 @@ const Resume = () => {
                 transition={{
                     duration: 0.8,
                     delay: delay,
-                    ease: [0.1, 0.25, 0.3, 1], // Custom ease curve for more natural motion
+                    ease: [0.1, 0.25, 0.3, 1],
                 }}
             >
                 {children}
@@ -113,7 +113,7 @@ const Resume = () => {
                                 mount && theme.theme === "dark"
                                     ? "bg-slate-800"
                                     : "bg-gray-50"
-                            } max-w-4xl p-20 mob:p-5 desktop:p-20 rounded-lg shadow-sm`}
+                            } max-w-5xl p-20 mob:p-5 desktop:p-20 rounded-lg shadow-sm`}
                         >
                             <ScrollReveal>
                                 <h1 className="text-4xl font-bold">
@@ -122,9 +122,20 @@ const Resume = () => {
                                 <h2 className="text-xl mt-8">
                                     {data.resume.tagline}
                                 </h2>
-                                <h2 className="w-4/5 text-xl mt-8 opacity-50">
-                                    {data.resume.description}
-                                </h2>
+                                <div
+                                    ref={descriptionContainerRef}
+                                    className="w-full text-xl mt-8 opacity-75 relative pb-2 variable-text-parent max-w-4xl"
+                                >
+                                    <VariableProximity
+                                        label={data.resume.description}
+                                        fromFontVariationSettings="'wght' 400, 'wdth' 100, 'slnt' 0"
+                                        toFontVariationSettings="'wght' 700, 'wdth' 125, 'slnt' 0"
+                                        containerRef={descriptionContainerRef}
+                                        radius={150}
+                                        falloff="exponential"
+                                        className="leading-relaxed tracking-wide"
+                                    />
+                                </div>
                                 <div className="mt-6">
                                     <Socials />
                                 </div>
