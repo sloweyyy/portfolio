@@ -61,7 +61,7 @@ export default async function handler(req, res) {
                 "data/portfolio.json"
             );
             try {
-                // Only write to local file system in development environment
+                // Onlysome write to local file system in development environment
                 if (process.env.NODE_ENV !== "production") {
                     fs.writeFileSync(
                         portfolioPath,
