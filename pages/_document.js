@@ -9,6 +9,12 @@ export default function Document() {
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..900&display=swap"
                 />
+                <script
+                    defer
+                    async
+                    client-code="KA-1959366-1"
+                    src="https://static.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js"
+                />
             </Head>
             <body>
                 <Main />
