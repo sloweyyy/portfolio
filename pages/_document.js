@@ -12,7 +12,7 @@ export default function Document() {
                 <script
                     defer
                     async
-                    client-code="KA-1959366-1"
+                    client-code="KA-1959366-2"
                     src="https://static.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js"
                 ></script>
             </Head>
