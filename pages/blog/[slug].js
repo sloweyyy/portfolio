@@ -23,42 +23,45 @@ const BlogPost = ({ post }) => {
     }, []);
 
     return (
-        <div className="flex flex-col min-h-screen bg-neo-bg">
+        <>
             <Head>
                 <title>{"Blog - " + post.title}</title>
                 <meta name="description" content={post.preview} />
             </Head>
             {data.showCursor && <Cursor />}
-            <div className="container mx-auto relative z-10 px-4">
+
+            <div
+                className={`container mx-auto mt-16 ${
+                    data.showCursor && "cursor-none"
+                }`}
+            >
                 <Header isBlog={true} />
-            </div>
-            <main className="flex-grow pt-10 pb-48 w-full container mx-auto px-4 laptop:px-0">
-                <div className="flex flex-col">
-                    <div className="w-full overflow-hidden max-h-[500px] rounded-t-xl border-4 border-neo-black bg-white flex items-center justify-center">
+                <div className="mt-16 flex flex-col">
+                    <div className="w-full overflow-hidden rounded-lg shadow-lg max-h-[500px] flex items-center justify-center bg-gray-100 dark:bg-gray-900 border border-transparent dark:border-gray-800">
                         <img
-                            className="w-full object-cover max-h-[500px]"
+                            className="w-full object-contain max-h-[500px]"
                             src={post.image}
                             alt={post.title}
                         />
                     </div>
                     <h1
                         ref={textOne}
-                        className="mt-14 text-4xl mob:text-2xl laptop:text-6xl text-bold text-neo-black font-heading font-extrabold"
+                        className="mt-14 text-4xl mob:text-2xl laptop:text-6xl text-bold dark:text-white"
                     >
                         {post.title}
                     </h1>
                     <h2
                         ref={textTwo}
-                        className="mt-6 text-xl max-w-4xl text-neo-black opacity-70 font-body"
+                        className="mt-6 text-xl max-w-4xl text-darkgray dark:text-gray-300 opacity-50 dark:opacity-80"
                     >
                         {post.tagline}
                     </h2>
                 </div>
-                <div className="mt-12 text-neo-black font-body">
+                <div className="mt-12 dark:text-gray-200">
                     <ContentSection content={post.content}></ContentSection>
                 </div>
-            </main>
-            <Footer />
+                <Footer />
+            </div>
             {process.env.NODE_ENV === "development" && (
                 <div className="fixed bottom-6 right-6">
                     <Button
@@ -69,6 +72,7 @@ const BlogPost = ({ post }) => {
                     </Button>
                 </div>
             )}
+
             {showEditor && (
                 <BlogEditor
                     post={post}
@@ -76,7 +80,7 @@ const BlogPost = ({ post }) => {
                     refresh={() => router.reload(window.location.pathname)}
                 />
             )}
-        </div>
+        </>
     );
 };
 
@@ -91,6 +95,7 @@ export async function getStaticProps({ params }) {
         "image",
         "content",
     ]);
+
     return {
         props: {
             post: {
@@ -102,8 +107,15 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
     const posts = getAllPosts(["slug"]);
+
     return {
-        paths: posts.map((post) => ({ params: { slug: post.slug } })),
+        paths: posts.map((post) => {
+            return {
+                params: {
+                    slug: post.slug,
+                },
+            };
+        }),
         fallback: false,
     };
 }
