@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Mega:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap');
 @import "./markdown.css";
 @tailwind base;
 @tailwind components;
@@ -7,21 +7,44 @@
 :root {
     --popover: white;
     --popover-foreground: #333;
-    --border: #e2e8f0;
-}
+    --border: #000;
 
-.dark {
-    --popover: #1e293b;
-    --popover-foreground: white;
-    --border: #334155;
+    /* Neo Colors - Light Mode */
+    --neo-yellow: #FFE600;
+    --neo-pink: #FF0099;
+    --neo-purple: #9D00FF;
+    --neo-green: #2E7D32;
+    /* Darker green for hero */
+    --neo-black: #000000;
+    --neo-white: #FFFFFF;
+    --neo-bg: #F0F0F0;
+    --neo-border: #000000;
 }
 
 * {
-    font-family: "Be Vietnam Pro", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lexend Mega", sans-serif;
 }
 
 body {
-    @apply dark:bg-black dark:text-white;
+    @apply bg-neo-bg text-neo-black;
+    background-image: linear-gradient(#e5e7eb 1px, transparent 1px),
+        linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+    background-size: 40px 40px;
+    cursor: none;
+}
+
+/* Force hide cursor when custom cursor is enabled */
+.cursor-none, .cursor-none * {
+    cursor: none !important;
 }
 
 /* VariableProximity component styles */
@@ -73,13 +96,27 @@ body {
 
 /* Animations for taglines */
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeOut {
-    0% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-10px); }
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
 }
 
 .fade-in {
@@ -116,13 +153,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 40;
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.8); /* Light theme background */
-}
-
-.dark .sticky-header {
-    background: rgba(0, 0, 0, 0.8); /* Dark theme background */
-    color: white; /* Ensure text is white in dark mode */
+    background: transparent;
 }
 
 .gradient-circle {
@@ -134,12 +165,11 @@ body {
     width: 100vw;
     opacity: 0.5;
     filter: blur(40px);
-    background: radial-gradient(
-        circle,
-        rgba(248, 107, 223, 1) 0%,
-        rgba(107, 107, 248, 0.8) 100%
-    );
+    background: radial-gradient(circle,
+            rgba(248, 107, 223, 1) 0%,
+            rgba(107, 107, 248, 0.8) 100%);
 }
+
 .gradient-circle-bottom {
     position: absolute;
     pointer-events: none;
@@ -149,11 +179,9 @@ body {
     width: 100vw;
     opacity: 0.5;
     filter: blur(40px);
-    background: radial-gradient(
-        circle,
-        rgba(248, 107, 223, 1) 0%,
-        rgba(107, 107, 248, 0.8) 100%
-    );
+    background: radial-gradient(circle,
+            rgba(248, 107, 223, 1) 0%,
+            rgba(107, 107, 248, 0.8) 100%);
 }
 
 .gradient-shadow:hover::before {
@@ -188,6 +216,7 @@ body {
     background: inherit;
     border-radius: inherit;
 }
+
 .be-vietnam-pro-thin {
     font-family: "Be Vietnam Pro", sans-serif;
     font-weight: 100;
@@ -222,42 +251,37 @@ body {
     border-left: 4px solid #d32f2f;
 }
 
-.dark .toaster [data-sonner-toast][data-type="success"] {
-    border-left: 4px solid #4CAF50;
-}
-
-.dark .toaster [data-sonner-toast][data-type="error"] {
-    border-left: 4px solid #F44336;
-}
-
 .toaster [data-sonner-toast] [data-close-button] {
     opacity: 0.7;
 }
 
 /* Animation utilities for the login page blobs */
 @keyframes blob {
-  0% {
-    transform: scale(1);
-  }
-  33% {
-    transform: scale(1.1);
-  }
-  66% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+
+    33% {
+        transform: scale(1.1);
+    }
+
+    66% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .animate-blob {
-  animation: blob 7s infinite;
+    animation: blob 7s infinite;
 }
 
 .animation-delay-2000 {
-  animation-delay: 2s;
+    animation-delay: 2s;
 }
 
 .animation-delay-4000 {
-  animation-delay: 4s;
+    animation-delay: 4s;
 }
