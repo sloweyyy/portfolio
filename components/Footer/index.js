@@ -1,87 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Socials from "../Socials";
-import Button from "../Button";
-import ContactForm from "../ContactForm";
-import { useTheme } from "next-themes";
-import Magnet from "../Magnet/index";
-import DecryptedText from "../DecryptedText/index";
 
-const Footer = ({}) => {
-    const { theme, resolvedTheme } = useTheme();
-    const [showForm, setShowForm] = useState(false);
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const currentTheme = mounted ? theme || resolvedTheme : "light";
-
-    const handleScheduleCallClick = () => {
-        setShowForm(true);
-    };
-
-    const handleCloseForm = () => {
-        setShowForm(false);
-    };
-
+const Footer = () => {
     return (
         <>
-            <div className="mt-5 laptop:mt-40 p-2 laptop:p-0">
-                <div>
-                    <h1 className="text-2xl text-bold">Contact.</h1>
-                    <div className="mt-10">
-                        <div className="relative">
-                            <h1 className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl text-bold">
-                                <DecryptedText
-                                    text="LET'S WORK"
-                                    speed={100}
-                                    maxIterations={30}
-                                    sequential={true}
-                                    revealDirection="center"
-                                    useOriginalCharsOnly={true}
-                                    className="text-inherit"
-                                    encryptedClassName="text-gray-400"
-                                    animateOn="view"
-                                />
+            <div className="relative -mt-20 z-10">
+                {/* Wavy Transition */}
+                <svg className="w-full h-20 text-neo-yellow fill-current" viewBox="0 0 1440 100" preserveAspectRatio="none">
+                    <path d="M0,50 C320,100 420,0 720,50 C1020,100 1120,0 1440,50 L1440,100 L0,100 Z"></path>
+                </svg>
+            </div>
+            
+            <footer className="bg-neo-yellow pt-10 pb-20 mt-0">
+                <div className="container mx-auto px-4 laptop:px-0">
+                    <div className="text-center mb-20">
+                        <h1 className="text-6xl tablet:text-8xl laptop:text-[10rem] font-heading font-bold uppercase text-neo-black leading-[0.8] mb-4">
+                            We&apos;ve Got
+                        </h1>
+                        <div className="relative inline-block">
+                            <h1 className="text-6xl tablet:text-8xl laptop:text-[10rem] font-heading font-bold uppercase text-neo-black leading-[0.8]">
+                                Your Back
                             </h1>
-                            <h1 className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl text-bold mb-6">
-                                <DecryptedText
-                                    text="TOGETHER"
-                                    speed={100}
-                                    maxIterations={30}
-                                    sequential={true}
-                                    revealDirection="center"
-                                    useOriginalCharsOnly={true}
-                                    className="text-inherit"
-                                    encryptedClassName="text-gray-400"
-                                    animateOn="view"
-                                />
-                            </h1>
-
-                            {/* Simple elegant button */}
-                            <Magnet
-                                magnetStrength={1.5}
-                                padding={50}
-                                wrapperClassName="inline-block"
-                                innerClassName={`mt-2 px-7 py-2.5 rounded-md font-medium text-sm transition-colors ${
-                                    currentTheme === "dark"
-                                        ? "bg-white text-black hover:bg-gray-100"
-                                        : "bg-black text-white hover:bg-gray-800"
-                                }`}
-                            >
-                                <button onClick={handleScheduleCallClick}>
-                                    Schedule a call
-                                </button>
-                            </Magnet>
+                            {/* B Logo Sticker */}
+                            <div className="absolute -top-10 -right-20 transform rotate-12 hidden laptop:block">
+                                <div className="text-8xl">😎</div>
+                            </div>
                         </div>
-                        <div className="mt-10">
+                    </div>
+
+                    <div className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-10 justify-center">
+                        <div className="tablet:col-span-2 laptop:col-span-3 flex flex-col items-center">
+                            <h2 className="text-2xl font-heading font-bold uppercase mb-5 text-neo-black">Social Stuff</h2>
                             <Socials />
                         </div>
                     </div>
+
+                    <div className="mt-20 border-t-2 border-neo-black pt-10 flex justify-center items-center">
+                        <div className="font-heading font-bold uppercase text-2xl">SloWey.</div>
+                    </div>
                 </div>
-            </div>
-            {showForm && mounted && <ContactForm onClose={handleCloseForm} />}
+            </footer>
         </>
     );
 };
