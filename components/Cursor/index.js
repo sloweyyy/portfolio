@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 
 const Cursor = () => {
+    const { theme, resolvedTheme } = useTheme();
     const router = useRouter();
     const cursorRef = useRef(null);
     const cursorDotRef = useRef(null);
@@ -9,6 +11,12 @@ const Cursor = () => {
     const [isActive, setIsActive] = useState(false);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [mounted, setMounted] = useState(false);
+
+    const currentTheme = mounted ? theme || resolvedTheme || "light" : "light";
+
+    const getCursorColor = () => {
+        return currentTheme === "dark" ? "#fff" : "#000";
+    };
 
     useEffect(() => {
         setMounted(true);
@@ -59,10 +67,12 @@ const Cursor = () => {
         const onMouseDown = () => setIsActive(true);
         const onMouseUp = () => setIsActive(false);
 
-        const onMouseOver = (e) => {
-            const target = e.target;
-            const isClickable = target.closest('a, button, input, textarea, [role="button"], .cursor-pointer');
-            setIsActive(!!isClickable);
+        const handleLinkHover = () => {
+            setIsActive(true);
+        };
+
+        const handleLinkLeave = () => {
+            setIsActive(false);
         };
 
         document.addEventListener("mousemove", onMouseMove);
@@ -70,7 +80,12 @@ const Cursor = () => {
         document.addEventListener("mouseleave", onMouseLeave);
         document.addEventListener("mousedown", onMouseDown);
         document.addEventListener("mouseup", onMouseUp);
-        document.addEventListener("mouseover", onMouseOver);
+
+        const links = document.querySelectorAll(".link");
+        links.forEach((link) => {
+            link.addEventListener("mouseenter", handleLinkHover);
+            link.addEventListener("mouseleave", handleLinkLeave);
+        });
 
         return () => {
             document.removeEventListener("mousemove", onMouseMove);
@@ -78,7 +93,11 @@ const Cursor = () => {
             document.removeEventListener("mouseleave", onMouseLeave);
             document.removeEventListener("mousedown", onMouseDown);
             document.removeEventListener("mouseup", onMouseUp);
-            document.removeEventListener("mouseover", onMouseOver);
+
+            links.forEach((link) => {
+                link.removeEventListener("mouseenter", handleLinkHover);
+                link.removeEventListener("mouseleave", handleLinkLeave);
+            });
         };
     }, [mounted]);
 
@@ -94,35 +113,36 @@ const Cursor = () => {
 
     if (!mounted) return null;
 
+    const color = getCursorColor();
+
     return (
-        <div
-            ref={cursorRef}
-            className={`fixed pointer-events-none z-[10000] transition-transform duration-100 ease-out ${
-                isVisible ? "opacity-100" : "opacity-0"
-            }`}
-            style={{
-                transform: `translate(${mousePosition.x}px, ${mousePosition.y}px) rotate(${isActive ? "-15deg" : "0deg"}) scale(${isActive ? 0.9 : 1})`,
-                top: "0px",
-                left: "0px",
-                willChange: "transform",
-            }}
-        >
-            <svg
-                width="35"
-                height="35"
-                viewBox="0 0 35 35"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M12.5 4L28.5 20L19.5 22L17.5 31L12.5 4Z"
-                    fill="var(--neo-yellow)"
-                    stroke="black"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                />
-            </svg>
-        </div>
+        <>
+            <div
+                ref={cursorRef}
+                className={`fixed pointer-events-none z-[10000] h-8 w-8 rounded-full border border-solid transition-transform duration-200 ease-out ${
+                    isVisible ? "opacity-100" : "opacity-0"
+                }`}
+                style={{
+                    borderColor: color,
+                    transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+                    transitionProperty: "transform, opacity, background-color",
+                    top: "-16px",
+                    left: "-16px",
+                }}
+            />
+            <div
+                ref={cursorDotRef}
+                className={`fixed pointer-events-none z-[10000] h-2 w-2 rounded-full transition-transform duration-100 ease-out ${
+                    isVisible ? "opacity-100" : "opacity-0"
+                }`}
+                style={{
+                    backgroundColor: color,
+                    transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+                    top: "-1px",
+                    left: "-1px",
+                }}
+            />
+        </>
     );
 };
 
