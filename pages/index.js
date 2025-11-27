@@ -451,10 +451,20 @@ export default function Home() {
                 {data.showCursor && <Cursor />}
                 <Head>
                     <title>SloWey | Portfolio</title>
-                    <meta name="description" content="SloWey's developer portfolio" key="desc" />
-                    <meta property="og:title" content="SloWey Portfolio" />
-                    <meta property="og:description" content="SloWey's developer portfolio" />
-                    <meta property="og:image" content="https://i.imgur.com/LJAuciv.png" />
+                    <meta name="title" content="SloWey | Portfolio" />
+                    <meta name="description" content="Portfolio of Slowey - Full Stack Developer & Product Owner. Specializing in building scalable web applications and crafting intuitive user experiences" />
+
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://slowey.dev/" />
+                    <meta property="og:title" content="SloWey | Portfolio" />
+                    <meta property="og:description" content="Portfolio of Slowey - Full Stack Developer & Product Owner. Specializing in building scalable web applications and crafting intuitive user experiences" />
+                    <meta property="og:image" content="https://upanhnhanh.com/f017edfad4ed46e04742b8a416580e77" />
+
+                    <meta property="twitter:card" content="summary_large_image" />
+                    <meta property="twitter:url" content="https://slowey.dev/" />
+                    <meta property="twitter:title" content="SloWey | Portfolio" />
+                    <meta property="twitter:description" content="Portfolio of Slowey - Full Stack Developer & Product Owner. Specializing in building scalable web applications and crafting intuitive user experiences" />
+                    <meta property="twitter:image" content="https://upanhnhanh.com/f017edfad4ed46e04742b8a416580e77" />
                 </Head>
 
                 {/* HERO SECTION - BYOOOOOB STYLE */}
