@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import { v4 as uuidv4 } from "uuid";
+import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import { verifyToken } from "../utils/auth";
 import { toast } from "sonner";
@@ -13,6 +14,7 @@ import Cursor from "../components/Cursor";
 const Edit = () => {
     const [data, setData] = useState(yourData);
     const [currentTabs, setCurrentTabs] = useState("HEADER");
+    const { theme } = useTheme();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loginData, setLoginData] = useState({
         username: "",
@@ -63,7 +65,7 @@ const Edit = () => {
         };
 
         checkAuth();
-    }, []);
+    }, [theme]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -147,7 +149,11 @@ const Edit = () => {
     if (loading) {
         return (
             <div
-                className={`min-h-screen flex items-center justify-center bg-gray-100 text-gray-900`}
+                className={`min-h-screen flex items-center justify-center ${
+                    theme === "dark"
+                        ? "bg-gray-900 text-white"
+                        : "bg-gray-100 text-gray-900"
+                }`}
             >
                 <div className="text-center">
                     <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
@@ -162,7 +168,7 @@ const Edit = () => {
             <>
                 <Toaster />
                 <div
-                    className={`min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden`}
+                    className={`min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden`}
                 >
                     {/* Background elements - more subtle */}
                     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -175,13 +181,13 @@ const Edit = () => {
                     </div>
 
                     <div className="w-full max-w-md p-8 space-y-6 relative z-10">
-                        <div className="relative bg-white/90 rounded-2xl shadow-lg overflow-hidden backdrop-blur-sm border border-gray-200/50">
+                        <div className="relative bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-lg overflow-hidden backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
                             {/* Subtle top border */}
-                            <div className="h-1 w-full bg-gradient-to-r from-gray-300 via-blue-400 to-gray-300 bg-size-200 animate-shimmer"></div>
+                            <div className="h-1 w-full bg-gradient-to-r from-gray-300 via-blue-400 to-gray-300 dark:from-gray-700 dark:via-blue-600 dark:to-gray-700 bg-size-200 animate-shimmer"></div>
 
                             <div className="p-8">
                                 <div className="flex flex-col items-center mb-8">
-                                    <div className="w-16 h-16 mb-5 bg-blue-500 rounded-xl flex items-center justify-center shadow-md">
+                                    <div className="w-16 h-16 mb-5 bg-blue-500 dark:bg-blue-600 rounded-xl flex items-center justify-center shadow-md">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="h-8 w-8 text-white"
@@ -197,10 +203,10 @@ const Edit = () => {
                                             />
                                         </svg>
                                     </div>
-                                    <h1 className="text-2xl font-bold text-gray-800">
+                                    <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
                                         Admin Login
                                     </h1>
-                                    <p className="text-gray-500 text-center mt-2">
+                                    <p className="text-gray-500 dark:text-gray-400 text-center mt-2">
                                         Enter your credentials to access the
                                         admin dashboard
                                     </p>
@@ -211,14 +217,14 @@ const Edit = () => {
                                     className="space-y-5"
                                 >
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
+                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 ml-1">
                                             Username
                                         </label>
                                         <div className="relative">
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-5 w-5 text-gray-400"
+                                                    className="h-5 w-5 text-gray-400 dark:text-gray-500"
                                                     viewBox="0 0 20 20"
                                                     fill="currentColor"
                                                 >
@@ -239,7 +245,7 @@ const Edit = () => {
                                                             e.target.value,
                                                     })
                                                 }
-                                                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none transition-all duration-200 bg-white/80 text-gray-900 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                                                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none transition-all duration-200 bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white backdrop-blur-sm border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20"
                                                 placeholder="Enter username"
                                                 required
                                             />
@@ -247,14 +253,14 @@ const Edit = () => {
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
+                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 ml-1">
                                             Password
                                         </label>
                                         <div className="relative">
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-5 w-5 text-gray-400"
+                                                    className="h-5 w-5 text-gray-400 dark:text-gray-500"
                                                     viewBox="0 0 20 20"
                                                     fill="currentColor"
                                                 >
@@ -275,7 +281,7 @@ const Edit = () => {
                                                             e.target.value,
                                                     })
                                                 }
-                                                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none transition-all duration-200 bg-white/80 text-gray-900 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                                                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none transition-all duration-200 bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white backdrop-blur-sm border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20"
                                                 placeholder="Enter password"
                                                 required
                                             />
@@ -284,7 +290,7 @@ const Edit = () => {
 
                                     <button
                                         type="submit"
-                                        className="w-full py-3 px-4 flex items-center justify-center rounded-lg text-white font-medium transition-all duration-200 bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform hover:scale-[1.01] active:scale-[0.99]"
+                                        className="w-full py-3 px-4 flex items-center justify-center rounded-lg text-white font-medium transition-all duration-200 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform hover:scale-[1.01] active:scale-[0.99]"
                                     >
                                         Sign In
                                     </button>
@@ -293,7 +299,7 @@ const Edit = () => {
                         </div>
 
                         {/* Footer text */}
-                        <p className="mt-4 text-center text-sm text-gray-500">
+                        <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
                             Protected area. Only authorized personnel.
                         </p>
                     </div>
@@ -303,12 +309,18 @@ const Edit = () => {
                         .bg-grid-pattern {
                             background-image: linear-gradient(
                                     to right,
-                                    rgba(0,0,0,0.05) 1px,
+                                    ${theme === "dark"
+                                            ? "rgba(255,255,255,0.05)"
+                                            : "rgba(0,0,0,0.05)"}
+                                        1px,
                                     transparent 1px
                                 ),
                                 linear-gradient(
                                     to bottom,
-                                    rgba(0,0,0,0.05) 1px,
+                                    ${theme === "dark"
+                                            ? "rgba(255,255,255,0.05)"
+                                            : "rgba(0,0,0,0.05)"}
+                                        1px,
                                     transparent 1px
                                 );
                         }
@@ -468,7 +480,7 @@ const Edit = () => {
                 <div className="mt-10">
                     <div
                         className={`${
-                            "bg-white"
+                            theme === "dark" ? "bg-transparent" : "bg-white"
                         }`}
                     >
                         <div className="flex items-center justify-between">
@@ -778,6 +790,35 @@ const Edit = () => {
                                         }
                                         classes={
                                             !data.showBlog &&
+                                            "bg-red-500 text-white hover:bg-red-600"
+                                        }
+                                    >
+                                        No
+                                    </Button>
+                                </div>
+                            </div>
+                            <div className="mt-5 flex items-center">
+                                <label className="w-1/5 text-lg opacity-50">
+                                    Dark Mode
+                                </label>
+                                <div className="w-4/5 ml-10 flex items-center">
+                                    <Button
+                                        onClick={() =>
+                                            setData({ ...data, darkMode: true })
+                                        }
+                                        type={data.darkMode && "primary"}
+                                    >
+                                        Yes
+                                    </Button>
+                                    <Button
+                                        onClick={() =>
+                                            setData({
+                                                ...data,
+                                                darkMode: false,
+                                            })
+                                        }
+                                        classes={
+                                            !data.darkMode &&
                                             "bg-red-500 text-white hover:bg-red-600"
                                         }
                                     >
