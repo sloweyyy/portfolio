@@ -40,42 +40,48 @@
             "title": "GreenLedger",
             "description": "Carbon Credit Management Platform using Go, Microservices, and Kubernetes.",
             "imageSrc": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2613&auto=format&fit=crop",
-            "url": "https://github.com/sloweyyy"
+            "url": "https://github.com/sloweyyy",
+            "tags": ["Go", "Microservices", "K8s"]
         },
         {
             "id": "2",
             "title": "Cloud-Native E-Commerce",
             "description": "Scalable platform with .NET Core, RabbitMQ, and Istio Service Mesh.",
             "imageSrc": "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2670&auto=format&fit=crop",
-            "url": "https://github.com/sloweyyy"
+            "url": "https://github.com/sloweyyy",
+            "tags": [".NET Core", "RabbitMQ", "Istio"]
         },
         {
             "id": "3",
             "title": "ML Experiment Manager",
             "description": "System for MNIST classification with real-time monitoring using Flask & React.",
             "imageSrc": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=2670&auto=format&fit=crop",
-            "url": "https://github.com/sloweyyy"
+            "url": "https://github.com/sloweyyy",
+            "tags": ["Flask", "React", "ML"]
         },
         {
             "id": "4",
             "title": "Resort Management System",
             "description": "Comprehensive management system with NestJS, React, and OAuth2.",
             "imageSrc": "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2670&auto=format&fit=crop",
-            "url": "https://schoolstay.netlify.app/"
+            "url": "https://schoolstay.netlify.app/",
+            "tags": ["NestJS", "React", "OAuth2"]
         },
         {
             "id": "5",
             "title": "Blockchain Notarization",
             "description": "Secure digital notarization using Ethereum and IPFS.",
             "imageSrc": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2632&auto=format&fit=crop",
-            "url": "https://congchungonline.netlify.app/"
+            "url": "https://congchungonline.netlify.app/",
+            "tags": ["Ethereum", "IPFS", "Web3"]
         },
         {
             "id": "6",
             "title": "Coffee Shop Management",
             "description": "Multi-interface system for coffee shops using React Native and Firebase.",
             "imageSrc": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2574&auto=format&fit=crop",
-            "url": "https://github.com/sloweyyy"
+            "url": "https://github.com/sloweyyy",
+            "tags": ["React Native", "Firebase", "Mobile"]
         }
     ],
     "services": [
