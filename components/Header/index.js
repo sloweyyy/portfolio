@@ -90,10 +90,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                         {data.showBlog && (
                             <button onClick={() => router.push("/blog")} className="font-heading font-bold uppercase text-sm hover:underline decoration-2 underline-offset-4">Blog</button>
                         )}
-                        {data.showResume && (
-                            <button onClick={() => router.push("/resume")} className="font-heading font-bold uppercase text-sm hover:underline decoration-2 underline-offset-4">Resume</button>
-                        )}
-                        <Button onClick={handleScheduleCallClick} type="primary" classes="!rounded-full !bg-white !text-neo-black !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:!shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] !border-2">
+                        <Button onClick={handleScheduleCallClick} type="primary" classes="!rounded-full !bg-neo-yellow !text-neo-black !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:!shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] !border-2 !border-neo-black hover:!translate-x-[2px] hover:!translate-y-[2px]">
                             Contact
                         </Button>
                     </div>
