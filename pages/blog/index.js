@@ -1,30 +1,17 @@
 import Head from "next/head";
 import Router, { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
-import { stagger } from "../../animations";
+import { useRef, useState, useEffect } from "react";
 import Button from "../../components/Button";
 import Cursor from "../../components/Cursor";
 import Header from "../../components/Header";
 import data from "../../data/portfolio.json";
-import { ISOToDate, useIsomorphicLayoutEffect } from "../../utils";
-import { getAllPosts } from "../../utils/api";
-import { motion } from "framer-motion";
+import { ISOToDate } from "../../utils";
+import Footer from "../../components/Footer";
 
 const Blog = ({ posts }) => {
     const showBlog = useRef(data.showBlog);
-    const text = useRef();
     const router = useRouter();
     const [mounted, setMounted] = useState(false);
-
-    useIsomorphicLayoutEffect(() => {
-        stagger(
-            [text.current],
-            { y: 40, x: -10, transform: "scale(0.95) skew(10deg)" },
-            { y: 0, x: 0, transform: "scale(1)" }
-        );
-        if (showBlog.current) stagger([text.current], { y: 30 }, { y: 0 });
-        else router.push("/");
-    }, []);
 
     useEffect(() => {
         setMounted(true);
@@ -34,152 +21,95 @@ const Blog = ({ posts }) => {
         if (process.env.NODE_ENV === "development") {
             fetch("/api/blog", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }).then(() => {
-                router.reload(window.location.pathname);
-            });
+                headers: { "Content-Type": "application/json" },
+            }).then(() => router.reload(window.location.pathname));
         } else {
             alert("This thing only works in development mode.");
         }
     };
-
     const deleteBlog = (slug) => {
         if (process.env.NODE_ENV === "development") {
             fetch("/api/blog", {
                 method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    slug,
-                }),
-            }).then(() => {
-                router.reload(window.location.pathname);
-            });
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ slug }),
+            }).then(() => router.reload(window.location.pathname));
         } else {
             alert("This thing only works in development mode.");
         }
     };
+    if (!showBlog.current) return null;
     return (
-        showBlog.current && (
-            <>
-                {data.showCursor && <Cursor />}
-                <Head>
-                    <title>Blog</title>
-                </Head>
-                <div
-                    className={`container mx-auto mb-10 ${
-                        data.showCursor && "cursor-none"
-                    }`}
-                >
-                    <Header isBlog={true}></Header>
-                    <div className="mt-16">
-                        <h1
-                            ref={text}
-                            className="mx-auto mob:p-2 text-bold text-6xl laptop:text-8xl w-full"
-                        >
-                            Blog.
-                        </h1>
-                        <div className="mt-16 grid grid-cols-1 mob:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 justify-between gap-12">
-                            {posts &&
-                                posts.map((post) => (
-                                    <motion.div
-                                        className="cursor-pointer relative bg-white dark:bg-gray-900 rounded-xl overflow-hidden flex flex-col h-full border border-transparent dark:border-gray-800"
-                                        key={post.slug}
-                                        onClick={() =>
-                                            Router.push(`/blog/${post.slug}`)
-                                        }
-                                        whileHover={{
-                                            y: -8,
-                                            boxShadow:
-                                                "0 20px 30px rgba(0,0,0,0.15)",
-                                        }}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{
-                                            type: "spring",
-                                            stiffness: 260,
-                                            damping: 20,
-                                            duration: 0.3,
-                                        }}
-                                        style={{
-                                            boxShadow:
-                                                "0 4px 15px rgba(0,0,0,0.08)",
-                                        }}
-                                    >
-                                        <div className="overflow-hidden">
-                                            <motion.img
-                                                className="w-full h-60 object-cover"
-                                                src={post.image}
-                                                alt={post.title}
-                                                whileHover={{
-                                                    scale: 1.08,
-                                                }}
-                                                transition={{
-                                                    type: "tween",
-                                                    ease: "easeOut",
-                                                    duration: 0.6,
-                                                }}
-                                            />
-                                        </div>
-                                        <div className="p-6 flex-grow flex flex-col">
-                                            <motion.h2
-                                                className="text-2xl font-bold mb-3 dark:text-white"
-                                                whileHover={{ x: 3 }}
-                                                transition={{
-                                                    type: "spring",
-                                                    stiffness: 400,
-                                                }}
+        <div className="flex flex-col min-h-screen bg-neo-bg">
+            {data.showCursor && <Cursor />}
+            <Head>
+                <title>Blog</title>
+            </Head>
+            <div className="w-full max-w-[1440px] mx-auto px-4 laptop:px-14 relative z-10">
+                <Header isBlog={true} />
+            </div>
+            <main className="flex-grow pb-48 container mx-auto px-4 laptop:px-0 w-full">
+                <div className="mt-16">
+                    <h1
+                        className="text-center font-heading font-bold uppercase text-neo-black mb-12 text-6xl tablet:text-8xl laptop:text-[8rem] tracking-tighter drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                        style={{ letterSpacing: "-0.06em" }}
+                    >
+                        Blog.
+                    </h1>
+                    <div className="grid grid-cols-1 mob:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 gap-12">
+                        {posts && posts.map((post) => (
+                            <div
+                                className="cursor-pointer bg-white border-4 border-neo-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-xl flex flex-col hover:scale-105 transition-transform duration-200"
+                                key={post.slug}
+                                onClick={() => Router.push(`/blog/${post.slug}`)}
+                            >
+                                <div className="overflow-hidden border-b-4 border-neo-black rounded-t-xl bg-white">
+                                    <img
+                                        className="w-full h-60 object-cover"
+                                        src={post.image}
+                                        alt={post.title}
+                                    />
+                                </div>
+                                <div className="p-6 flex-grow flex flex-col font-body text-neo-black">
+                                    <h2 className="text-3xl font-heading font-bold uppercase mb-2 text-neo-black">
+                                        {post.title}
+                                    </h2>
+                                    <p className="text-base mb-4 flex-grow">
+                                        {post.preview}
+                                    </p>
+                                    <span className="text-sm font-heading font-bold uppercase opacity-60 text-right block mt-auto">
+                                        {ISOToDate(post.date)}
+                                    </span>
+                                    {process.env.NODE_ENV === "development" && mounted && (
+                                        <div className="mt-4">
+                                            <Button
+                                                onClick={e => { e.stopPropagation(); deleteBlog(post.slug); }}
+                                                type="primary"
                                             >
-                                                {post.title}
-                                            </motion.h2>
-                                            <p className="text-base opacity-70 dark:text-gray-300 dark:opacity-90 mb-4 flex-grow">
-                                                {post.preview}
-                                            </p>
-                                            <span className="text-sm opacity-50 dark:text-gray-400 dark:opacity-80 mt-auto">
-                                                {ISOToDate(post.date)}
-                                            </span>
+                                                Delete
+                                            </Button>
                                         </div>
-                                        {process.env.NODE_ENV ===
-                                            "development" &&
-                                            mounted && (
-                                                <motion.div
-                                                    className="absolute top-3 right-3"
-                                                    whileHover={{ scale: 1.05 }}
-                                                >
-                                                    <Button
-                                                        onClick={(e) => {
-                                                            deleteBlog(
-                                                                post.slug
-                                                            );
-                                                            e.stopPropagation();
-                                                        }}
-                                                        type={"primary"}
-                                                    >
-                                                        Delete
-                                                    </Button>
-                                                </motion.div>
-                                            )}
-                                    </motion.div>
-                                ))}
-                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 {process.env.NODE_ENV === "development" && mounted && (
-                    <div className="fixed bottom-6 right-6">
+                    <div className="fixed bottom-6 right-6 z-50">
                         <Button onClick={createBlog} type={"primary"}>
-                            Add New Post +{" "}
+                            Add New Post +
                         </Button>
                     </div>
                 )}
-            </>
-        )
+            </main>
+            <Footer />
+        </div>
     );
 };
 
 export async function getStaticProps() {
+    const { getAllPosts } = await import("../../utils/api");
     const posts = getAllPosts([
         "slug",
         "title",
@@ -188,7 +118,6 @@ export async function getStaticProps() {
         "author",
         "date",
     ]);
-
     return {
         props: {
             posts: [...posts],

@@ -1,20 +1,16 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Cursor from "../components/Cursor";
 import Header from "../components/Header";
 import ProjectResume from "../components/ProjectResume";
 import Socials from "../components/Socials";
 import Button from "../components/Button";
-import VariableProximity from "../components/VariableProximity";
-import { useTheme } from "next-themes";
 import data from "../data/portfolio.json";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Resume = () => {
     const router = useRouter();
-    const theme = useTheme();
     const [mount, setMount] = useState(false);
-    const descriptionContainerRef = useRef(null);
 
     useEffect(() => {
         setMount(true);
@@ -27,45 +23,6 @@ const Resume = () => {
         window.open(
             "https://drive.google.com/file/d/14VcPD_mXkNDaLmYK5KaqwgBboKu0CQcC/view?usp=sharing",
             "_blank"
-        );
-    };
-
-    const fadeInVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { duration: 0.8 },
-        },
-    };
-
-    const ScrollReveal = ({
-        children,
-        threshold = 0.1,
-        delay = 0,
-        direction = null,
-    }) => {
-        const ref = React.useRef(null);
-        const inView = useInView(ref, { once: true, amount: threshold });
-
-        let initial = { opacity: 0 };
-        if (direction === "up") initial = { ...initial, y: 30 };
-        if (direction === "down") initial = { ...initial, y: -30 };
-        if (direction === "left") initial = { ...initial, x: 30 };
-        if (direction === "right") initial = { ...initial, x: -30 };
-
-        return (
-            <motion.div
-                ref={ref}
-                initial={initial}
-                animate={inView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0 }}
-                transition={{
-                    duration: 0.8,
-                    delay: delay,
-                    ease: [0.1, 0.25, 0.3, 1],
-                }}
-            >
-                {children}
-            </motion.div>
         );
     };
 
@@ -82,100 +39,59 @@ const Resume = () => {
                 </div>
             )}
             {process.env.NODE_ENV === "production" && (
-                <motion.div
-                    className="fixed bottom-6 right-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.5 }}
-                >
+                <div className="fixed bottom-6 right-6">
                     <Button onClick={handleViewPdf} type={"primary"}>
                         View PDF
                     </Button>
-                </motion.div>
+                </div>
             )}
 
             {data.showCursor && <Cursor />}
             <div
-                className={`container mx-auto mb-10 ${
+                className={`w-full max-w-[1440px] mx-auto px-4 laptop:px-14 mb-10 pb-40 ${
                     data.showCursor && "cursor-none"
                 }`}
             >
                 <Header isBlog />
                 {mount && (
-                    <motion.div
-                        className="mt-16 w-full flex flex-col items-center"
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeInVariants}
-                    >
-                        <motion.div
-                            className={`w-full ${
-                                mount && theme.theme === "dark"
-                                    ? "bg-slate-800"
-                                    : "bg-gray-50"
-                            } max-w-5xl p-20 mob:p-5 desktop:p-20 rounded-lg shadow-sm`}
+                    <div className="mt-16 w-full flex flex-col items-center">
+                        <div
+                            className={`w-full bg-gray-50 max-w-5xl p-20 mob:p-5 desktop:p-20 rounded-lg shadow-sm`}
                         >
-                            <ScrollReveal>
                                 <h1 className="text-4xl font-bold">
                                     {data.name}
                                 </h1>
                                 <h2 className="text-xl mt-8">
                                     {data.resume.tagline}
                                 </h2>
-                                <div
-                                    ref={descriptionContainerRef}
-                                    className="w-full text-xl mt-8 opacity-75 relative pb-2 variable-text-parent max-w-4xl"
-                                >
-                                    <VariableProximity
-                                        label={data.resume.description}
-                                        fromFontVariationSettings="'wght' 400, 'wdth' 100, 'slnt' 0"
-                                        toFontVariationSettings="'wght' 700, 'wdth' 125, 'slnt' 0"
-                                        containerRef={descriptionContainerRef}
-                                        radius={150}
-                                        falloff="exponential"
-                                        className="leading-relaxed tracking-wide"
-                                    />
-                                </div>
+                                <p className="w-full text-xl mt-8 opacity-75 leading-relaxed tracking-wide max-w-4xl font-body">
+                                    {data.resume.description}
+                                </p>
                                 <div className="mt-6">
                                     <Socials />
                                 </div>
-                            </ScrollReveal>
-
-                            <ScrollReveal delay={0.2} direction="up">
                                 <div className="mt-12">
                                     <h1 className="text-2xl font-bold">
                                         Experience
                                     </h1>
                                     {data.resume.experiences.map(
-                                        (
-                                            {
-                                                id,
-                                                dates,
-                                                type,
-                                                position,
-                                                bullets,
-                                            },
-                                            index
-                                        ) => (
-                                            <ScrollReveal
+                                        ({
+                                            id,
+                                            dates,
+                                            type,
+                                            position,
+                                            bullets,
+                                        }) => (
+                                            <ProjectResume
                                                 key={id}
-                                                delay={0.1 + index * 0.1}
-                                                direction="up"
-                                                threshold={0.2}
-                                            >
-                                                <ProjectResume
-                                                    dates={dates}
-                                                    type={type}
-                                                    position={position}
-                                                    bullets={bullets}
-                                                />
-                                            </ScrollReveal>
+                                                dates={dates}
+                                                type={type}
+                                                position={position}
+                                                bullets={bullets}
+                                            />
                                         )
                                     )}
                                 </div>
-                            </ScrollReveal>
-
-                            <ScrollReveal delay={0.3} direction="up">
                                 <div className="mt-12">
                                     <h1 className="text-2xl font-bold">
                                         Education
@@ -201,20 +117,12 @@ const Resume = () => {
                                         </p>
                                     </div>
                                 </div>
-                            </ScrollReveal>
-
                             <div className="mt-12">
-                                <ScrollReveal delay={0.4} direction="up">
-                                    <h1 className="text-2xl font-bold">
-                                        Skills
-                                    </h1>
-                                </ScrollReveal>
+                                <h1 className="text-2xl font-bold">
+                                    Skills
+                                </h1>
                                 <div className="flex mob:flex-col desktop:flex-row justify-between mt-6">
                                     {data.resume.languages && (
-                                        <ScrollReveal
-                                            delay={0.5}
-                                            direction="left"
-                                        >
                                             <div className="mt-4 mob:mt-5">
                                                 <h2 className="text-lg font-semibold">
                                                     Languages
@@ -232,14 +140,9 @@ const Resume = () => {
                                                     )}
                                                 </ul>
                                             </div>
-                                        </ScrollReveal>
                                     )}
 
                                     {data.resume.frameworks && (
-                                        <ScrollReveal
-                                            delay={0.6}
-                                            direction="up"
-                                        >
                                             <div className="mt-4 mob:mt-8">
                                                 <h2 className="text-lg font-semibold">
                                                     Frameworks
@@ -257,14 +160,9 @@ const Resume = () => {
                                                     )}
                                                 </ul>
                                             </div>
-                                        </ScrollReveal>
                                     )}
 
                                     {data.resume.others && (
-                                        <ScrollReveal
-                                            delay={0.7}
-                                            direction="right"
-                                        >
                                             <div className="mt-4 mob:mt-8">
                                                 <h2 className="text-lg font-semibold">
                                                     Others
@@ -282,12 +180,11 @@ const Resume = () => {
                                                     )}
                                                 </ul>
                                             </div>
-                                        </ScrollReveal>
                                     )}
                                 </div>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
                 )}
             </div>
         </>

@@ -1,59 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
 import data from "../../data/portfolio.json";
 
 const Button = ({ children, type, onClick, classes }) => {
-    const { theme, resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const currentTheme = mounted ? theme || resolvedTheme : "light";
-
-    if (!mounted) {
-        return (
-            <button
-                type="button"
-                className={`text-sm tablet:text-base p-1 laptop:p-2 m-1 laptop:m-2 rounded-lg opacity-0 ${
-                    type === "primary" ? "bg-black text-white" : ""
-                } ${classes}`}
-            >
-                {children}
-            </button>
-        );
-    }
-
-    if (type === "primary") {
-        return (
-            <button
-                onClick={onClick}
-                type="button"
-                className={`text-sm tablet:text-base p-1 laptop:p-2 m-1 laptop:m-2 rounded-lg ${
-                    currentTheme === "dark"
-                        ? "bg-white text-black"
-                        : "bg-black text-white"
-                }  transition-all duration-300 ease-out first:ml-0 hover:scale-105 active:scale-100 link ${
-                    data.showCursor && "cursor-none"
-                }  ${classes}`}
-            >
-                {children}
-            </button>
-        );
-    }
+    // Remove import { useTheme } ...
+    // Remove all useTheme, theme variables and logic. Only default to light mode.
 
     return (
         <button
             onClick={onClick}
             type="button"
-            className={`text-sm tablet:text-base p-1 laptop:p-2 m-1 laptop:m-2 rounded-lg flex items-center transition-all ease-out duration-300 ${
-                currentTheme === "dark"
-                    ? "hover:bg-slate-600 text-white"
-                    : "hover:bg-slate-100"
-            } hover:scale-105 active:scale-100  tablet:first:ml-0  ${
-                data.showCursor && "cursor-none"
-            } ${classes} link`}
+            className={`
+        ${classes} 
+        overflow-hidden p-2 px-8 laptop:px-10 border-4 border-neo-black 
+        ${
+            type === "primary"
+                ? "rounded-full bg-neo-yellow text-neo-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                : "rounded-none bg-white text-neo-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+        } 
+        transition-all ease-out hover:-translate-y-1 active:translate-y-0 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+        font-heading font-bold uppercase tracking-wider text-sm tablet:text-base
+        ${data.showCursor && "cursor-none"}
+      `}
         >
             {children}
         </button>
