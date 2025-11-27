@@ -1,9 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import Header from "../components/Header";
-import ServiceCard from "../components/ServiceCard";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import Button from "../components/Button";
 import Cursor from "../components/Cursor";
 import { useRouter } from "next/router";
 import { Toaster } from "../components/Toaster";
@@ -68,99 +66,6 @@ const Ticker = () => {
     );
 };
 
-// FlipCard Component - 3D Flip Animation
-const FlipCard = ({ front, back }) => {
-    const [isFlipped, setIsFlipped] = useState(false);
-    const textColor = front.color === '#1F8D42' || front.color === '#4D17F5' ? 'white' : 'black';
-    const backTextColor = back.color === '#1F8D42' || back.color === '#4D17F5' ? 'white' : 'black';
-
-    return (
-        <div
-            className="flip-card-container w-full h-full cursor-pointer"
-            onClick={() => setIsFlipped(!isFlipped)}
-            onMouseEnter={() => setIsFlipped(true)}
-            onMouseLeave={() => setIsFlipped(false)}
-        >
-            <motion.div
-                className="flip-card w-full h-full relative"
-                initial={false}
-                animate={{ rotateY: isFlipped ? 180 : 0 }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-                style={{ transformStyle: "preserve-3d" }}
-            >
-                {/* Front Side */}
-                <div
-                    className="flip-card-front absolute inset-0 rounded-3xl p-8 laptop:p-10 flex flex-col justify-between"
-                    style={{
-                        backgroundColor: front.color,
-                        border: '3px solid black',
-                        boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
-                        backfaceVisibility: 'hidden',
-                        color: textColor
-                    }}
-                >
-                    <div>
-                        <div className="text-6xl laptop:text-8xl mb-4">{front.icon}</div>
-                        <h3 className="text-2xl laptop:text-4xl font-heading font-bold uppercase mb-4 leading-tight">
-                            {front.title}
-                        </h3>
-                        <p className="text-sm laptop:text-base opacity-70 font-medium">
-                            {front.teaser}
-                        </p>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs laptop:text-sm opacity-60 font-heading uppercase">
-                        <span>Click to see more</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                    </div>
-                </div>
-
-                {/* Back Side */}
-                <div
-                    className="flip-card-back absolute inset-0 rounded-3xl p-8 laptop:p-10 flex flex-col justify-between"
-                    style={{
-                        backgroundColor: back.color,
-                        border: '3px solid black',
-                        boxShadow: '8px 8px 0px 0px rgba(0,0,0,1)',
-                        backfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)',
-                        color: backTextColor
-                    }}
-                >
-                    <div>
-                        <h3 className="text-xl laptop:text-2xl font-heading font-bold uppercase mb-4">
-                            {back.title}
-                        </h3>
-                        <p className="text-sm laptop:text-base leading-relaxed mb-6 opacity-80">
-                            {back.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                            {back.tech.map((tech, index) => (
-                                <span
-                                    key={index}
-                                    className="px-3 py-1 rounded-full text-xs laptop:text-sm font-heading uppercase border-2"
-                                    style={{
-                                        borderColor: backTextColor === 'white' ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)',
-                                        backgroundColor: backTextColor === 'white' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'
-                                    }}
-                                >
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs laptop:text-sm opacity-60 font-heading uppercase">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                        <span>Hover off to flip back</span>
-                    </div>
-                </div>
-            </motion.div>
-        </div>
-    );
-};
 
 
 // Team Member Card Component - Byooooob style with floating animation
