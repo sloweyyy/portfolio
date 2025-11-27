@@ -37,33 +37,33 @@
     "projects": [
         {
             "id": "1",
-            "title": "GreenLedger",
-            "description": "Carbon Credit Management Platform using Go, Microservices, and Kubernetes.",
-            "imageSrc": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2613&auto=format&fit=crop",
-            "url": "https://github.com/sloweyyy",
-            "tags": ["Go", "Microservices", "K8s"]
-        },
-        {
-            "id": "2",
             "title": "Cloud-Native E-Commerce",
             "description": "Scalable platform with .NET Core, RabbitMQ, and Istio Service Mesh.",
-            "imageSrc": "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2670&auto=format&fit=crop",
-            "url": "https://github.com/sloweyyy",
+            "imageSrc": "https://upanhnhanh.com/4273f660b67c282dd569e5642180d59c",
+            "url": "https://github.com/sloweyyy/cloud-native-ecommerce-platform",
             "tags": [".NET Core", "RabbitMQ", "Istio"]
         },
         {
+            "id": "2",
+            "title": "GreenLedger",
+            "description": "Carbon Credit Management Platform using Go, Microservices, and Kubernetes.",
+            "imageSrc": "https://upanhnhanh.com/1f6404f02066abaa2b4560b97fe5d5c1",
+            "url": "https://github.com/sloweyyy/greenledger",
+            "tags": ["Go", "Microservices", "K8s"]
+        },
+        {
             "id": "3",
-            "title": "ML Experiment Manager",
-            "description": "System for MNIST classification with real-time monitoring using Flask & React.",
-            "imageSrc": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=2670&auto=format&fit=crop",
-            "url": "https://github.com/sloweyyy",
-            "tags": ["Flask", "React", "ML"]
+            "title": "ExperimentHub",
+            "description": "ML experiment management platform with real-time monitoring, WebSocket updates, and PyTorch integration for MNIST classification.",
+            "imageSrc": "https://private-user-images.githubusercontent.com/37492460/425863185-765d961d-afca-4b16-b1dd-4006e8cb0f87.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjQyMzYwMjEsIm5iZiI6MTc2NDIzNTcyMSwicGF0aCI6Ii8zNzQ5MjQ2MC80MjU4NjMxODUtNzY1ZDk2MWQtYWZjYS00YjE2LWIxZGQtNDAwNmU4Y2IwZjg3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTExMjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMTI3VDA5Mjg0MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWEwMzNiNmNhZDcxZDVmNGJlZWI2YjJiNWE5MjRiMzRmMWRhM2ExMjg0OGE5ZjY0NGRhZWIxZjE2ZDA0NmEwZDAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.6Ca6P4e6cT1HFvRQ3uLo6DlYnRD3zgUTqHVPgBMONdE",
+            "url": "https://github.com/sloweyyy/experimenthub",
+            "tags": ["Next.js", "FastAPI", "PyTorch", "ML"]
         },
         {
             "id": "4",
             "title": "Resort Management System",
             "description": "Comprehensive management system with NestJS, React, and OAuth2.",
-            "imageSrc": "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2670&auto=format&fit=crop",
+            "imageSrc": "https://upanhnhanh.com/7ec9e11154d64596920bdd6e9bd5b8a6",
             "url": "https://schoolstay.netlify.app/",
             "tags": ["NestJS", "React", "OAuth2"]
         },
@@ -71,17 +71,42 @@
             "id": "5",
             "title": "Blockchain Notarization",
             "description": "Secure digital notarization using Ethereum and IPFS.",
-            "imageSrc": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2632&auto=format&fit=crop",
-            "url": "https://congchungonline.netlify.app/",
+            "imageSrc": "https://i.imgur.com/SAcA5ZG.png",
+            "url": "https://www.trustify.works/",
             "tags": ["Ethereum", "IPFS", "Web3"]
         },
         {
             "id": "6",
             "title": "Coffee Shop Management",
             "description": "Multi-interface system for coffee shops using React Native and Firebase.",
-            "imageSrc": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2574&auto=format&fit=crop",
-            "url": "https://github.com/sloweyyy",
+            "imageSrc": "https://i.imgur.com/Pmq3vdX.png",
+            "url": "https://github.com/FiveD-SE/CoffeeShopManagement",
             "tags": ["React Native", "Firebase", "Mobile"]
+        },
+        
+        {
+            "id": "8",
+            "title": "Online Contest Management",
+            "description": "Full-stack platform for contest hosting with ASP.NET Core 8, MongoDB, and integrated payment processing.",
+            "imageSrc": "https://i.imgur.com/917TiJn.png",
+            "url": "https://github.com/sloweyyy/OnlineContestManagementSystem-be",
+            "tags": [".NET Core", "MongoDB", "React"]
+        },
+        {
+            "id": "9",
+            "title": "Enigma Design Platform",
+            "description": "AI-powered T-shirt and tote bag design platform with React Native, Node.js, and custom mockup generation.",
+            "imageSrc": "https://i.imgur.com/8lxnQ3M.png",
+            "url": "https://github.com/FiveD-SE/Enigma-Frontend",
+            "tags": ["React Native", "Node.js", "AI Design"]
+        },
+        {
+            "id": "10",
+            "title": "Facial Expression Recognition",
+            "description": "Traditional ML models (SVM, Random Forest) for emotion classification using HOG features and OpenCV.",
+            "imageSrc": "https://i.imgur.com/g4JrTXM.png",
+            "url": "https://github.com/sloweyyy/EmotionSenseBackend",
+            "tags": ["Python", "OpenCV", "ML", "SVM"]
         }
     ],
     "services": [

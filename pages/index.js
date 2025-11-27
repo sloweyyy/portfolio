@@ -261,7 +261,7 @@ const DecorativeShapes = () => (
 
         {/* Orange globe */}
         <motion.div 
-            className="absolute left-[35%] bottom-[22%] hidden laptop:block"
+            className="absolute right-[30%] bottom-[22%] hidden laptop:block"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, rotate: 360 }}
             transition={{ delay: 1, rotate: { duration: 30, repeat: Infinity, ease: "linear" } }}
@@ -477,7 +477,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="Backend" 
                             role="Java/.NET Expert" 
-                            image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400"
+                            image="https://upanhnhanh.com/c87d21d8353d691d90bca572c5984e82"
                             rotation={-12}
                             position="top-[12%] right-[6%]"
                             color="orange"
@@ -486,7 +486,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="DevOps" 
                             role="CI/CD Wizard" 
-                            image="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400"
+                            image="https://upanhnhanh.com/c87d21d8353d691d90bca572c5984e82"
                             rotation={-8}
                             position="bottom-[18%] left-[4%]"
                             color="yellow"
@@ -495,7 +495,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="Cloud" 
                             role="AWS/Azure Pro" 
-                            image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400"
+                            image="https://upanhnhanh.com/c87d21d8353d691d90bca572c5984e82"
                             rotation={14}
                             position="bottom-[8%] right-[10%]"
                             color="purple"
@@ -504,7 +504,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="Problem" 
                             role="Solver" 
-                            image="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400"
+                            image="https://upanhnhanh.com/c87d21d8353d691d90bca572c5984e82"
                             rotation={-6}
                             position="top-[35%] left-[8%]"
                             color="green"
@@ -707,7 +707,7 @@ export default function Home() {
                                         <span className="font-heading uppercase text-sm">Full Stack</span>
                                     </div>
                                     <div className="bg-neo-pink px-4 py-2 rounded-full border border-white/20 text-neo-black">
-                                        <span className="font-heading uppercase text-sm">UI/UX</span>
+                                        <span className="font-heading uppercase text-sm">Product Owner</span>
                                     </div>
                                     <div className="bg-neo-yellow px-4 py-2 rounded-full border border-white/20 text-neo-black">
                                         <span className="font-heading uppercase text-sm">Problem Solver</span>
