@@ -45,7 +45,7 @@ const Blog = ({ posts }) => {
             <Head>
                 <title>Blog</title>
             </Head>
-            <div className="container mx-auto relative z-10 px-4">
+            <div className="w-full max-w-[1440px] mx-auto px-4 laptop:px-14 relative z-10">
                 <Header isBlog={true} />
             </div>
             <main className="flex-grow pb-48 container mx-auto px-4 laptop:px-0 w-full">

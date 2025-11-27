@@ -48,7 +48,7 @@ const Resume = () => {
 
             {data.showCursor && <Cursor />}
             <div
-                className={`container mx-auto mb-10 pb-40 ${
+                className={`w-full max-w-[1440px] mx-auto px-4 laptop:px-14 mb-10 pb-40 ${
                     data.showCursor && "cursor-none"
                 }`}
             >
