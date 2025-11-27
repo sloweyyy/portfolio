@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const App = ({ Component, pageProps }) => {
     return (
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" forcedTheme="light" enableSystem={false}>
             <Component {...pageProps} />
             <Analytics />
             <SpeedInsights />
