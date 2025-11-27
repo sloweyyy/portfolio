@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../Button";
 
@@ -6,7 +6,6 @@ const ProjectSection = ({ projects }) => {
     const [activeProject, setActiveProject] = useState(projects[0]);
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const containerRef = useRef(null);
-    const leftSectionRef = useRef(null);
 
     return (
         <div
