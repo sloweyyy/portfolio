@@ -119,9 +119,9 @@ const ProjectSection = ({ projects }) => {
                                     </p>
                                 </motion.div>
 
-                                <div className="mt-12 pt-8">
+                                <div className="mt-2 pt-8">
                                     <Button onClick={() => window.open(activeProject.url)} classes="!bg-white !text-black !border-2 !border-black !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:!translate-x-[2px] hover:!translate-y-[2px] hover:!shadow-none">
-                                        View All Projects
+                                        View Project
                                     </Button>
                                 </div>
                             </motion.div>
