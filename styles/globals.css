@@ -254,7 +254,6 @@ body {
     background-image: linear-gradient(#e5e7eb 1px, transparent 1px),
         linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
     background-size: 40px 40px;
-    cursor: none;
 }
 
 /* Force hide cursor when custom cursor is enabled */
