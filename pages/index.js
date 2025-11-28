@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { Toaster } from "../components/Toaster";
 import ProjectSection from "../components/ProjectSection";
 import ShowcaseSection from "../components/ShowcaseSection";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
 import data from "../data/portfolio.json";
 
@@ -69,7 +69,7 @@ const Ticker = () => {
 
 
 // Team Member Card Component - Byooooob style with floating animation
-const TeamMemberCard = ({ name, role, image, rotation, position, color = "yellow", delay = 0 }) => {
+const TeamMemberCard = ({ name, role, image, rotation, position, color = "yellow", delay = 0, mouseX, mouseY, parallaxFactor = 1 }) => {
     const bgColors = {
         yellow: "bg-neo-yellow",
         orange: "bg-orange-500",
@@ -84,23 +84,27 @@ const TeamMemberCard = ({ name, role, image, rotation, position, color = "yellow
     const floatRotate = Math.random() * 8 - 4; // -4 to 4
     const duration = 4 + Math.random() * 3; // 4-7 seconds
 
+    // Parallax transforms
+    const x = useTransform(mouseX, [-1, 1], [-20 * parallaxFactor, 20 * parallaxFactor]);
+    const y = useTransform(mouseY, [-1, 1], [-20 * parallaxFactor, 20 * parallaxFactor]);
+
     return (
         <motion.div 
             className={`absolute ${position} z-20 hidden laptop:block cursor-grab active:cursor-grabbing`}
+            style={{ x, y }}
             initial={{ rotate: rotation, scale: 0, opacity: 0 }}
             animate={{ 
                 rotate: rotation,
                 scale: 1, 
                 opacity: 1,
-                x: [0, floatX, -floatX/2, floatX/3, 0],
-                y: [0, floatY, -floatY/2, floatY/3, 0],
+                // Combine floating with parallax by applying floating to inner or using layout animations?
+                // For simplicity, we'll keep floating as keyframes on x/y which might conflict with style x/y.
+                // To fix, we can wrap the content in another motion div for floating.
             }}
             transition={{ 
                 delay: delay,
                 scale: { type: "spring", stiffness: 100 },
                 opacity: { duration: 0.5 },
-                x: { duration: duration, repeat: Infinity, ease: "easeInOut" },
-                y: { duration: duration + 1, repeat: Infinity, ease: "easeInOut" },
             }}
             drag
             dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
@@ -113,187 +117,225 @@ const TeamMemberCard = ({ name, role, image, rotation, position, color = "yellow
             }}
             whileDrag={{ scale: 1.15, rotate: rotation + floatRotate }}
         >
-            <div className={`${bgColors[color]} border-3 border-neo-black p-2 pb-3 rounded-xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] w-32 laptop:w-40 transition-shadow`}>
-                <div className="bg-white h-36 laptop:h-44 w-full overflow-hidden mb-2 rounded-lg border-2 border-neo-black relative">
-                    <img src={image} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all" alt={name} />
-                    <div className="absolute bottom-0 left-0 w-full bg-neo-black text-white text-center font-bold uppercase text-[10px] py-1 border-t-2 border-neo-black">
-                        {role}
+            {/* Inner wrapper for floating animation */}
+            <motion.div
+                animate={{
+                    x: [0, floatX, -floatX/2, floatX/3, 0],
+                    y: [0, floatY, -floatY/2, floatY/3, 0],
+                }}
+                transition={{
+                    x: { duration: duration, repeat: Infinity, ease: "easeInOut" },
+                    y: { duration: duration + 1, repeat: Infinity, ease: "easeInOut" },
+                }}
+            >
+                <div className={`${bgColors[color]} border-3 border-neo-black p-2 pb-3 rounded-xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] w-32 laptop:w-40 transition-shadow`}>
+                    <div className="bg-white h-36 laptop:h-44 w-full overflow-hidden mb-2 rounded-lg border-2 border-neo-black relative">
+                        <img src={image} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all" alt={name} />
+                        <div className="absolute bottom-0 left-0 w-full bg-neo-black text-white text-center font-bold uppercase text-[10px] py-1 border-t-2 border-neo-black">
+                            {role}
+                        </div>
                     </div>
+                    <div className="text-center font-heading font-bold uppercase text-sm text-neo-black">{name}</div>
                 </div>
-                <div className="text-center font-heading font-bold uppercase text-sm text-neo-black">{name}</div>
-            </div>
+            </motion.div>
         </motion.div>
     );
 };
 
 // Decorative shapes - Enhanced with more elements
-const DecorativeShapes = () => (
-    <>
-        {/* Green chevrons */}
-        <motion.div 
-            className="absolute left-[15%] bottom-[30%] hidden laptop:flex flex-col gap-0"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 }}
-        >
-            <svg width="40" height="60" viewBox="0 0 40 60" fill="#1F8D42">
-                <path d="M0 0L20 15L0 30V0Z"/>
-                <path d="M0 30L20 45L0 60V30Z"/>
-            </svg>
-        </motion.div>
-        
-        {/* Orange star burst - top right */}
-        <motion.div 
-            className="absolute right-[20%] top-[12%] hidden laptop:block"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        >
-            <svg width="60" height="60" viewBox="0 0 100 100" fill="#FF6B35">
-                <polygon points="50,0 61,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 39,35"/>
-            </svg>
-        </motion.div>
+const DecorativeShapes = ({ mouseX, mouseY }) => {
+    // Parallax transforms for shapes - background layer moves slower
+    const x = useTransform(mouseX, [-1, 1], [15, -15]);
+    const y = useTransform(mouseY, [-1, 1], [15, -15]);
+    
+    return (
+        <motion.div style={{ x, y }} className="absolute inset-0 pointer-events-none">
+            {/* Green chevrons */}
+            <motion.div 
+                className="absolute left-[15%] bottom-[30%] hidden laptop:flex flex-col gap-0"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8 }}
+            >
+                <svg width="40" height="60" viewBox="0 0 40 60" fill="#1F8D42">
+                    <path d="M0 0L20 15L0 30V0Z"/>
+                    <path d="M0 30L20 45L0 60V30Z"/>
+                </svg>
+            </motion.div>
+            
+            {/* Orange star burst - top right */}
+            <motion.div 
+                className="absolute right-[20%] top-[12%] hidden laptop:block"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+                <svg width="60" height="60" viewBox="0 0 100 100" fill="#FF6B35">
+                    <polygon points="50,0 61,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 39,35"/>
+                </svg>
+            </motion.div>
 
-        {/* Pink starburst - top left */}
-        <motion.div 
-            className="absolute left-[8%] top-[18%] hidden laptop:block"
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-        >
-            <svg width="50" height="50" viewBox="0 0 100 100" fill="#FA9DCD">
-                <polygon points="50,10 55,40 85,45 60,60 65,90 50,75 35,90 40,60 15,45 45,40"/>
-            </svg>
-        </motion.div>
+            {/* Pink starburst - top left */}
+            <motion.div 
+                className="absolute left-[8%] top-[18%] hidden laptop:block"
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+            >
+                <svg width="50" height="50" viewBox="0 0 100 100" fill="#FA9DCD">
+                    <polygon points="50,10 55,40 85,45 60,60 65,90 50,75 35,90 40,60 15,45 45,40"/>
+                </svg>
+            </motion.div>
 
-        {/* Orange globe */}
-        <motion.div 
-            className="absolute right-[30%] bottom-[22%] hidden laptop:block"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, rotate: 360 }}
-            transition={{ delay: 1, rotate: { duration: 30, repeat: Infinity, ease: "linear" } }}
-        >
-            <svg width="70" height="70" viewBox="0 0 60 60" stroke="#FF6B35" fill="none" strokeWidth="2">
-                <circle cx="30" cy="30" r="28"/>
-                <ellipse cx="30" cy="30" rx="12" ry="28"/>
-                <line x1="2" y1="30" x2="58" y2="30"/>
-                <path d="M6 18 Q30 22 54 18"/>
-                <path d="M6 42 Q30 38 54 42"/>
-            </svg>
-        </motion.div>
+            {/* Orange globe */}
+            <motion.div 
+                className="absolute right-[30%] bottom-[22%] hidden laptop:block"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, rotate: 360 }}
+                transition={{ delay: 1, rotate: { duration: 30, repeat: Infinity, ease: "linear" } }}
+            >
+                <svg width="70" height="70" viewBox="0 0 60 60" stroke="#FF6B35" fill="none" strokeWidth="2">
+                    <circle cx="30" cy="30" r="28"/>
+                    <ellipse cx="30" cy="30" rx="12" ry="28"/>
+                    <line x1="2" y1="30" x2="58" y2="30"/>
+                    <path d="M6 18 Q30 22 54 18"/>
+                    <path d="M6 42 Q30 38 54 42"/>
+                </svg>
+            </motion.div>
 
-        {/* Pink star - mid */}
-        <motion.svg 
-            className="absolute top-[20%] right-[40%] w-6 h-6 text-neo-pink hidden laptop:block"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1, rotate: [0, 10, -10, 0] }}
-            transition={{ delay: 0.6, rotate: { repeat: Infinity, duration: 2 } }}
-            viewBox="0 0 24 24" fill="currentColor"
-        >
-            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-        </motion.svg>
+            {/* Pink star - mid */}
+            <motion.svg 
+                className="absolute top-[20%] right-[40%] w-6 h-6 text-neo-pink hidden laptop:block"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1, rotate: [0, 10, -10, 0] }}
+                transition={{ delay: 0.6, rotate: { repeat: Infinity, duration: 2 } }}
+                viewBox="0 0 24 24" fill="currentColor"
+            >
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </motion.svg>
 
-        {/* Purple flower burst - bottom right */}
-        <motion.div
-            className="absolute right-[12%] bottom-[35%] hidden laptop:block"
-            animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
-        >
-            <svg width="55" height="55" viewBox="0 0 100 100" fill="#4D17F5">
-                <circle cx="50" cy="50" r="15"/>
-                <circle cx="50" cy="20" r="12"/>
-                <circle cx="80" cy="50" r="12"/>
-                <circle cx="50" cy="80" r="12"/>
-                <circle cx="20" cy="50" r="12"/>
-                <circle cx="70" cy="30" r="10"/>
-                <circle cx="70" cy="70" r="10"/>
-                <circle cx="30" cy="70" r="10"/>
-                <circle cx="30" cy="30" r="10"/>
-            </svg>
-        </motion.div>
+            {/* Purple flower burst - bottom right */}
+            <motion.div
+                className="absolute right-[12%] bottom-[35%] hidden laptop:block"
+                animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+            >
+                <svg width="55" height="55" viewBox="0 0 100 100" fill="#4D17F5">
+                    <circle cx="50" cy="50" r="15"/>
+                    <circle cx="50" cy="20" r="12"/>
+                    <circle cx="80" cy="50" r="12"/>
+                    <circle cx="50" cy="80" r="12"/>
+                    <circle cx="20" cy="50" r="12"/>
+                    <circle cx="70" cy="30" r="10"/>
+                    <circle cx="70" cy="70" r="10"/>
+                    <circle cx="30" cy="70" r="10"/>
+                    <circle cx="30" cy="30" r="10"/>
+                </svg>
+            </motion.div>
 
-        {/* Yellow abstract blob - left side */}
-        <motion.div
-            className="absolute left-[5%] top-[45%] hidden laptop:block"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 5, repeat: Infinity }}
-        >
-            <svg width="45" height="45" viewBox="0 0 100 100" fill="#EBD22F">
-                <path d="M50,10 Q70,30 80,50 Q70,70 50,90 Q30,70 20,50 Q30,30 50,10 Z"/>
-            </svg>
-        </motion.div>
+            {/* Yellow abstract blob - left side */}
+            <motion.div
+                className="absolute left-[5%] top-[45%] hidden laptop:block"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 5, repeat: Infinity }}
+            >
+                <svg width="45" height="45" viewBox="0 0 100 100" fill="#EBD22F">
+                    <path d="M50,10 Q70,30 80,50 Q70,70 50,90 Q30,70 20,50 Q30,30 50,10 Z"/>
+                </svg>
+            </motion.div>
 
-        {/* Green arrow - bottom left */}
-        <motion.div
-            className="absolute left-[12%] bottom-[15%] hidden laptop:block"
-            animate={{ x: [0, 10, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-        >
-            <svg width="50" height="50" viewBox="0 0 100 100" fill="#1F8D42">
-                <path d="M10,50 L60,50 L60,30 L90,55 L60,80 L60,60 L10,60 Z"/>
-            </svg>
-        </motion.div>
+            {/* Green arrow - bottom left */}
+            <motion.div
+                className="absolute left-[12%] bottom-[15%] hidden laptop:block"
+                animate={{ x: [0, 10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+            >
+                <svg width="50" height="50" viewBox="0 0 100 100" fill="#1F8D42">
+                    <path d="M10,50 L60,50 L60,30 L90,55 L60,80 L60,60 L10,60 Z"/>
+                </svg>
+            </motion.div>
 
-        {/* Orange globe moved to not overlap content */}
-        <motion.div
-            className="absolute left-[15%] bottom-[30%] hidden laptop:block"
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        >
-            <svg width="50" height="50" viewBox="0 0 100 100" fill="#FF6B35">
-                <circle cx="50" cy="50" r="45"/>
-                <ellipse cx="50" cy="50" rx="45" ry="25" fill="none" stroke="white" strokeWidth="2"/>
-                <ellipse cx="50" cy="50" rx="25" ry="45" fill="none" stroke="white" strokeWidth="2"/>
-                <line x1="5" y1="50" x2="95" y2="50" stroke="white" strokeWidth="2"/>
-            </svg>
-        </motion.div>
+            {/* Orange globe moved to not overlap content */}
+            <motion.div
+                className="absolute left-[15%] bottom-[30%] hidden laptop:block"
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            >
+                <svg width="50" height="50" viewBox="0 0 100 100" fill="#FF6B35">
+                    <circle cx="50" cy="50" r="45"/>
+                    <ellipse cx="50" cy="50" rx="45" ry="25" fill="none" stroke="white" strokeWidth="2"/>
+                    <ellipse cx="50" cy="50" rx="25" ry="45" fill="none" stroke="white" strokeWidth="2"/>
+                    <line x1="5" y1="50" x2="95" y2="50" stroke="white" strokeWidth="2"/>
+                </svg>
+            </motion.div>
 
-        {/* Orange dot pattern - top */}
-        <motion.div
-            className="absolute right-[35%] top-[25%] hidden laptop:block"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        >
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="#FF6B35">
-                <circle cx="10" cy="10" r="3"/>
-                <circle cx="20" cy="10" r="3"/>
-                <circle cx="30" cy="10" r="3"/>
-                <circle cx="10" cy="20" r="3"/>
-                <circle cx="20" cy="20" r="5"/>
-                <circle cx="30" cy="20" r="3"/>
-                <circle cx="10" cy="30" r="3"/>
-                <circle cx="20" cy="30" r="3"/>
-                <circle cx="30" cy="30" r="3"/>
-            </svg>
-        </motion.div>
+            {/* Orange dot pattern - top */}
+            <motion.div
+                className="absolute right-[35%] top-[25%] hidden laptop:block"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            >
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="#FF6B35">
+                    <circle cx="10" cy="10" r="3"/>
+                    <circle cx="20" cy="10" r="3"/>
+                    <circle cx="30" cy="10" r="3"/>
+                    <circle cx="10" cy="20" r="3"/>
+                    <circle cx="20" cy="20" r="5"/>
+                    <circle cx="30" cy="20" r="3"/>
+                    <circle cx="10" cy="30" r="3"/>
+                    <circle cx="20" cy="30" r="3"/>
+                    <circle cx="30" cy="30" r="3"/>
+                </svg>
+            </motion.div>
 
-        {/* Pink zigzag - right */}
-        <motion.div
-            className="absolute right-[8%] top-[40%] hidden laptop:block"
-            animate={{ y: [0, 15, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
-        >
-            <svg width="35" height="60" viewBox="0 0 35 60" stroke="#FA9DCD" fill="none" strokeWidth="4">
-                <path d="M5,5 L30,20 L5,35 L30,50 L5,65"/>
-            </svg>
-        </motion.div>
+            {/* Pink zigzag - right */}
+            <motion.div
+                className="absolute right-[8%] top-[40%] hidden laptop:block"
+                animate={{ y: [0, 15, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+            >
+                <svg width="35" height="60" viewBox="0 0 35 60" stroke="#FA9DCD" fill="none" strokeWidth="4">
+                    <path d="M5,5 L30,20 L5,35 L30,50 L5,65"/>
+                </svg>
+            </motion.div>
 
-        {/* Purple star - left bottom */}
-        <motion.div
-            className="absolute left-[25%] bottom-[12%] hidden laptop:block"
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        >
-            <svg width="35" height="35" viewBox="0 0 100 100" fill="#4D17F5">
-                <polygon points="50,5 61,35 95,35 67,55 78,85 50,65 22,85 33,55 5,35 39,35"/>
-            </svg>
+            {/* Purple star - left bottom */}
+            <motion.div
+                className="absolute left-[25%] bottom-[12%] hidden laptop:block"
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            >
+                <svg width="35" height="35" viewBox="0 0 100 100" fill="#4D17F5">
+                    <polygon points="50,5 61,35 95,35 67,55 78,85 50,65 22,85 33,55 5,35 39,35"/>
+                </svg>
+            </motion.div>
         </motion.div>
-    </>
-);
+    );
+};
 
 export default function Home() {
     const workRef = useRef();
     const aboutRef = useRef();
     const [konami, setKonami] = useState([]);
     const router = useRouter();
+
+    // Parallax Motion Values
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    
+    // Smooth spring animation for parallax
+    const mouseX = useSpring(x, { stiffness: 50, damping: 20 });
+    const mouseY = useSpring(y, { stiffness: 50, damping: 20 });
+
+    const handleMouseMove = (e) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        // Calculate normalized position from -1 to 1
+        x.set((clientX / innerWidth) * 2 - 1);
+        y.set((clientY / innerHeight) * 2 - 1);
+    };
+
+    // Text parallax
+    const textX = useTransform(mouseX, [-1, 1], [-10, 10]);
+    const textY = useTransform(mouseY, [-1, 1], [-10, 10]);
 
     const [currentRole, setCurrentRole] = useState(0);
     const roles = [
@@ -373,10 +415,14 @@ export default function Home() {
                 </Head>
 
                 {/* HERO SECTION - BYOOOOOB STYLE */}
-                <div className="bg-neo-bg h-screen flex flex-col relative overflow-hidden" style={{ 
-                    backgroundImage: 'linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)',
-                    backgroundSize: '40px 40px'
-                }}>
+                <div 
+                    className="bg-neo-bg h-screen flex flex-col relative overflow-hidden" 
+                    style={{ 
+                        backgroundImage: 'linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)',
+                        backgroundSize: '40px 40px'
+                    }}
+                    onMouseMove={handleMouseMove}
+                >
                     {/* Nav */}
                     <div className="w-full max-w-[1440px] mx-auto px-4 laptop:px-14">
                         <Header handleWorkScroll={handleWorkScroll} handleAboutScroll={handleAboutScroll} />
@@ -386,7 +432,7 @@ export default function Home() {
                     <div className="flex-1 flex flex-col items-center justify-center w-full max-w-[1440px] mx-auto px-4 laptop:px-14 py-10 laptop:py-20 relative">
                         
                         {/* Decorative Elements */}
-                        <DecorativeShapes />
+                        <DecorativeShapes mouseX={mouseX} mouseY={mouseY} />
 
                         {/* Team Member Stickers - Personal Branding */}
                         <TeamMemberCard 
@@ -397,6 +443,9 @@ export default function Home() {
                             position="top-[12%] right-[6%]"
                             color="orange"
                             delay={0.5}
+                            mouseX={mouseX}
+                            mouseY={mouseY}
+                            parallaxFactor={1.5}
                         />
                         <TeamMemberCard 
                             name="DevOps" 
@@ -406,6 +455,9 @@ export default function Home() {
                             position="bottom-[18%] left-[4%]"
                             color="yellow"
                             delay={0.7}
+                            mouseX={mouseX}
+                            mouseY={mouseY}
+                            parallaxFactor={1.2}
                         />
                         <TeamMemberCard 
                             name="Cloud" 
@@ -415,6 +467,9 @@ export default function Home() {
                             position="bottom-[8%] right-[10%]"
                             color="purple"
                             delay={0.9}
+                            mouseX={mouseX}
+                            mouseY={mouseY}
+                            parallaxFactor={1.8}
                         />
                         <TeamMemberCard 
                             name="Problem" 
@@ -424,10 +479,16 @@ export default function Home() {
                             position="top-[35%] left-[8%]"
                             color="green"
                             delay={1.1}
+                            mouseX={mouseX}
+                            mouseY={mouseY}
+                            parallaxFactor={1.4}
                         />
 
                         {/* Main Heading - Center-aligned with inline rotating text */}
-                        <div className="text-center w-full max-w-6xl mx-auto">
+                        <motion.div 
+                            className="text-center w-full max-w-6xl mx-auto"
+                            style={{ x: textX, y: textY }}
+                        >
                             {/* Line 1: HELLO I AM */}
                             <motion.div
                                 initial={{ y: 50, opacity: 0 }}
@@ -481,7 +542,7 @@ export default function Home() {
                                     </h1>
                                 </motion.div>
                             </motion.div>
-                        </div>
+                        </motion.div>
 
                         {/* Hero Bottom Content */}
                         <motion.div 

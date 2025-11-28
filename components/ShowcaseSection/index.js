@@ -151,9 +151,16 @@ const ShowcaseSection = () => {
                                             onMouseEnter={() => setHoveredIndex(index)}
                                             onMouseLeave={() => setHoveredIndex(null)}
                                         >
+                                            {/* Award Badge - Moved outside and overlapping border */}
+                                            <div className="absolute -top-6 -left-6 z-20">
+                                                <div className="bg-neo-yellow text-neo-black font-bold uppercase px-6 py-3 border-4 border-neo-black transform -rotate-12 shadow-[4px_4px_0px_0px_#000] text-xl">
+                                                    {item.tag}
+                                                </div>
+                                            </div>
+
                                             {/* Achievement Card */}
                                             <div 
-                                                className="relative border-4 border-neo-black rounded-2xl overflow-hidden transition-all duration-300 h-full flex flex-col"
+                                                className="relative border-4 border-neo-black rounded-2xl overflow-visible transition-all duration-300 h-full flex flex-col bg-white"
                                                 style={{
                                                     backgroundColor: theme.bg,
                                                     boxShadow: hoveredIndex === index 
@@ -163,7 +170,7 @@ const ShowcaseSection = () => {
                                                 }}
                                             >
                                                 {/* Image Section - Fixed height */}
-                                                <div className="relative h-[320px] border-b-4 border-neo-black bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex-shrink-0">
+                                                <div className="relative h-[320px] border-b-4 border-neo-black bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex-shrink-0 rounded-t-xl">
                                                     <img 
                                                         src={item.image}
                                                         alt={item.title}
@@ -172,13 +179,6 @@ const ShowcaseSection = () => {
                                                             transform: hoveredIndex === index ? 'scale(1.1)' : 'scale(1)'
                                                         }}
                                                     />
-                                                    
-                                                    {/* Award Badge */}
-                                                    <div className="absolute top-6 left-6 z-10">
-                                                        <div className="bg-neo-yellow text-neo-black font-bold uppercase px-6 py-3 border-4 border-neo-black transform -rotate-12 shadow-[4px_4px_0px_0px_#000] text-xl">
-                                                            {item.tag}
-                                                        </div>
-                                                    </div>
 
                                                     {/* Date Badge */}
                                                     <div className="absolute top-6 right-6 z-10">
@@ -197,7 +197,7 @@ const ShowcaseSection = () => {
                                                 </div>
 
                                                 {/* Text Content - Flexible height */}
-                                                <div className="p-6 bg-white flex-1 flex flex-col">
+                                                <div className="p-6 bg-white flex-1 flex flex-col rounded-b-xl">
                                                     <h2 className="text-lg font-heading font-bold uppercase text-neo-black mb-2 leading-tight">
                                                         {item.title}
                                                     </h2>
@@ -205,13 +205,6 @@ const ShowcaseSection = () => {
                                                         {item.description}
                                                     </p>
                                                 </div>
-                                            </div>
-
-                                            {/* Index Number - Decorative */}
-                                            <div 
-                                                className="absolute -right-4 -top-4 w-16 h-16 bg-neo-black border-4 border-neo-yellow rounded-full flex items-center justify-center font-heading font-bold text-2xl text-neo-yellow shadow-[4px_4px_0px_0px_#000] z-10"
-                                            >
-                                                {String(index + 1).padStart(2, '0')}
                                             </div>
                                         </motion.div>
                                     );
@@ -239,28 +232,28 @@ const ShowcaseSection = () => {
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.6 }}
                                     >
+                                        {/* Award Badge - Moved outside and overlapping border */}
+                                        <div className="absolute -top-4 -left-2 z-20">
+                                            <div className="bg-neo-yellow text-neo-black font-bold uppercase px-4 py-2 border-4 border-neo-black transform -rotate-12 shadow-[4px_4px_0px_0px_#000] text-lg">
+                                                {item.tag}
+                                            </div>
+                                        </div>
+
                                         {/* Achievement Card */}
                                         <div 
-                                            className="relative border-4 border-neo-black rounded-2xl overflow-hidden"
+                                            className="relative border-4 border-neo-black rounded-2xl overflow-visible bg-white"
                                             style={{
                                                 backgroundColor: theme.bg,
                                                 boxShadow: `8px 8px 0px 0px ${theme.border}`
                                             }}
                                         >
                                             {/* Image Section */}
-                                            <div className="relative h-[300px] border-b-4 border-neo-black bg-gradient-to-br from-gray-100 to-gray-200">
+                                            <div className="relative h-[300px] border-b-4 border-neo-black bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-xl overflow-hidden">
                                                 <img 
                                                     src={item.image}
                                                     alt={item.title}
                                                     className="w-full h-full object-cover"
                                                 />
-                                                
-                                                {/* Award Badge */}
-                                                <div className="absolute top-6 left-6 z-10">
-                                                    <div className="bg-neo-yellow text-neo-black font-bold uppercase px-4 py-2 border-4 border-neo-black transform -rotate-12 shadow-[4px_4px_0px_0px_#000] text-lg">
-                                                        {item.tag}
-                                                    </div>
-                                                </div>
 
                                                 {/* Date Badge */}
                                                 <div className="absolute top-6 right-6 z-10">
@@ -271,7 +264,7 @@ const ShowcaseSection = () => {
                                             </div>
 
                                             {/* Text Content */}
-                                            <div className="p-6 bg-white">
+                                            <div className="p-6 bg-white rounded-b-xl">
                                                 <h2 className="text-xl font-heading font-bold uppercase text-neo-black mb-3 leading-tight">
                                                     {item.title}
                                                 </h2>
@@ -279,13 +272,6 @@ const ShowcaseSection = () => {
                                                     {item.description}
                                                 </p>
                                             </div>
-                                        </div>
-
-                                        {/* Index Number */}
-                                        <div 
-                                            className="absolute -right-3 -top-3 w-12 h-12 bg-neo-black border-4 border-neo-yellow rounded-full flex items-center justify-center font-heading font-bold text-lg text-neo-yellow shadow-[4px_4px_0px_0px_#000] z-10"
-                                        >
-                                            {String(index + 1).padStart(2, '0')}
                                         </div>
                                     </motion.div>
                                 );

@@ -121,7 +121,7 @@ const ContactForm = ({ onClose }) => {
 
     const formContent = (
         <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 cursor-none"
             style={{
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
                 backdropFilter: "blur(4px)",
@@ -135,10 +135,10 @@ const ContactForm = ({ onClose }) => {
             >
                 {/* Form container */}
                 <div
-                    className={`relative rounded-lg overflow-hidden shadow-xl ${
+                    className={`relative border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] ${
                         currentTheme === "dark"
-                            ? "bg-gray-900 text-white border-0"
-                            : "bg-white text-black border-0"
+                            ? "bg-gray-900 text-white"
+                            : "bg-white text-black"
                     }`}
                 >
                     {/* Close button */}
@@ -147,19 +147,21 @@ const ContactForm = ({ onClose }) => {
                             e.stopPropagation();
                             handleClose();
                         }}
-                        className="absolute top-5 right-5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors z-10"
+                        className={`absolute top-5 right-5 z-10 p-1 border-2 border-transparent hover:border-black transition-all ${
+                             currentTheme === "dark" ? "hover:bg-white hover:text-black" : "hover:bg-black hover:text-white"
+                        }`}
                         aria-label="Close"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
+                            width="24"
+                            height="24"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                            strokeWidth="3"
+                            strokeLinecap="square"
+                            strokeLinejoin="miter"
                         >
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -168,39 +170,38 @@ const ContactForm = ({ onClose }) => {
 
                     {/* Form content */}
                     <div className="p-8">
-                        <h2 className="text-2xl font-bold mb-2">
+                        <h2 className="text-3xl font-black mb-2 uppercase tracking-tighter">
                             Get In Touch
                         </h2>
 
                         <p
-                            className={`mb-6 text-sm ${
+                            className={`mb-8 text-base font-medium ${
                                 currentTheme === "dark"
                                     ? "text-gray-300"
                                     : "text-gray-600"
                             }`}
                         >
-                            Fill out the form and I&apos;ll get back to you as
-                            soon as possible.
+                            Fill out the form and I&apos;ll get back to you ASAP.
                         </p>
 
                         <form
                             onSubmit={handleSubmit}
-                            className="space-y-5"
+                            className="space-y-6"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {formError && (
-                                <p className="text-red-500 text-sm">
+                                <div className="border-2 border-red-500 bg-red-100 text-red-600 p-2 font-bold text-sm">
                                     {formError}
-                                </p>
+                                </div>
                             )}
 
                             <div>
                                 <label
                                     htmlFor="name"
-                                    className={`block text-sm font-medium mb-1 ${
+                                    className={`block text-sm font-bold mb-2 uppercase tracking-wide ${
                                         currentTheme === "dark"
-                                            ? "text-gray-200"
-                                            : "text-gray-700"
+                                            ? "text-white"
+                                            : "text-black"
                                     }`}
                                 >
                                     Name
@@ -212,22 +213,22 @@ const ContactForm = ({ onClose }) => {
                                     onChange={handleNameChange}
                                     onClick={(e) => e.stopPropagation()}
                                     required
-                                    className={`block w-full px-3 py-2 text-sm rounded-md focus:ring-1 focus:outline-none transition-colors ${
+                                    className={`block w-full px-4 py-3 text-base font-medium border-2 border-black focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all ${
                                         currentTheme === "dark"
-                                            ? "bg-gray-800 text-white border border-gray-700 focus:ring-blue-500 focus:border-blue-500"
-                                            : "bg-gray-50 text-black border border-gray-200 focus:ring-blue-500 focus:border-blue-500"
+                                            ? "bg-gray-800 text-white placeholder-gray-500"
+                                            : "bg-white text-black placeholder-gray-400"
                                     }`}
-                                    placeholder="Your name"
+                                    placeholder="YOUR NAME"
                                 />
                             </div>
 
                             <div>
                                 <label
                                     htmlFor="email"
-                                    className={`block text-sm font-medium mb-1 ${
+                                    className={`block text-sm font-bold mb-2 uppercase tracking-wide ${
                                         currentTheme === "dark"
-                                            ? "text-gray-200"
-                                            : "text-gray-700"
+                                            ? "text-white"
+                                            : "text-black"
                                     }`}
                                 >
                                     Email
@@ -239,15 +240,15 @@ const ContactForm = ({ onClose }) => {
                                     onChange={handleEmailChange}
                                     onClick={(e) => e.stopPropagation()}
                                     required
-                                    className={`block w-full px-3 py-2 text-sm rounded-md focus:ring-1 focus:outline-none transition-colors ${
+                                    className={`block w-full px-4 py-3 text-base font-medium border-2 border-black focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all ${
                                         currentTheme === "dark"
-                                            ? "bg-gray-800 text-white border border-gray-700 focus:ring-blue-500 focus:border-blue-500"
-                                            : "bg-gray-50 text-black border border-gray-200 focus:ring-blue-500 focus:border-blue-500"
+                                            ? "bg-gray-800 text-white placeholder-gray-500"
+                                            : "bg-white text-black placeholder-gray-400"
                                     }`}
-                                    placeholder="your.email@example.com"
+                                    placeholder="YOUR.EMAIL@EXAMPLE.COM"
                                 />
                                 {emailError && (
-                                    <p className="text-red-500 text-xs mt-1">
+                                    <p className="text-red-500 text-xs mt-1 font-bold">
                                         {emailError}
                                     </p>
                                 )}
@@ -256,10 +257,10 @@ const ContactForm = ({ onClose }) => {
                             <div>
                                 <label
                                     htmlFor="message"
-                                    className={`block text-sm font-medium mb-1 ${
+                                    className={`block text-sm font-bold mb-2 uppercase tracking-wide ${
                                         currentTheme === "dark"
-                                            ? "text-gray-200"
-                                            : "text-gray-700"
+                                            ? "text-white"
+                                            : "text-black"
                                     }`}
                                 >
                                     Message
@@ -271,12 +272,12 @@ const ContactForm = ({ onClose }) => {
                                     onClick={(e) => e.stopPropagation()}
                                     required
                                     rows={4}
-                                    className={`block w-full px-3 py-2 text-sm rounded-md focus:ring-1 focus:outline-none transition-colors ${
+                                    className={`block w-full px-4 py-3 text-base font-medium border-2 border-black focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all ${
                                         currentTheme === "dark"
-                                            ? "bg-gray-800 text-white border border-gray-700 focus:ring-blue-500 focus:border-blue-500"
-                                            : "bg-gray-50 text-black border border-gray-200 focus:ring-blue-500 focus:border-blue-500"
+                                            ? "bg-gray-800 text-white placeholder-gray-500"
+                                            : "bg-white text-black placeholder-gray-400"
                                     }`}
-                                    placeholder="Your message here..."
+                                    placeholder="YOUR MESSAGE HERE..."
                                 />
                             </div>
 
@@ -284,14 +285,14 @@ const ContactForm = ({ onClose }) => {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className={`w-full py-2 px-4 text-sm rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50 ${
+                                    className={`w-full py-3 px-6 text-base font-black uppercase tracking-wider border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all ${
                                         currentTheme === "dark"
-                                            ? `bg-white text-black hover:bg-gray-100 focus:ring-gray-500 ${
+                                            ? `bg-neo-yellow text-black ${
                                                   isSubmitting
                                                       ? "opacity-70 cursor-not-allowed"
                                                       : ""
                                               }`
-                                            : `bg-black text-white hover:bg-gray-800 focus:ring-gray-500 ${
+                                            : `bg-neo-yellow text-black ${
                                                   isSubmitting
                                                       ? "opacity-70 cursor-not-allowed"
                                                       : ""
@@ -299,8 +300,8 @@ const ContactForm = ({ onClose }) => {
                                     }`}
                                 >
                                     {isSubmitting
-                                        ? "Sending..."
-                                        : "Send Message"}
+                                        ? "SENDING..."
+                                        : "SEND MESSAGE"}
                                 </button>
                             </div>
                         </form>
