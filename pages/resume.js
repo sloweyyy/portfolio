@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import Cursor from "../components/Cursor";
 import Header from "../components/Header";
 import ProjectResume from "../components/ProjectResume";
@@ -27,7 +28,10 @@ const Resume = () => {
     };
 
     return (
-        <>
+        <div className={data.showCursor ? "cursor-none" : ""}>
+            <Head>
+                <title>Resume - SloWey</title>
+            </Head>
             {process.env.NODE_ENV === "development" && (
                 <div className="fixed bottom-6 right-6">
                     <Button
@@ -187,7 +191,7 @@ const Resume = () => {
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 };
 

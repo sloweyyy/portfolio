@@ -115,7 +115,7 @@ const Cursor = () => {
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <path
-                    d="M12.5 4L28.5 20L19.5 22L17.5 31L12.5 4Z"
+                    d="M10 5L10 28L15 23L19 32L22 30L18 21L25 21L10 5Z"
                     fill="var(--neo-yellow)"
                     stroke="black"
                     strokeWidth="2"

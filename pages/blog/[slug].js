@@ -23,7 +23,7 @@ const BlogPost = ({ post }) => {
     }, []);
 
     return (
-        <div className="flex flex-col min-h-screen bg-neo-bg">
+        <div className={`flex flex-col min-h-screen bg-neo-bg ${data.showCursor && "cursor-none"}`}>
             <Head>
                 <title>{"Blog - " + post.title}</title>
                 <meta name="description" content={post.preview} />
