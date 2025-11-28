@@ -40,7 +40,7 @@ const Blog = ({ posts }) => {
     };
     if (!showBlog.current) return null;
     return (
-        <div className="flex flex-col min-h-screen bg-neo-bg">
+        <div className={`flex flex-col min-h-screen bg-neo-bg ${data.showCursor && "cursor-none"}`}>
             {data.showCursor && <Cursor />}
             <Head>
                 <title>Blog</title>

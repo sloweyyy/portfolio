@@ -119,7 +119,7 @@ const ProjectSection = ({ projects }) => {
                                 </motion.div>
 
                                 <div className="mt-2 pt-8">
-                                    <Button onClick={() => window.open(activeProject.url)} classes="!bg-white !text-black !border-2 !border-black !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:!translate-x-[2px] hover:!translate-y-[2px] hover:!shadow-none">
+                                    <Button onClick={() => window.open(activeProject.url, "_blank")} classes="!bg-white !text-black !border-2 !border-black !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:!translate-x-[2px] hover:!translate-y-[2px] hover:!shadow-none">
                                         View Project
                                     </Button>
                                 </div>
@@ -142,7 +142,7 @@ const ProjectSection = ({ projects }) => {
                                     setHoveredIndex(index);
                                 }}
                                 onMouseLeave={() => setHoveredIndex(null)}
-                                onClick={() => window.open(project.url)}
+                                onClick={() => window.open(project.url, "_blank")}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}

@@ -401,7 +401,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="DevOps" 
                             role="CI/CD Wizard" 
-                            image="https://upanhnhanh.com/c87d21d8353d691d90bca572c5984e82"
+                            image="https://media.licdn.com/dms/image/v2/D5622AQH81IfdRMn79g/feedshare-shrink_2048_1536/B56Zhw.yGDHcAs-/0/1754242186453?e=1766016000&v=beta&t=RWPOhfaIOlni7d2n3DyMo5Ur9Lkq1pXEMOSTB0hWylY"
                             rotation={-8}
                             position="bottom-[18%] left-[4%]"
                             color="yellow"
@@ -410,7 +410,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="Cloud" 
                             role="AWS/Azure Pro" 
-                            image="https://upanhnhanh.com/c87d21d8353d691d90bca572c5984e82"
+                            image="https://media.licdn.com/dms/image/v2/D5622AQE7oOuA2vBAsw/feedshare-shrink_2048_1536/B56ZqBSI26HIAw-/0/1763105617646?e=1766016000&v=beta&t=ksEGEgkF1fG3Tgh14K1sJ0wFiX4w6wPPvWi-GY7XJhQ"
                             rotation={14}
                             position="bottom-[8%] right-[10%]"
                             color="purple"
@@ -419,7 +419,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="Problem" 
                             role="Solver" 
-                            image="https://upanhnhanh.com/c87d21d8353d691d90bca572c5984e82"
+                            image="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/549185292_1181939733955232_3179801076907923086_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH1tdmPU0jrRWjFawWpM3H1z40WD-bV0GfPjRYP5tXQZw6NrkI-dFChCI9Nz5HWkoWb9tVQ7m0fFq8p4J7FKz0P&_nc_ohc=jXWI-OTaNpsQ7kNvwHA6gos&_nc_oc=AdmpQna6y1bZGaXlDWUzUS_U8c92IvmQvr-iIj6L0_vWEYS0hKK6NKe7jkg3hxxhw98&_nc_zt=23&_nc_ht=scontent.fsgn5-12.fna&_nc_gid=v8lkJ550zZkujfhvOy0SyA&oh=00_AfjfCcnXCgCikzb4GwWyD9S9bmn4CMYQtXwaYtziovZuIw&oe=692F2DFD"
                             rotation={-6}
                             position="top-[35%] left-[8%]"
                             color="green"

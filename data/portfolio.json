@@ -55,7 +55,7 @@
             "id": "3",
             "title": "ExperimentHub",
             "description": "ML experiment management platform with real-time monitoring, WebSocket updates, and PyTorch integration for MNIST classification.",
-            "imageSrc": "https://private-user-images.githubusercontent.com/37492460/425863185-765d961d-afca-4b16-b1dd-4006e8cb0f87.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjQyMzYwMjEsIm5iZiI6MTc2NDIzNTcyMSwicGF0aCI6Ii8zNzQ5MjQ2MC80MjU4NjMxODUtNzY1ZDk2MWQtYWZjYS00YjE2LWIxZGQtNDAwNmU4Y2IwZjg3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTExMjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMTI3VDA5Mjg0MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWEwMzNiNmNhZDcxZDVmNGJlZWI2YjJiNWE5MjRiMzRmMWRhM2ExMjg0OGE5ZjY0NGRhZWIxZjE2ZDA0NmEwZDAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.6Ca6P4e6cT1HFvRQ3uLo6DlYnRD3zgUTqHVPgBMONdE",
+            "imageSrc": "https://upanhnhanh.com/f0d050e171d24783be0e4fffc9622aef",
             "url": "https://github.com/sloweyyy/experimenthub",
             "tags": ["Next.js", "FastAPI", "PyTorch", "ML"]
         },
