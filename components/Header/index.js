@@ -82,11 +82,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                 </div>
             </div>
             {showForm && (
-                <div className="fixed top-0 left-0 w-full h-full z-40 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="relative bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                        <ContactForm onClose={handleCloseForm} />
-                    </div>
-                </div>
+                <ContactForm onClose={handleCloseForm} />
             )}
         </>
     );
