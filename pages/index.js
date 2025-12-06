@@ -436,7 +436,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="Problem" 
                             role="Solver" 
-                            image="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/549185292_1181939733955232_3179801076907923086_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH1tdmPU0jrRWjFawWpM3H1z40WD-bV0GfPjRYP5tXQZw6NrkI-dFChCI9Nz5HWkoWb9tVQ7m0fFq8p4J7FKz0P&_nc_ohc=jXWI-OTaNpsQ7kNvwHA6gos&_nc_oc=AdmpQna6y1bZGaXlDWUzUS_U8c92IvmQvr-iIj6L0_vWEYS0hKK6NKe7jkg3hxxhw98&_nc_zt=23&_nc_ht=scontent.fsgn5-12.fna&_nc_gid=v8lkJ550zZkujfhvOy0SyA&oh=00_AfjfCcnXCgCikzb4GwWyD9S9bmn4CMYQtXwaYtziovZuIw&oe=692F2DFD"
+                            image="https://scontent.fsgn16-1.fna.fbcdn.net/v/t39.30808-6/548615625_1180245437457995_360430066750698697_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFLMP2yi0qoGOwaY0p-pevz5DHnqmxzAsHkMeeqbHMCwV6XIsWmrjoZrbt4_9Mdw0sZqZuhrrNSaiYgt2C7vBN6&_nc_ohc=hBNLHeBXJCkQ7kNvwEkyPoU&_nc_oc=AdmnR_mgS2W04-CQSA1yV-RRtBL4rHmjTr6PMxQzSGJ-jYAG_M1vV8z5PB9jBbD1oho&_nc_zt=23&_nc_ht=scontent.fsgn16-1.fna&_nc_gid=9DmcpyJwOQMYIKIJ9lV8cQ&oh=00_Afn7xrBGUF4rK6HezTAosM_z7pKxwI_TOzpnpGiZpDp5QA&oe=6939F9E3"
                             rotation={-6}
                             position="top-[35%] left-[8%]"
                             color="green"

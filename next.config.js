@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
+    // Enable Turbopack with empty config to silence the warning
+    turbopack: {},
     async headers() {
         return [
             {
@@ -21,35 +23,23 @@ const nextConfig = {
         ];
     },
     images: {
-        domains: [
-            "images.unsplash.com",
-            "avatars.githubusercontent.com",
-            "img.youtube.com",
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'img.youtube.com',
+            },
         ],
     },
     env: {
         JWT_SECRET: process.env.JWT_SECRET,
-    },
-    serverRuntimeConfig: {
-        JWT_SECRET: process.env.JWT_SECRET,
-        api: {
-            bodyParser: {
-                sizeLimit: "1mb",
-            },
-        },
-    },
-    publicRuntimeConfig: {
-        // Add any client-side environment variables here (but NOT secrets)
-    },
-    webpack: (config, { isServer }) => {
-        if (isServer) {
-            if (!process.env.JWT_SECRET) {
-                console.warn(
-                    "WARNING: JWT_SECRET environment variable is not set. Authentication will not work properly."
-                );
-            }
-        }
-        return config;
     },
 };
 

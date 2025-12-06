@@ -11,7 +11,7 @@ const ShowcaseSection = () => {
             id: 1,
             title: "First Prize at IT Hackathon 2025 – Solana Pragmatic",
             description: "Won First Prize at IT Hackathon 2025 (Solana Pragmatic) with \"Trustify\", a blockchain-powered online notarization platform leveraging Solana for NFT certificates.",
-            image: "https://media.licdn.com/dms/image/v2/D562DAQHhJ7TDRSqUXw/profile-treasury-image-shrink_1280_1280/B56ZcKzyjQH4AQ-/0/1748233045622?e=1764842400&v=beta&t=kH1jTsm2iiFjpztMuBN8PF5VTFAnR8kYpj7DQjhXT5Q",
+            image: "https://upanhnhanh.com/9dec643ea554052a8412b7ba7086fe88",
             theme: "purple",
             tag: "🏆 1st Place",
             date: "May 2025"
@@ -30,7 +30,7 @@ const ShowcaseSection = () => {
             id: 3,
             title: "Consolation Prize at SEAPP Contest 2024",
             description: "Awarded the Consolation Prize for the project \"Enigma - A Dropshipping Design and Sales Platform,\" recognized as one of the top innovations. The platform showcased advanced mobile development, seamless integration of AI-powered machine learning, and e-commerce solutions.",
-            image: "https://media.licdn.com/dms/image/v2/D562DAQE0cPGok6n2cQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1732039938428?e=1764928800&v=beta&t=F1hIog7IccegaeXQc0lQUG97-HaBOtDwpHvNJOzgwwQ",
+            image: "https://upanhnhanh.com/30598d7dec205b6d42d72d274d62f937",
             theme: "orange",
             tag: "🏅 Consolation",
             date: "Nov 2024"
@@ -39,7 +39,7 @@ const ShowcaseSection = () => {
             id: 4,
             title: "Third Place at GDSC Idea Contest 2023: THiNK",
             description: "Achieved Third Place in the GDSC IDEA CONTEST 2023 with FutureConnect, a platform designed to bridge the gap between students and businesses.",
-            image: "https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/480800066_598985956304827_563808584926383999_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHeK6VWcsgK-4fgUcZk6ACKRsDWWZe9ox5GwNZZl72jHiFFiGLToGY9yE6l9JDqcexIRRYWhq8JH8vsQIIVNtuW&_nc_ohc=JNT8rBpHiKMQ7kNvwGBy4fa&_nc_oc=AdmOc4iUCmJl0MKw55jivO-gM8RFICJ1gO11vo7m4rm8TEaHEUEvZCTj-PG_Cj6ne98&_nc_zt=23&_nc_ht=scontent.fsgn5-5.fna&_nc_gid=1bGqKNtslWVMUrBR7RTe4A&oh=00_AfhGAXA51_tKkd_eQTXfQjmZ-Iyoi8GOPi8sIqTC3E1gVA&oe=692DDD48",
+            image: "https://upanhnhanh.com/53e69b797ba461a29d2ae14810fa5082",
             theme: "blue",
             tag: "🥉 3rd Place",
             date: "Jun 2023"
