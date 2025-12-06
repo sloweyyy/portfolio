@@ -1,14 +1,12 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const getConfig = require("next/config").default;
 
 const getJwtSecret = () => {
-    const { serverRuntimeConfig } = getConfig() || {};
-    const jwtSecret = serverRuntimeConfig?.JWT_SECRET || process.env.JWT_SECRET;
+    const jwtSecret = process.env.JWT_SECRET;
 
     if (!jwtSecret) {
         console.error(
-            "JWT_SECRET is not defined in environment variables or server config"
+            "JWT_SECRET is not defined in environment variables"
         );
     }
 
