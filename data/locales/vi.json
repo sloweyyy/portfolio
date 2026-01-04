@@ -1,0 +1,221 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "blog": "Blog",
+    "resume": "Hồ sơ",
+    "contact": "Liên hệ"
+  },
+  "hero": {
+    "greeting": "Xin chào, tôi là",
+    "name": "Slowey",
+    "article": "một",
+    "roles": [
+      "KỸ SƯ PHẦN MỀM",
+      "KỸ SƯ DEVOPS",
+      "PRODUCT OWNER",
+      "NGƯỜI GIẢI QUYẾT VẤN ĐỀ",
+      "ĐAM MÊ CÔNG NGHỆ",
+      "NGƯỜI SÁNG TẠO"
+    ],
+    "description": "Xây dựng phần mềm có khả năng mở rộng, hiệu suất cao từ backend đến DevOps.",
+    "techStack": "Java • .NET • Node.js • Python • CI/CD • Cloud-Native Engineering",
+    "getInTouch": "LIÊN HỆ NGAY",
+    "viewResume": "XEM HỒ SƠ"
+  },
+  "ticker": [
+    "XÂY DỰNG SẢN PHẨM TUYỆT VỜI",
+    "THIẾT KẾ GIAO DIỆN ĐẸP MẮT",
+    "PHÁT TRIỂN GIẢI PHÁP MỞ RỘNG",
+    "TẠO TRẢI NGHIỆM ẤN TƯỢNG",
+    "THIẾT KẾ CÓ MỤC ĐÍCH",
+    "LẬP TRÌNH VỚI ĐAM MÊ"
+  ],
+  "teamCards": {
+    "backend": {
+      "name": "Backend",
+      "role": "Chuyên gia Java/.NET"
+    },
+    "devops": {
+      "name": "DevOps",
+      "role": "Phù thủy CI/CD"
+    },
+    "cloud": {
+      "name": "Cloud",
+      "role": "Chuyên gia AWS/Azure"
+    },
+    "problem": {
+      "name": "Vấn đề",
+      "role": "Giải quyết"
+    }
+  },
+  "projects": {
+    "title": "ỦA!",
+    "subtitle": "TÔI LÀM CÁI NÀY Á?",
+    "viewProject": "Xem dự án",
+    "items": [
+      {
+        "id": "1",
+        "title": "Cloud-Native E-Commerce",
+        "description": "Nền tảng có khả năng mở rộng với .NET Core, RabbitMQ và Istio Service Mesh."
+      },
+      {
+        "id": "2",
+        "title": "GreenLedger",
+        "description": "Nền tảng Quản lý Tín dụng Carbon sử dụng Go, Microservices và Kubernetes."
+      },
+      {
+        "id": "3",
+        "title": "ExperimentHub",
+        "description": "Nền tảng quản lý thí nghiệm ML với giám sát thời gian thực, cập nhật WebSocket và tích hợp PyTorch cho phân loại MNIST."
+      },
+      {
+        "id": "4",
+        "title": "Resort Management System",
+        "description": "Hệ thống quản lý toàn diện với NestJS, React và OAuth2."
+      },
+      {
+        "id": "5",
+        "title": "Blockchain Notarization",
+        "description": "Công chứng số an toàn sử dụng Ethereum và IPFS."
+      },
+      {
+        "id": "6",
+        "title": "Coffee Shop Management",
+        "description": "Hệ thống đa giao diện cho quán cà phê sử dụng React Native và Firebase."
+      },
+      {
+        "id": "8",
+        "title": "Online Contest Management",
+        "description": "Nền tảng full-stack để tổ chức cuộc thi với ASP.NET Core 8, MongoDB và tích hợp xử lý thanh toán."
+      },
+      {
+        "id": "9",
+        "title": "Enigma Design Platform",
+        "description": "Nền tảng thiết kế áo thun và túi tote sử dụng AI với React Native, Node.js và tạo mockup tùy chỉnh."
+      },
+      {
+        "id": "10",
+        "title": "Facial Expression Recognition",
+        "description": "Mô hình ML truyền thống (SVM, Random Forest) để phân loại cảm xúc sử dụng đặc điểm HOG và OpenCV."
+      }
+    ]
+  },
+  "showcase": {
+    "title": "ĐẠI",
+    "subtitle": "SẢNH DANH VỌNG",
+    "badge": "🎯 Thành tựu & Giải thưởng",
+    "scrollHint": "Cuộn để khám phá",
+    "moreComingSoon": "✨ Sắp có thêm!",
+    "items": [
+      {
+        "id": 1,
+        "title": "Giải Nhất IT Hackathon 2025 – Solana Pragmatic",
+        "description": "Đạt Giải Nhất tại IT Hackathon 2025 (Solana Pragmatic) với \"Trustify\", nền tảng công chứng trực tuyến sử dụng blockchain và chứng chỉ NFT trên Solana.",
+        "tag": "🏆 Giải Nhất",
+        "date": "Tháng 5, 2025"
+      },
+      {
+        "id": 2,
+        "title": "Top 30 Web3 HackFest 2025 - Web3 & AI",
+        "description": "Đạt Top 30 tại Web3 HackFest 2025 với \"Trustify\", nền tảng phi tập trung cho công chứng trực tuyến an toàn và minh bạch sử dụng công nghệ blockchain và AI. Cấp bởi VBI Academy · Tháng 1, 2025",
+        "tag": "⭐ Top 30",
+        "date": "Tháng 1, 2025"
+      },
+      {
+        "id": 3,
+        "title": "Giải Khuyến Khích SEAPP Contest 2024",
+        "description": "Đạt Giải Khuyến Khích với dự án \"Enigma - Nền tảng Thiết kế và Bán hàng Dropshipping\", được công nhận là một trong những đổi mới hàng đầu. Nền tảng thể hiện phát triển mobile tiên tiến, tích hợp machine learning với AI và giải pháp thương mại điện tử.",
+        "tag": "🏅 Khuyến Khích",
+        "date": "Tháng 11, 2024"
+      },
+      {
+        "id": 4,
+        "title": "Giải Ba GDSC Idea Contest 2023: THiNK",
+        "description": "Đạt Giải Ba tại GDSC IDEA CONTEST 2023 với FutureConnect, nền tảng được thiết kế để kết nối sinh viên và doanh nghiệp.",
+        "tag": "🥉 Giải Ba",
+        "date": "Tháng 6, 2023"
+      }
+    ]
+  },
+  "about": {
+    "title": "Về",
+    "highlight": "Tôi",
+    "paragraph": "Tôi là Trương Lê Vĩnh Phúc, một Kỹ sư DevOps/Phần mềm đa năng với kỹ năng về Java, .NET, Node.js, Python và phát triển cloud-native. Có kinh nghiệm thiết kế microservices, tự động hóa DevOps, CI/CD và hệ thống dữ liệu thời gian thực sử dụng Docker, Kubernetes, Kafka và Prometheus. Thành tích tốt trong việc dẫn dắt team và cung cấp giải pháp end-to-end cho các dự án web, blockchain và AI/ML.",
+    "tags": ["Full Stack", "Product Owner", "Giải quyết vấn đề"]
+  },
+  "footer": {
+    "line1": "Tôi Luôn",
+    "line2": "Sẵn Sàng Hỗ Trợ",
+    "socialStuff": "Mạng Xã Hội",
+    "copyright": "Đã đăng ký bản quyền"
+  },
+  "resume": {
+    "pageTitle": "Hồ Sơ - SloWey",
+    "editResume": "Chỉnh sửa Hồ sơ",
+    "viewPdf": "Xem PDF",
+    "tagline": "👋  Tôi là một Kỹ sư DevOps & Phần mềm.",
+    "description": "Kỹ sư DevOps/Phần mềm đa năng với kỹ năng về Java, .NET, Node.js, Python và phát triển cloud-native. Có kinh nghiệm thiết kế microservices, tự động hóa DevOps, CI/CD và hệ thống dữ liệu thời gian thực sử dụng Docker, Kubernetes, Kafka và Prometheus.",
+    "experienceTitle": "Kinh Nghiệm",
+    "educationTitle": "Học Vấn",
+    "skillsTitle": "Kỹ Năng",
+    "languagesTitle": "Ngôn Ngữ",
+    "frameworksTitle": "Frameworks",
+    "othersTitle": "Khác",
+    "experiences": [
+      {
+        "id": "1",
+        "dates": "Tháng 2, 2025 - Hiện tại",
+        "type": "Toàn thời gian",
+        "position": "AI Product Support Engineer tại KATALON",
+        "bullets": [
+          "Đảm nhiệm vai trò Product Manager và Engineering Lead cho Katalon Support Assistant.",
+          "Triển khai các quy trình tự động hóa và AI giúp giảm 30% lượng yêu cầu hỗ trợ.",
+          "Đóng góp vào dự án AI mới, nghiên cứu và triển khai các giải pháp sáng tạo."
+        ]
+      },
+      {
+        "id": "2",
+        "dates": "Tháng 11, 2024 - Tháng 1, 2025",
+        "type": "Thực tập sinh",
+        "position": "Java Backend Developer Intern tại FPT SOFTWARE",
+        "bullets": [
+          "Dẫn dắt team 7 người với vai trò Scrum Master để phát triển RESTful APIs cho nền tảng khóa học trực tuyến sử dụng Spring Boot.",
+          "Tối ưu hóa hiệu năng cơ sở dữ liệu PostgreSQL, nâng cao hiệu suất hệ thống.",
+          "Tối ưu hóa quy trình triển khai sử dụng CI/CD pipelines."
+        ]
+      }
+    ],
+    "education": {
+      "universityName": "Đại học Công nghệ Thông tin - ĐHQG TP.HCM",
+      "universityDate": "Tháng 9, 2022 - Tháng 3, 2026",
+      "universityPara": "Cử nhân Kỹ thuật Phần mềm. GPA: 8.56/10. Đạt loại 'Xuất sắc' Học kỳ 1 và 2, Năm học 2024-2025."
+    }
+  },
+  "contact": {
+    "title": "Liên Hệ",
+    "subtitle": "Điền form và tôi sẽ phản hồi sớm nhất có thể.",
+    "nameLabel": "Họ và tên",
+    "namePlaceholder": "TÊN CỦA BẠN",
+    "emailLabel": "Email",
+    "emailPlaceholder": "EMAIL.CUA.BAN@EXAMPLE.COM",
+    "messageLabel": "Tin nhắn",
+    "messagePlaceholder": "NỘI DUNG TIN NHẮN...",
+    "sendButton": "GỬI TIN NHẮN",
+    "sendingButton": "ĐANG GỬI...",
+    "successMessage": "Tin nhắn đã được gửi thành công!",
+    "errorMessage": "Gửi tin nhắn thất bại. Vui lòng thử lại sau.",
+    "requiredError": "Vui lòng điền đầy đủ thông tin.",
+    "emailError": "Vui lòng nhập địa chỉ email hợp lệ."
+  },
+  "blog": {
+    "pageTitle": "Blog",
+    "title": "Blog.",
+    "addNewPost": "Thêm bài viết +",
+    "delete": "Xóa",
+    "editBlog": "Chỉnh sửa bài viết"
+  },
+  "common": {
+    "language": "VI",
+    "languageFull": "Tiếng Việt"
+  }
+}

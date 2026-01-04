@@ -7,11 +7,16 @@ import Header from "../../components/Header";
 import data from "../../data/portfolio.json";
 import { ISOToDate } from "../../utils";
 import Footer from "../../components/Footer";
+import { useLanguage } from "../../utils/i18n";
 
-const Blog = ({ posts }) => {
+const Blog = ({ allPosts }) => {
     const showBlog = useRef(data.showBlog);
     const router = useRouter();
     const [mounted, setMounted] = useState(false);
+    const { lang } = useLanguage();
+    
+    // Get posts based on current language
+    const posts = allPosts[lang] || allPosts.en || [];
 
     useEffect(() => {
         setMounted(true);
@@ -110,19 +115,28 @@ const Blog = ({ posts }) => {
 
 export async function getStaticProps() {
     const { getAllPosts } = await import("../../utils/api");
-    const posts = getAllPosts([
+    const fields = [
         "slug",
         "title",
         "image",
         "preview",
         "author",
         "date",
-    ]);
+    ];
+    
+    // Get posts for both languages at build time
+    const enPosts = getAllPosts(fields, 'en');
+    const viPosts = getAllPosts(fields, 'vi');
+    
     return {
         props: {
-            posts: [...posts],
+            allPosts: {
+                en: [...enPosts],
+                vi: [...viPosts],
+            },
         },
     };
 }
 
 export default Blog;
+

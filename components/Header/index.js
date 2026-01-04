@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Button from "../Button";
 import ContactForm from "../ContactForm";
+import LanguageSwitcher from "../LanguageSwitcher";
 import data from "../../data/portfolio.json";
 
 const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
@@ -28,7 +29,8 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                             >
                                 {data.name}.
                             </h1>
-                            <div className="flex items-center">
+                            <div className="flex items-center gap-2">
+                                {isBlog && <LanguageSwitcher />}
                                 <Popover.Button>
                                     <img
                                         className="h-5"
@@ -76,6 +78,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                     {data.showResume && (
                         <button onClick={() => router.push("/resume")} className="font-heading font-bold uppercase text-sm hover:underline decoration-2 underline-offset-4">Resume</button>
                     )}
+                    {isBlog && <LanguageSwitcher />}
                     <Button onClick={handleScheduleCallClick} type="primary" classes="!rounded-full !bg-neo-yellow !text-neo-black !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:!shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] !border-2 !border-neo-black hover:!translate-x-[2px] hover:!translate-y-[2px]">
                         Contact
                     </Button>
@@ -89,3 +92,5 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
 };
 
 export default Header;
+
+

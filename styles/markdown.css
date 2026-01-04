@@ -2,6 +2,11 @@
 
 /* Markdown Container */
 
+.markdown-class,
+.markdown-class * {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
 .markdown-class {
   @apply mt-8 p-5;
 }
@@ -11,18 +16,23 @@
 .markdown-class h1 {
   @apply mt-10 mb-6 text-3xl font-bold;
 }
+
 .markdown-class h2 {
   @apply mt-8 mb-5 text-2xl font-semibold;
 }
+
 .markdown-class h3 {
   @apply mt-7 mb-4 text-xl font-medium;
 }
+
 .markdown-class h4 {
   @apply mt-6 mb-3 text-lg font-medium;
 }
+
 .markdown-class h5 {
   @apply mt-5 mb-2 text-base font-medium;
 }
+
 .markdown-class h6 {
   @apply mt-5 mb-2 text-sm font-medium;
 }
