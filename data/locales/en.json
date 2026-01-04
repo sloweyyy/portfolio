@@ -1,0 +1,221 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "resume": "Resume",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello I am",
+    "name": "Slowey",
+    "article": "a",
+    "roles": [
+      "SOFTWARE ENGINEER",
+      "DEVOPS ENGINEER",
+      "PRODUCT OWNER",
+      "PROBLEM SOLVER",
+      "TECH ENTHUSIAST",
+      "INNOVATOR"
+    ],
+    "description": "Crafting scalable, high-performance software from backend to DevOps.",
+    "techStack": "Java • .NET • Node.js • Python • CI/CD • Cloud-Native Engineering",
+    "getInTouch": "GET IN TOUCH",
+    "viewResume": "VIEW RESUME"
+  },
+  "ticker": [
+    "BUILD AMAZING PRODUCTS",
+    "CRAFT BEAUTIFUL INTERFACES",
+    "DEVELOP SCALABLE SOLUTIONS",
+    "CREATE IMPACTFUL EXPERIENCES",
+    "DESIGN WITH PURPOSE",
+    "CODE WITH PASSION"
+  ],
+  "teamCards": {
+    "backend": {
+      "name": "Backend",
+      "role": "Java/.NET Expert"
+    },
+    "devops": {
+      "name": "DevOps",
+      "role": "CI/CD Wizard"
+    },
+    "cloud": {
+      "name": "Cloud",
+      "role": "AWS/Azure Pro"
+    },
+    "problem": {
+      "name": "Problem",
+      "role": "Solver"
+    }
+  },
+  "projects": {
+    "title": "DAMN!",
+    "subtitle": "I DID THIS?",
+    "viewProject": "View Project",
+    "items": [
+      {
+        "id": "1",
+        "title": "Cloud-Native E-Commerce",
+        "description": "Scalable platform with .NET Core, RabbitMQ, and Istio Service Mesh."
+      },
+      {
+        "id": "2",
+        "title": "GreenLedger",
+        "description": "Carbon Credit Management Platform using Go, Microservices, and Kubernetes."
+      },
+      {
+        "id": "3",
+        "title": "ExperimentHub",
+        "description": "ML experiment management platform with real-time monitoring, WebSocket updates, and PyTorch integration for MNIST classification."
+      },
+      {
+        "id": "4",
+        "title": "Resort Management System",
+        "description": "Comprehensive management system with NestJS, React, and OAuth2."
+      },
+      {
+        "id": "5",
+        "title": "Blockchain Notarization",
+        "description": "Secure digital notarization using Ethereum and IPFS."
+      },
+      {
+        "id": "6",
+        "title": "Coffee Shop Management",
+        "description": "Multi-interface system for coffee shops using React Native and Firebase."
+      },
+      {
+        "id": "8",
+        "title": "Online Contest Management",
+        "description": "Full-stack platform for contest hosting with ASP.NET Core 8, MongoDB, and integrated payment processing."
+      },
+      {
+        "id": "9",
+        "title": "Enigma Design Platform",
+        "description": "AI-powered T-shirt and tote bag design platform with React Native, Node.js, and custom mockup generation."
+      },
+      {
+        "id": "10",
+        "title": "Facial Expression Recognition",
+        "description": "Traditional ML models (SVM, Random Forest) for emotion classification using HOG features and OpenCV."
+      }
+    ]
+  },
+  "showcase": {
+    "title": "HALL",
+    "subtitle": "OF FAME",
+    "badge": "🎯 Achievements & Awards",
+    "scrollHint": "Scroll to explore",
+    "moreComingSoon": "✨ More Coming Soon!",
+    "items": [
+      {
+        "id": 1,
+        "title": "First Prize at IT Hackathon 2025 – Solana Pragmatic",
+        "description": "Won First Prize at IT Hackathon 2025 (Solana Pragmatic) with \"Trustify\", a blockchain-powered online notarization platform leveraging Solana for NFT certificates.",
+        "tag": "🏆 1st Place",
+        "date": "May 2025"
+      },
+      {
+        "id": 2,
+        "title": "Top 30 at Web3 HackFest 2025 - Web3 & AI Convergence",
+        "description": "Achieved Top 30 in the Web3 HackFest 2025 with \"Trustify\", a decentralized platform developed for secure and transparent online notarization leveraging blockchain technology and AI. Issued by VBI Academy · Jan 2025",
+        "tag": "⭐ Top 30",
+        "date": "Jan 2025"
+      },
+      {
+        "id": 3,
+        "title": "Consolation Prize at SEAPP Contest 2024",
+        "description": "Awarded the Consolation Prize for the project \"Enigma - A Dropshipping Design and Sales Platform,\" recognized as one of the top innovations. The platform showcased advanced mobile development, seamless integration of AI-powered machine learning, and e-commerce solutions.",
+        "tag": "🏅 Consolation",
+        "date": "Nov 2024"
+      },
+      {
+        "id": 4,
+        "title": "Third Place at GDSC Idea Contest 2023: THiNK",
+        "description": "Achieved Third Place in the GDSC IDEA CONTEST 2023 with FutureConnect, a platform designed to bridge the gap between students and businesses.",
+        "tag": "🥉 3rd Place",
+        "date": "Jun 2023"
+      }
+    ]
+  },
+  "about": {
+    "title": "About",
+    "highlight": "Me",
+    "paragraph": "I'm Truong Le Vinh Phuc, a Versatile DevOps/Software Engineer skilled in Java, .NET, Node.js, Python, and cloud-native development. Experienced in designing microservices, DevOps automation, CI/CD, and real-time data systems using Docker, Kubernetes, Kafka, and Prometheus. Strong record of leading teams and delivering end-to-end solutions across web, blockchain, and AI/ML projects.",
+    "tags": ["Full Stack", "Product Owner", "Problem Solver"]
+  },
+  "footer": {
+    "line1": "I've Got",
+    "line2": "Your Back",
+    "socialStuff": "Social Stuff",
+    "copyright": "All rights reserved"
+  },
+  "resume": {
+    "pageTitle": "Resume - SloWey",
+    "editResume": "Edit Resume",
+    "viewPdf": "View PDF",
+    "tagline": "👋  I'm a DevOps & Software Engineer.",
+    "description": "Versatile DevOps/Software Engineer skilled in Java, .NET, Node.js, Python, and cloud-native development. Experienced in designing microservices, DevOps automation, CI/CD, and real-time data systems using Docker, Kubernetes, Kafka, and Prometheus.",
+    "experienceTitle": "Experience",
+    "educationTitle": "Education",
+    "skillsTitle": "Skills",
+    "languagesTitle": "Languages",
+    "frameworksTitle": "Frameworks",
+    "othersTitle": "Others",
+    "experiences": [
+      {
+        "id": "1",
+        "dates": "Feb 2025 - Present",
+        "type": "Full Time",
+        "position": "AI Product Support Engineer at KATALON",
+        "bullets": [
+          "Serve as Product Manager and Engineering Lead for the Katalon Support Assistant.",
+          "Delivered automation and AI workflows that reduced support case volume by 30 percent.",
+          "Contribute to a new AI project, researching and implementing innovative solutions."
+        ]
+      },
+      {
+        "id": "2",
+        "dates": "Nov 2024 - Jan 2025",
+        "type": "Intern",
+        "position": "Java Backend Developer Intern at FPT SOFTWARE",
+        "bullets": [
+          "Led a team of 7 as Scrum Master to develop RESTful APIs for an online course platform using Spring Boot.",
+          "Optimized PostgreSQL database performance, enhancing system efficiency.",
+          "Streamlined deployment processes using CI/CD pipelines."
+        ]
+      }
+    ],
+    "education": {
+      "universityName": "University of Information Technology - VNUHCM",
+      "universityDate": "Sep 2022 - Mar 2026",
+      "universityPara": "Bachelor of Software Engineering. GPA: 8.56/10. Achieved 'Excellent' grade for Semester 1 and 2, Academic Year 2024-2025."
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Fill out the form and I'll get back to you ASAP.",
+    "nameLabel": "Name",
+    "namePlaceholder": "YOUR NAME",
+    "emailLabel": "Email",
+    "emailPlaceholder": "YOUR.EMAIL@EXAMPLE.COM",
+    "messageLabel": "Message",
+    "messagePlaceholder": "YOUR MESSAGE HERE...",
+    "sendButton": "SEND MESSAGE",
+    "sendingButton": "SENDING...",
+    "successMessage": "Message sent successfully!",
+    "errorMessage": "Failed to send message. Please try again later.",
+    "requiredError": "All fields are required.",
+    "emailError": "Please enter a valid email address."
+  },
+  "blog": {
+    "pageTitle": "Blog",
+    "title": "Blog.",
+    "addNewPost": "Add New Post +",
+    "delete": "Delete",
+    "editBlog": "Edit this blog"
+  },
+  "common": {
+    "language": "EN",
+    "languageFull": "English"
+  }
+}

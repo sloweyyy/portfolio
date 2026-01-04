@@ -418,7 +418,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="DevOps" 
                             role="CI/CD Wizard" 
-                            image="https://media.licdn.com/dms/image/v2/D5622AQH81IfdRMn79g/feedshare-shrink_2048_1536/B56Zhw.yGDHcAs-/0/1754242186453?e=1766016000&v=beta&t=RWPOhfaIOlni7d2n3DyMo5Ur9Lkq1pXEMOSTB0hWylY"
+                            image="https://img.upanhnhanh.com/5cf7f26ee76abd79b1229be0ba6aeeec"
                             rotation={-8}
                             position="bottom-[18%] left-[4%]"
                             color="yellow"
@@ -427,7 +427,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="Cloud" 
                             role="AWS/Azure Pro" 
-                            image="https://media.licdn.com/dms/image/v2/D5622AQE7oOuA2vBAsw/feedshare-shrink_2048_1536/B56ZqBSI26HIAw-/0/1763105617646?e=1766016000&v=beta&t=ksEGEgkF1fG3Tgh14K1sJ0wFiX4w6wPPvWi-GY7XJhQ"
+                            image="https://img.upanhnhanh.com/2bd0afcb9d01348d305513c934ff3104"
                             rotation={14}
                             position="bottom-[8%] right-[10%]"
                             color="purple"
@@ -436,7 +436,7 @@ export default function Home() {
                         <TeamMemberCard 
                             name="Problem" 
                             role="Solver" 
-                            image="https://scontent.fsgn16-1.fna.fbcdn.net/v/t39.30808-6/548615625_1180245437457995_360430066750698697_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFLMP2yi0qoGOwaY0p-pevz5DHnqmxzAsHkMeeqbHMCwV6XIsWmrjoZrbt4_9Mdw0sZqZuhrrNSaiYgt2C7vBN6&_nc_ohc=hBNLHeBXJCkQ7kNvwEkyPoU&_nc_oc=AdmnR_mgS2W04-CQSA1yV-RRtBL4rHmjTr6PMxQzSGJ-jYAG_M1vV8z5PB9jBbD1oho&_nc_zt=23&_nc_ht=scontent.fsgn16-1.fna&_nc_gid=9DmcpyJwOQMYIKIJ9lV8cQ&oh=00_Afn7xrBGUF4rK6HezTAosM_z7pKxwI_TOzpnpGiZpDp5QA&oe=6939F9E3"
+                            image="https://img.upanhnhanh.com/da69d6e693faf839f67b2e8d7ac73e8a"
                             rotation={-6}
                             position="top-[35%] left-[8%]"
                             color="green"

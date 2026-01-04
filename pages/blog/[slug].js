@@ -11,12 +11,17 @@ import BlogEditor from "../../components/BlogEditor";
 import { useRouter } from "next/router";
 import Cursor from "../../components/Cursor";
 import data from "../../data/portfolio.json";
+import { useLanguage } from "../../utils/i18n";
 
-const BlogPost = ({ post }) => {
+const BlogPost = ({ allPosts }) => {
     const [showEditor, setShowEditor] = useState(false);
     const textOne = useRef();
     const textTwo = useRef();
     const router = useRouter();
+    const { lang } = useLanguage();
+    
+    // Get post for current language, fallback to English
+    const post = allPosts[lang] || allPosts.en || {};
 
     useIsomorphicLayoutEffect(() => {
         stagger([textOne.current, textTwo.current], { y: 30 }, { y: 0 });
@@ -71,7 +76,13 @@ const BlogPost = ({ post }) => {
             )}
             {showEditor && (
                 <BlogEditor
-                    post={post}
+                    post={{
+                        slug: post.slug,
+                        date: post.date,
+                        image: post.image,
+                        en: allPosts.en,
+                        vi: allPosts.vi,
+                    }}
                     close={() => setShowEditor(false)}
                     refresh={() => router.reload(window.location.pathname)}
                 />
@@ -81,7 +92,7 @@ const BlogPost = ({ post }) => {
 };
 
 export async function getStaticProps({ params }) {
-    const post = getPostBySlug(params.slug, [
+    const fields = [
         "date",
         "slug",
         "preview",
@@ -90,21 +101,29 @@ export async function getStaticProps({ params }) {
         "preview",
         "image",
         "content",
-    ]);
+    ];
+    
+    // Get post for both languages
+    const enPost = getPostBySlug(params.slug, fields, 'en');
+    const viPost = getPostBySlug(params.slug, fields, 'vi');
+    
     return {
         props: {
-            post: {
-                ...post,
+            allPosts: {
+                en: { ...enPost },
+                vi: { ...viPost },
             },
         },
     };
 }
 
 export async function getStaticPaths() {
-    const posts = getAllPosts(["slug"]);
+    // Get all posts from English folder (assuming same slugs in both)
+    const posts = getAllPosts(["slug"], 'en');
     return {
         paths: posts.map((post) => ({ params: { slug: post.slug } })),
         fallback: false,
     };
 }
 export default BlogPost;
+
