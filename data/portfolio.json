@@ -2,12 +2,12 @@
     "name": "SloWey",
     "headerTaglineOne": "Hello 👋",
     "headerTaglineTwo": "I'm Truong Le Vinh Phuc",
-    "headerTaglineThree": "Developer & Designer",
+    "headerTaglineThree": "Technical Product Manager",
     "headerTaglineFour": "Based in Ho Chi Minh City",
     "alternateTaglinesTwo": [
-        "I'm a DevOps Engineer",
+        "I'm a Technical Product Manager",
         "I'm a Software Engineer",
-        "I'm a Problem Solver"
+        "I'm an AI Product Builder"
     ],
     "alternateTaglinesThree": [
         "building cloud-native systems",
@@ -36,12 +36,28 @@
     ],
     "projects": [
         {
+            "id": "7",
+            "title": "Katalon Support Assistant",
+            "description": "24/7 AI-powered support chat for Katalon users, providing fast and contextual answers across product details, how-to guides, best practices, and troubleshooting.",
+            "imageSrc": "https://opengraph.b-cdn.net/production/images/8c6a8f99-efa4-4fcc-8263-4c3a93f9cf8d.png?token=zm_vurvwAFp_MwSRxtJtHVAJfzru2ue-OmV150ieM2g&height=630&width=1200&expires=33297119216",
+            "url": "https://assistant.katalon.com/",
+            "tags": ["FastAPI", "LangGraph", "AWS ECS", "Salesforce"],
+            "period": "Apr 2025 - Present",
+            "role": "Product Owner • Engineering Lead",
+            "highlights": [
+                "Launched publicly at assistant.katalon.com as the first support touchpoint across the Katalon suite.",
+                "Integrated Claude 4.5 Haiku and web search to deliver faster answers and reduce support case volume by 30%.",
+                "Enabled seamless ticket creation with full conversation handoff to human support (Enterprise customers)."
+            ]
+        },
+        {
             "id": "1",
             "title": "Cloud-Native E-Commerce",
-            "description": "Scalable platform with .NET Core, RabbitMQ, and Istio Service Mesh.",
+            "description": "Cloud-native microservices commerce platform on AWS EKS with Istio, Helm, and observability stack.",
             "imageSrc": "https://upanhnhanh.com/4273f660b67c282dd569e5642180d59c",
             "url": "https://github.com/sloweyyy/cloud-native-ecommerce-platform",
-            "tags": [".NET Core", "RabbitMQ", "Istio"]
+            "tags": [".NET 8", "EKS", "Istio", "Helm"],
+            "period": "Sep 2024 - Jan 2026"
         },
         {
             "id": "2",
@@ -49,7 +65,8 @@
             "description": "Carbon Credit Management Platform using Go, Microservices, and Kubernetes.",
             "imageSrc": "https://upanhnhanh.com/1f6404f02066abaa2b4560b97fe5d5c1",
             "url": "https://github.com/sloweyyy/greenledger",
-            "tags": ["Go", "Microservices", "K8s"]
+            "tags": ["Go", "Microservices", "K8s"],
+            "period": "Mar 2025 - Jun 2025"
         },
         {
             "id": "3",
@@ -57,7 +74,8 @@
             "description": "ML experiment management platform with real-time monitoring, WebSocket updates, and PyTorch integration for MNIST classification.",
             "imageSrc": "https://upanhnhanh.com/f0d050e171d24783be0e4fffc9622aef",
             "url": "https://github.com/sloweyyy/experimenthub",
-            "tags": ["Next.js", "FastAPI", "PyTorch", "ML"]
+            "tags": ["Next.js", "FastAPI", "PyTorch", "ML"],
+            "period": "Mar 2025 - Apr 2025"
         },
         {
             "id": "4",
@@ -65,7 +83,8 @@
             "description": "Comprehensive management system with NestJS, React, and OAuth2.",
             "imageSrc": "https://upanhnhanh.com/7ec9e11154d64596920bdd6e9bd5b8a6",
             "url": "https://schoolstay.netlify.app/",
-            "tags": ["NestJS", "React", "OAuth2"]
+            "tags": ["NestJS", "React", "OAuth2"],
+            "period": "Nov 2024 - Dec 2024"
         },
         {
             "id": "5",
@@ -73,7 +92,8 @@
             "description": "Secure digital notarization using Ethereum and IPFS.",
             "imageSrc": "https://i.imgur.com/SAcA5ZG.png",
             "url": "https://www.trustify.works/",
-            "tags": ["Ethereum", "IPFS", "Web3"]
+            "tags": ["Ethereum", "IPFS", "Web3"],
+            "period": "Sep 2024 - Dec 2024"
         },
         {
             "id": "6",
@@ -81,7 +101,8 @@
             "description": "Multi-interface system for coffee shops using React Native and Firebase.",
             "imageSrc": "https://i.imgur.com/Pmq3vdX.png",
             "url": "https://github.com/FiveD-SE/CoffeeShopManagement",
-            "tags": ["React Native", "Firebase", "Mobile"]
+            "tags": ["React Native", "Firebase", "Mobile"],
+            "period": "Mar 2024 - Jun 2024"
         },
         
         {
@@ -106,7 +127,8 @@
             "description": "Traditional ML models (SVM, Random Forest) for emotion classification using HOG features and OpenCV.",
             "imageSrc": "https://i.imgur.com/g4JrTXM.png",
             "url": "https://github.com/sloweyyy/EmotionSenseBackend",
-            "tags": ["Python", "OpenCV", "ML", "SVM"]
+            "tags": ["Python", "OpenCV", "ML", "SVM"],
+            "period": "Mar 2024 - May 2024"
         }
     ],
     "services": [
@@ -131,10 +153,10 @@
             "description": "Implementing AI/ML solutions for automation, data analysis, and intelligent features using Python, TensorFlow, and OpenCV."
         }
     ],
-    "aboutpara": "I'm Truong Le Vinh Phuc, a Versatile DevOps/Software Engineer skilled in Java, .NET, Node.js, Python, and cloud-native development. Experienced in designing microservices, DevOps automation, CI/CD, and real-time data systems using Docker, Kubernetes, Kafka, and Prometheus. Strong record of leading teams and delivering end-to-end solutions across web, blockchain, and AI/ML projects.",
+    "aboutpara": "I'm Truong Le Vinh Phuc, a Technical Product Manager with a strong software engineering background. I lead cross-functional teams to deliver end-to-end product solutions, turning technical complexity into measurable business value across SaaS, cloud-native systems, blockchain, and AI products.",
     "resume": {
-        "tagline": "👋  I'm a DevOps & Software Engineer.",
-        "description": "Versatile DevOps/Software Engineer skilled in Java, .NET, Node.js, Python, and cloud-native development. Experienced in designing microservices, DevOps automation, CI/CD, and real-time data systems using Docker, Kubernetes, Kafka, and Prometheus.",
+        "tagline": "👋  I'm a Technical Product Manager & Software Engineer.",
+        "description": "Technical Product Manager with proven experience leading cross-functional teams and delivering end-to-end product solutions. Strong background in software engineering, Agile execution, and translating technical complexity into business value.",
         "experiences": [
             {
                 "id": "1",
@@ -142,9 +164,12 @@
                 "type": "Full Time",
                 "position": "AI Product Support Engineer at KATALON",
                 "bullets": [
-                    "Serve as Product Manager and Engineering Lead for the Katalon Support Assistant.",
+                    "Serve as Product Manager and Engineering Lead for the Katalon Support Assistant, owning roadmap, delivery, and technical execution.",
                     "Delivered automation and AI workflows that reduced support case volume by 30 percent.",
-                    "Contribute to a new AI project, researching and implementing innovative solutions."
+                    "Collaborate with Product, Engineering, and Account teams to turn customer feedback into product improvements.",
+                    "Handle complex customer inquiries, diagnose technical issues, and provide high-confidence solutions.",
+                    "Maintain and expand the support knowledge base with high-value FAQs and support playbooks.",
+                    "Continuously evaluate new features and technologies to improve support quality and product adoption."
                 ]
             },
             {
@@ -153,16 +178,16 @@
                 "type": "Intern",
                 "position": "Java Backend Developer Intern at FPT SOFTWARE",
                 "bullets": [
-                    "Led a team of 7 as Scrum Master to develop RESTful APIs for an online course platform using Spring Boot.",
-                    "Optimized PostgreSQL database performance, enhancing system efficiency.",
-                    "Streamlined deployment processes using CI/CD pipelines."
+                    "Supported CI/CD improvements and streamlined deployment workflows for a Spring Boot API system.",
+                    "Optimized PostgreSQL queries and improved system efficiency through performance-oriented fixes.",
+                    "Worked in Agile/Scrum with Jira, contributing to sprint planning and delivery."
                 ]
             }
         ],
         "education": {
             "universityName": "University of Information Technology - VNUHCM",
             "universityDate": "Sep 2022 - Mar 2026",
-            "universityPara": "Bachelor of Software Engineering. GPA: 8.56/10. Achieved 'Excellent' grade for Semester 1 and 2, Academic Year 2024-2025."
+            "universityPara": "Bachelor of Software Engineering. GPA: 8.72/10. Graduation thesis score: 9.5/10 (Cloud-Native Microservices E-Commerce Platform). Achieved 'Excellent' in Semester 1 and 2, Academic Year 2024-2025."
         },
         "languages": [
             "Java",
@@ -170,25 +195,93 @@
             "JavaScript/TypeScript",
             "Python",
             "Go",
-            "Solidity"
+            "Solidity",
+            "English (B2)"
         ],
         "frameworks": [
             "Spring Boot",
             ".NET Core",
             "Node.js",
+            "FastAPI",
+            "LangGraph / LangChain",
             "React.js",
             "Next.js",
             "Docker",
-            "Kubernetes"
+            "Kubernetes",
+            "Helm"
         ],
         "others": [
             "AWS",
             "Azure",
+            "Terraform (Lab)",
             "Kafka",
             "Prometheus",
             "Grafana",
+            "ELK / Jaeger",
             "CI/CD",
-            "Microservices"
+            "Microservices",
+            "Jira / Agile Scrum",
+            "OAuth2 / JWT",
+            "Product Roadmapping"
+        ],
+        "skillGroups": [
+            {
+                "id": "product",
+                "title": "Product & Delivery",
+                "description": "Strategy, execution, and cross-functional collaboration",
+                "items": [
+                    "Product Roadmapping",
+                    "Stakeholder Alignment",
+                    "Customer Feedback Loops",
+                    "Agile / Scrum",
+                    "Jira"
+                ]
+            },
+            {
+                "id": "engineering",
+                "title": "Backend & Architecture",
+                "description": "Designing scalable services and APIs",
+                "items": [
+                    "Java",
+                    "C#",
+                    ".NET Core",
+                    "Spring Boot",
+                    "FastAPI",
+                    "Microservices",
+                    "gRPC",
+                    "OAuth2 / JWT"
+                ]
+            },
+            {
+                "id": "cloud",
+                "title": "Cloud & DevOps",
+                "description": "Platform operations, automation, and reliability",
+                "items": [
+                    "AWS",
+                    "Azure",
+                    "Docker",
+                    "Kubernetes",
+                    "Helm",
+                    "CI/CD",
+                    "Terraform (Lab)",
+                    "Prometheus / Grafana"
+                ]
+            },
+            {
+                "id": "ai-data",
+                "title": "AI & Data Systems",
+                "description": "AI workflow orchestration and data infrastructure",
+                "items": [
+                    "LangGraph / LangChain",
+                    "Python",
+                    "Kafka",
+                    "ELK / Jaeger",
+                    "PostgreSQL",
+                    "MongoDB",
+                    "Redis",
+                    "English (B2)"
+                ]
+            }
         ]
     }
 }

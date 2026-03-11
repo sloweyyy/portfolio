@@ -340,8 +340,9 @@ const Edit = () => {
 
     // Project Handler
     const editProjects = (projectIndex, editProject) => {
-        let copyProjects = data.projects;
-        copyProjects[projectIndex] = { ...editProject };
+        const copyProjects = data.projects.map((project, index) =>
+            index === projectIndex ? { ...editProject } : project
+        );
         setData({ ...data, projects: copyProjects });
     };
 
@@ -358,6 +359,10 @@ const Edit = () => {
                         "https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTAyfHxwYXN0ZWx8ZW58MHx8MHw%3D&auto=format&fit=crop&w=400&q=60",
 
                     url: "http://chetanverma.com/",
+                    tags: ["React", "Node.js", "Product"],
+                    period: "",
+                    role: "",
+                    highlights: [],
                 },
             ],
         });
@@ -370,8 +375,9 @@ const Edit = () => {
 
     // Services Handler
     const editServices = (serviceIndex, editService) => {
-        let copyServices = data.services;
-        copyServices[serviceIndex] = { ...editService };
+        const copyServices = data.services.map((service, index) =>
+            index === serviceIndex ? { ...editService } : service
+        );
         setData({ ...data, services: copyServices });
     };
 
@@ -397,8 +403,9 @@ const Edit = () => {
 
     // Socials Handler
     const editSocials = (socialIndex, editSocial) => {
-        let copySocials = data.socials;
-        copySocials[socialIndex] = { ...editSocial };
+        const copySocials = data.socials.map((social, index) =>
+            index === socialIndex ? { ...editSocial } : social
+        );
         setData({ ...data, socials: copySocials });
     };
 
@@ -444,8 +451,10 @@ const Edit = () => {
     };
 
     const handleEditExperiences = (index, editExperience) => {
-        let copyExperiences = data.resume.experiences;
-        copyExperiences[index] = { ...editExperience };
+        const copyExperiences = data.resume.experiences.map(
+            (experience, experienceIndex) =>
+                experienceIndex === index ? { ...editExperience } : experience
+        );
         setData({
             ...data,
             resume: { ...data.resume, experiences: copyExperiences },
@@ -920,7 +929,7 @@ const Edit = () => {
                                         </div>
                                         <div className="flex items-center mt-2">
                                             <label className="w-1/5 text-lg opacity-50">
-                                                url
+                                                URL
                                             </label>
                                             <input
                                                 value={project.url}
@@ -933,6 +942,83 @@ const Edit = () => {
                                                 className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2"
                                                 type="text"
                                             ></input>
+                                        </div>
+                                        <div className="flex items-center mt-2">
+                                            <label className="w-1/5 text-lg opacity-50">
+                                                Tags
+                                            </label>
+                                            <input
+                                                value={(project.tags || []).join(", ")}
+                                                onChange={(e) =>
+                                                    editProjects(index, {
+                                                        ...project,
+                                                        tags: e.target.value
+                                                            .split(",")
+                                                            .map((tag) =>
+                                                                tag.trim()
+                                                            )
+                                                            .filter(Boolean),
+                                                    })
+                                                }
+                                                className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2"
+                                                type="text"
+                                                placeholder="FastAPI, LangGraph, AWS ECS"
+                                            ></input>
+                                        </div>
+                                        <div className="flex items-center mt-2">
+                                            <label className="w-1/5 text-lg opacity-50">
+                                                Period
+                                            </label>
+                                            <input
+                                                value={project.period || ""}
+                                                onChange={(e) =>
+                                                    editProjects(index, {
+                                                        ...project,
+                                                        period: e.target.value,
+                                                    })
+                                                }
+                                                className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2"
+                                                type="text"
+                                                placeholder="Apr 2025 - Present"
+                                            ></input>
+                                        </div>
+                                        <div className="flex items-center mt-2">
+                                            <label className="w-1/5 text-lg opacity-50">
+                                                Role
+                                            </label>
+                                            <input
+                                                value={project.role || ""}
+                                                onChange={(e) =>
+                                                    editProjects(index, {
+                                                        ...project,
+                                                        role: e.target.value,
+                                                    })
+                                                }
+                                                className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2"
+                                                type="text"
+                                                placeholder="Product Owner • Engineering Lead"
+                                            ></input>
+                                        </div>
+                                        <div className="flex mt-2">
+                                            <label className="w-1/5 text-lg opacity-50 pt-2">
+                                                Highlights
+                                            </label>
+                                            <textarea
+                                                value={(project.highlights || []).join("\n")}
+                                                onChange={(e) =>
+                                                    editProjects(index, {
+                                                        ...project,
+                                                        highlights: e.target.value
+                                                            .split("\n")
+                                                            .map((line) =>
+                                                                line.trim()
+                                                            )
+                                                            .filter(Boolean),
+                                                    })
+                                                }
+                                                className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2 min-h-[90px]"
+                                                placeholder="One highlight per line"
+                                            ></textarea>
                                         </div>
                                         <hr className="my-10"></hr>
                                     </div>

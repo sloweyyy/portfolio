@@ -54,9 +54,14 @@
     "viewProject": "Xem dự án",
     "items": [
       {
+        "id": "7",
+        "title": "Katalon Support Assistant",
+        "description": "Trợ lý hỗ trợ AI 24/7 cho người dùng Katalon, cung cấp câu trả lời nhanh và theo ngữ cảnh về thông tin sản phẩm, how-to, best practices và troubleshooting."
+      },
+      {
         "id": "1",
         "title": "Cloud-Native E-Commerce",
-        "description": "Nền tảng có khả năng mở rộng với .NET Core, RabbitMQ và Istio Service Mesh."
+        "description": "Nền tảng thương mại điện tử microservices cloud-native trên AWS EKS với Istio, Helm và hệ thống quan sát."
       },
       {
         "id": "2",
@@ -140,7 +145,7 @@
   "about": {
     "title": "Về",
     "highlight": "Tôi",
-    "paragraph": "Tôi là Trương Lê Vĩnh Phúc, một Kỹ sư DevOps/Phần mềm đa năng với kỹ năng về Java, .NET, Node.js, Python và phát triển cloud-native. Có kinh nghiệm thiết kế microservices, tự động hóa DevOps, CI/CD và hệ thống dữ liệu thời gian thực sử dụng Docker, Kubernetes, Kafka và Prometheus. Thành tích tốt trong việc dẫn dắt team và cung cấp giải pháp end-to-end cho các dự án web, blockchain và AI/ML.",
+    "paragraph": "Tôi là Trương Lê Vĩnh Phúc, Technical Product Manager có nền tảng kỹ thuật phần mềm vững chắc. Tôi dẫn dắt các team liên chức năng để triển khai sản phẩm end-to-end, chuyển đổi độ phức tạp kỹ thuật thành giá trị kinh doanh rõ ràng trong các sản phẩm SaaS, cloud-native, blockchain và AI.",
     "tags": ["Full Stack", "Product Owner", "Giải quyết vấn đề"]
   },
   "footer": {
@@ -153,8 +158,8 @@
     "pageTitle": "Hồ Sơ - SloWey",
     "editResume": "Chỉnh sửa Hồ sơ",
     "viewPdf": "Xem PDF",
-    "tagline": "👋  Tôi là một Kỹ sư DevOps & Phần mềm.",
-    "description": "Kỹ sư DevOps/Phần mềm đa năng với kỹ năng về Java, .NET, Node.js, Python và phát triển cloud-native. Có kinh nghiệm thiết kế microservices, tự động hóa DevOps, CI/CD và hệ thống dữ liệu thời gian thực sử dụng Docker, Kubernetes, Kafka và Prometheus.",
+    "tagline": "👋  Tôi là một Technical Product Manager & Software Engineer.",
+    "description": "Technical Product Manager với kinh nghiệm dẫn dắt team liên chức năng và triển khai sản phẩm end-to-end. Có nền tảng kỹ thuật phần mềm, thực thi Agile và khả năng chuyển bài toán kỹ thuật thành giá trị kinh doanh.",
     "experienceTitle": "Kinh Nghiệm",
     "educationTitle": "Học Vấn",
     "skillsTitle": "Kỹ Năng",
@@ -168,9 +173,12 @@
         "type": "Toàn thời gian",
         "position": "AI Product Support Engineer tại KATALON",
         "bullets": [
-          "Đảm nhiệm vai trò Product Manager và Engineering Lead cho Katalon Support Assistant.",
+          "Đảm nhiệm vai trò Product Manager và Engineering Lead cho Katalon Support Assistant, phụ trách roadmap, delivery và triển khai kỹ thuật.",
           "Triển khai các quy trình tự động hóa và AI giúp giảm 30% lượng yêu cầu hỗ trợ.",
-          "Đóng góp vào dự án AI mới, nghiên cứu và triển khai các giải pháp sáng tạo."
+          "Phối hợp với Product, Engineering và Account để chuyển phản hồi khách hàng thành cải tiến sản phẩm.",
+          "Xử lý các yêu cầu kỹ thuật phức tạp, chẩn đoán lỗi và cung cấp giải pháp kịp thời.",
+          "Mở rộng knowledge base với FAQ và bài viết hỗ trợ giá trị cao.",
+          "Liên tục cập nhật công nghệ và tính năng mới để nâng cao chất lượng hỗ trợ."
         ]
       },
       {
@@ -179,16 +187,16 @@
         "type": "Thực tập sinh",
         "position": "Java Backend Developer Intern tại FPT SOFTWARE",
         "bullets": [
-          "Dẫn dắt team 7 người với vai trò Scrum Master để phát triển RESTful APIs cho nền tảng khóa học trực tuyến sử dụng Spring Boot.",
-          "Tối ưu hóa hiệu năng cơ sở dữ liệu PostgreSQL, nâng cao hiệu suất hệ thống.",
-          "Tối ưu hóa quy trình triển khai sử dụng CI/CD pipelines."
+          "Hỗ trợ cải tiến CI/CD và tối ưu quy trình triển khai cho hệ thống API Spring Boot.",
+          "Tối ưu truy vấn PostgreSQL và cải thiện hiệu suất hệ thống.",
+          "Làm việc theo Agile/Scrum với Jira, tham gia lập kế hoạch sprint và bàn giao."
         ]
       }
     ],
     "education": {
       "universityName": "Đại học Công nghệ Thông tin - ĐHQG TP.HCM",
       "universityDate": "Tháng 9, 2022 - Tháng 3, 2026",
-      "universityPara": "Cử nhân Kỹ thuật Phần mềm. GPA: 8.56/10. Đạt loại 'Xuất sắc' Học kỳ 1 và 2, Năm học 2024-2025."
+      "universityPara": "Cử nhân Kỹ thuật Phần mềm. GPA: 8.72/10. Điểm khóa luận: 9.5/10 (Cloud-Native Microservices E-Commerce Platform). Đạt loại 'Xuất sắc' Học kỳ 1 và 2, Năm học 2024-2025."
     }
   },
   "contact": {
