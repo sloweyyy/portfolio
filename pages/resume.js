@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Cursor from "../components/Cursor";
@@ -7,14 +7,46 @@ import ProjectResume from "../components/ProjectResume";
 import Socials from "../components/Socials";
 import Button from "../components/Button";
 import data from "../data/portfolio.json";
-import { motion } from "framer-motion";
 
 const Resume = () => {
     const router = useRouter();
-    const [mount, setMount] = useState(false);
+    const resume = data.resume || {};
+    const experiences = resume.experiences || [];
+    const fallbackSkillGroups = [
+        {
+            id: "languages",
+            title: resume.languagesTitle || "Languages",
+            description: "Programming languages and communication",
+            items: resume.languages || [],
+        },
+        {
+            id: "frameworks",
+            title: resume.frameworksTitle || "Frameworks",
+            description: "Frameworks and engineering platforms",
+            items: resume.frameworks || [],
+        },
+        {
+            id: "others",
+            title: resume.othersTitle || "Others",
+            description: "Cloud, tools, and delivery capabilities",
+            items: resume.others || [],
+        },
+    ];
+    const skillGroups =
+        Array.isArray(resume.skillGroups) && resume.skillGroups.length > 0
+            ? resume.skillGroups
+            : fallbackSkillGroups;
+    const filteredSkillGroups = skillGroups.filter(
+        (group) => Array.isArray(group.items) && group.items.length > 0
+    );
+    const skillGradients = [
+        "from-pink-100 to-rose-50",
+        "from-blue-100 to-cyan-50",
+        "from-yellow-100 to-amber-50",
+        "from-green-100 to-emerald-50",
+    ];
 
     useEffect(() => {
-        setMount(true);
         if (!data.showResume) {
             router.push("/");
         }
@@ -22,8 +54,9 @@ const Resume = () => {
 
     const handleViewPdf = () => {
         window.open(
-            "https://drive.google.com/file/d/14VcPD_mXkNDaLmYK5KaqwgBboKu0CQcC/view?usp=sharing",
-            "_blank"
+            "/Truong-Le-Vinh-Phuc-Product-Manager.pdf",
+            "_blank",
+            "noopener,noreferrer"
         );
     };
 
@@ -32,23 +65,19 @@ const Resume = () => {
             <Head>
                 <title>Resume - SloWey</title>
             </Head>
-            {process.env.NODE_ENV === "development" && (
-                <div className="fixed bottom-6 right-6">
+            <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+                <Button onClick={handleViewPdf} type={"primary"}>
+                    View PDF
+                </Button>
+                {process.env.NODE_ENV === "development" && (
                     <Button
                         onClick={() => router.push("/edit")}
-                        type={"primary"}
+                        classes="bg-white text-black border border-black hover:bg-gray-100"
                     >
                         Edit Resume
                     </Button>
-                </div>
-            )}
-            {process.env.NODE_ENV === "production" && (
-                <div className="fixed bottom-6 right-6">
-                    <Button onClick={handleViewPdf} type={"primary"}>
-                        View PDF
-                    </Button>
-                </div>
-            )}
+                )}
+            </div>
 
             {data.showCursor && <Cursor />}
             <div
@@ -57,28 +86,27 @@ const Resume = () => {
                 }`}
             >
                 <Header />
-                {mount && (
-                    <div className="mt-16 w-full flex flex-col items-center">
-                        <div
-                            className={`w-full bg-gray-50 max-w-5xl p-20 mob:p-5 desktop:p-20 rounded-lg shadow-sm`}
-                        >
+                <div className="mt-16 w-full flex flex-col items-center">
+                    <div
+                        className={`w-full bg-gray-50 max-w-5xl p-20 mob:p-5 desktop:p-20 rounded-lg shadow-sm`}
+                    >
                                 <h1 className="text-4xl font-bold">
                                     {data.name}
                                 </h1>
                                 <h2 className="text-xl mt-8">
-                                    {data.resume.tagline}
+                                    {resume.tagline}
                                 </h2>
                                 <p className="w-full text-xl mt-8 opacity-75 leading-relaxed tracking-wide max-w-4xl font-body">
-                                    {data.resume.description}
+                                    {resume.description}
                                 </p>
                                 <div className="mt-6">
                                     <Socials />
                                 </div>
                                 <div className="mt-12">
                                     <h1 className="text-2xl font-bold">
-                                        Experience
+                                        {resume.experienceTitle || "Experience"}
                                     </h1>
-                                    {data.resume.experiences.map(
+                                    {experiences.map(
                                         ({
                                             id,
                                             dates,
@@ -98,98 +126,72 @@ const Resume = () => {
                                 </div>
                                 <div className="mt-12">
                                     <h1 className="text-2xl font-bold">
-                                        Education
+                                        {resume.educationTitle || "Education"}
                                     </h1>
                                     <div className="mt-5">
-                                        <h2 className="text-lg">
-                                            {
-                                                data.resume.education
-                                                    .universityName
-                                            }
-                                        </h2>
-                                        <h3 className="text-sm opacity-75 mt-2">
-                                            {
-                                                data.resume.education
-                                                    .universityDate
-                                            }
-                                        </h3>
-                                        <p className="text-sm mt-4 opacity-50">
-                                            {
-                                                data.resume.education
-                                                    .universityPara
-                                            }
-                                        </p>
+                                        <h2 className="text-lg">{resume.education?.universityName || ""}</h2>
+                                        <h3 className="text-sm opacity-75 mt-2">{resume.education?.universityDate || ""}</h3>
+                                        <p className="text-sm mt-4 opacity-50">{resume.education?.universityPara || ""}</p>
                                     </div>
                                 </div>
-                            <div className="mt-12">
+                        <div className="mt-12">
+                            <div className="flex flex-wrap items-end justify-between gap-3">
                                 <h1 className="text-2xl font-bold">
-                                    Skills
+                                    {resume.skillsTitle || "Skills"}
                                 </h1>
-                                <div className="flex mob:flex-col desktop:flex-row justify-between mt-6">
-                                    {data.resume.languages && (
-                                            <div className="mt-4 mob:mt-5">
-                                                <h2 className="text-lg font-semibold">
-                                                    Languages
-                                                </h2>
-                                                <ul className="list-disc mt-4">
-                                                    {data.resume.languages.map(
-                                                        (language, index) => (
-                                                            <li
-                                                                key={index}
-                                                                className="ml-5 py-2"
-                                                            >
-                                                                {language}
-                                                            </li>
-                                                        )
-                                                    )}
-                                                </ul>
-                                            </div>
-                                    )}
+                                <p className="text-xs uppercase tracking-[0.2em] text-black/50 font-semibold">
+                                    {filteredSkillGroups.length} categories
+                                </p>
+                            </div>
+                            <p className="mt-3 text-sm text-black/60">
+                                Skill matrix grouped by capability area for quick scanning.
+                            </p>
 
-                                    {data.resume.frameworks && (
-                                            <div className="mt-4 mob:mt-8">
-                                                <h2 className="text-lg font-semibold">
-                                                    Frameworks
+                            <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-4 mt-6">
+                                {filteredSkillGroups.map((group, index) => (
+                                    <div
+                                        key={group.id || index}
+                                        className="relative overflow-hidden rounded-2xl border border-black/10 bg-white p-5 shadow-sm"
+                                    >
+                                        <div
+                                            className={`absolute inset-0 bg-gradient-to-br ${
+                                                skillGradients[index % skillGradients.length]
+                                            } opacity-60 pointer-events-none`}
+                                        ></div>
+                                        <div className="relative z-10">
+                                            <div className="flex items-center justify-between gap-3">
+                                                <h2 className="text-lg font-bold">
+                                                    {group.title}
                                                 </h2>
-                                                <ul className="list-disc mt-4">
-                                                    {data.resume.frameworks.map(
-                                                        (framework, index) => (
-                                                            <li
-                                                                key={index}
-                                                                className="ml-5 py-2"
-                                                            >
-                                                                {framework}
-                                                            </li>
-                                                        )
-                                                    )}
-                                                </ul>
+                                                <span className="text-xs font-bold px-2 py-1 rounded-full bg-white/80 border border-black/10">
+                                                    {group.items.length}
+                                                </span>
                                             </div>
-                                    )}
+                                            {group.description && (
+                                                <p className="text-sm mt-2 text-black/65">
+                                                    {group.description}
+                                                </p>
+                                            )}
 
-                                    {data.resume.others && (
-                                            <div className="mt-4 mob:mt-8">
-                                                <h2 className="text-lg font-semibold">
-                                                    Others
-                                                </h2>
-                                                <ul className="list-disc mt-4">
-                                                    {data.resume.others.map(
-                                                        (other, index) => (
-                                                            <li
-                                                                key={index}
-                                                                className="ml-5 py-2"
-                                                            >
-                                                                {other}
-                                                            </li>
-                                                        )
-                                                    )}
-                                                </ul>
+                                            <div className="mt-4 flex flex-wrap gap-2">
+                                                {group.items.map(
+                                                    (item, itemIndex) => (
+                                                        <span
+                                                            key={`${group.id || "skill"}-${itemIndex}`}
+                                                            className="inline-flex text-xs px-3 py-1.5 rounded-full bg-white/90 border border-black/10 font-medium"
+                                                        >
+                                                            {item}
+                                                        </span>
+                                                    )
+                                                )}
                                             </div>
-                                    )}
-                                </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );

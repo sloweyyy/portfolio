@@ -516,13 +516,13 @@ export default function Home() {
                             </p>
 
                             <div className="flex flex-col tablet:flex-row items-center justify-center gap-4">
-                                <div className="relative group cursor-pointer" onClick={() => window.open("mailto:hello@slowey.com")}>
+                                <div className="relative group cursor-pointer" onClick={() => window.open("mailto:truonglevinhphuc2006@gmail.com")}>
                                     <div className="absolute inset-0 bg-neo-black rounded-full translate-x-1 translate-y-1 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
                                     <div className="relative bg-white px-10 py-4 rounded-full border-3 border-neo-black flex items-center gap-2 font-heading font-bold uppercase text-base tracking-wider">
                                         <span>GET IN TOUCH</span>
                                     </div>
                                 </div>
-                                <div className="relative group cursor-pointer" onClick={() => window.open("/resume")}>
+                                <div className="relative group cursor-pointer" onClick={() => router.push("/resume")}>
                                     <div className="absolute inset-0 bg-neo-black rounded-full translate-x-1 translate-y-1 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
                                     <div className="relative bg-neo-yellow px-10 py-4 rounded-full border-3 border-neo-black flex items-center gap-2 font-heading font-bold uppercase text-base tracking-wider">
                                         <span>VIEW RESUME</span>
