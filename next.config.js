@@ -16,7 +16,7 @@ const nextConfig = {
                     },
                     {
                         key: "Access-Control-Allow-Headers",
-                        value: "Content-Type, Authorization",
+                        value: "Content-Type",
                     },
                 ],
             },
@@ -37,9 +37,6 @@ const nextConfig = {
                 hostname: 'img.youtube.com',
             },
         ],
-    },
-    env: {
-        JWT_SECRET: process.env.JWT_SECRET,
     },
 };
 

@@ -3,7 +3,6 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
-import { verifyToken } from "../utils/auth";
 import { toast } from "sonner";
 import { Toaster } from "../components/Toaster";
 
@@ -13,92 +12,18 @@ import Cursor from "../components/Cursor";
 const Edit = () => {
     const [data, setData] = useState(yourData);
     const [currentTabs, setCurrentTabs] = useState("HEADER");
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [loginData, setLoginData] = useState({
-        username: "",
-        password: "",
-    });
     const router = useRouter();
-    const [loading, setLoading] = useState(true);
+    const isDevEnv = process.env.NODE_ENV === "development";
 
     useEffect(() => {
-        const checkAuth = async () => {
-            try {
-                setLoading(true);
-                const token = localStorage.getItem("auth_token");
-
-                if (!token) {
-                    setIsAuthenticated(false);
-                    setLoading(false);
-                    return;
-                }
-
-                try {
-                    const user = verifyToken(token);
-                    if (user && user.role === "admin") {
-                        setIsAuthenticated(true);
-                    } else {
-                        localStorage.removeItem("auth_token");
-                        setIsAuthenticated(false);
-                        console.log(
-                            "Token verification failed or not an admin user"
-                        );
-                        toast.error(
-                            "Your session has expired. Please login again."
-                        );
-                    }
-                } catch (error) {
-                    console.error("Error verifying token:", error);
-                    localStorage.removeItem("auth_token");
-                    setIsAuthenticated(false);
-                    toast.error("Authentication error. Please login again.");
-                }
-
-                setLoading(false);
-            } catch (error) {
-                console.error("Auth check error:", error);
-                setIsAuthenticated(false);
-                setLoading(false);
-            }
-        };
-
-        checkAuth();
-    }, []);
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-
-        try {
-            const res = await fetch("/api/auth", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(loginData),
-                credentials: "include",
-            });
-
-            const data = await res.json();
-
-            if (res.ok) {
-                localStorage.setItem("auth_token", data.token);
-                setIsAuthenticated(true);
-                toast.success("Login successful");
-            } else {
-                toast.error(data.message || "Login failed. Please try again.");
-            }
-        } catch (error) {
-            console.error("Login error:", error);
-            toast.error("Login failed. Please try again.");
+        if (!isDevEnv) {
+            router.replace("/");
         }
-    };
+    }, [isDevEnv, router]);
 
     const saveData = async () => {
-        const token = localStorage.getItem("auth_token");
-
-        if (!token) {
-            setIsAuthenticated(false);
-            toast.error("Session expired. Please login again");
+        if (!isDevEnv) {
+            toast.error("Editing is available only in local development.");
             return;
         }
 
@@ -107,237 +32,50 @@ const Edit = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(data),
-                credentials: "include",
             });
 
-            const contentType = res.headers.get("content-type");
-            if (!contentType || !contentType.includes("application/json")) {
+            const contentType = res.headers.get("content-type") || "";
+            if (!contentType.includes("application/json")) {
                 throw new Error("Received non-JSON response from server");
             }
 
             const result = await res.json();
-
-            if (res.status === 401) {
-                setIsAuthenticated(false);
-                localStorage.removeItem("auth_token");
-                toast.error("Session expired. Please login again");
+            if (!res.ok) {
+                toast.error(result.message || "Failed to save changes");
                 return;
             }
 
-            if (res.ok) {
-                toast.success(result.message || "Changes saved successfully");
-            } else {
-                toast.error(result.message || "Failed to save changes");
-            }
+            toast.success(result.message || "Changes saved successfully");
         } catch (error) {
             console.error("Save error:", error);
-            if (error.message.includes("non-JSON")) {
-                setIsAuthenticated(false);
-                localStorage.removeItem("auth_token");
-                toast.error("Authentication error. Please login again.");
-            } else {
-                toast.error("Error saving changes. Please try again.");
-            }
+            toast.error("Error saving changes. Please try again.");
         }
     };
 
-    if (loading) {
-        return (
-            <div
-                className={`min-h-screen flex items-center justify-center bg-gray-100 text-gray-900`}
-            >
-                <div className="text-center">
-                    <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p>Loading...</p>
-                </div>
-            </div>
-        );
-    }
-
-    if (!isAuthenticated) {
+    if (!isDevEnv) {
         return (
             <>
                 <Toaster />
-                <div
-                    className={`min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden`}
-                >
-                    {/* Background elements - more subtle */}
-                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                        {/* Subtler gradient circles */}
-                        <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-gray-200/40 to-blue-100/30 dark:from-gray-800/40 dark:to-gray-700/30 blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-                        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-gray-100/30 to-gray-200/40 dark:from-gray-800/30 dark:to-gray-700/40 blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
-
-                        {/* Subtle grid overlay */}
-                        <div className="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-[0.015] dark:opacity-[0.03]"></div>
-                    </div>
-
-                    <div className="w-full max-w-md p-8 space-y-6 relative z-10">
-                        <div className="relative bg-white/90 rounded-2xl shadow-lg overflow-hidden backdrop-blur-sm border border-gray-200/50">
-                            {/* Subtle top border */}
-                            <div className="h-1 w-full bg-gradient-to-r from-gray-300 via-blue-400 to-gray-300 bg-size-200 animate-shimmer"></div>
-
-                            <div className="p-8">
-                                <div className="flex flex-col items-center mb-8">
-                                    <div className="w-16 h-16 mb-5 bg-blue-500 rounded-xl flex items-center justify-center shadow-md">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-8 w-8 text-white"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth={2}
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <h1 className="text-2xl font-bold text-gray-800">
-                                        Admin Login
-                                    </h1>
-                                    <p className="text-gray-500 text-center mt-2">
-                                        Enter your credentials to access the
-                                        admin dashboard
-                                    </p>
-                                </div>
-
-                                <form
-                                    onSubmit={handleLogin}
-                                    className="space-y-5"
-                                >
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
-                                            Username
-                                        </label>
-                                        <div className="relative">
-                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-5 w-5 text-gray-400"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
-                                            </div>
-                                            <input
-                                                type="text"
-                                                value={loginData.username}
-                                                onChange={(e) =>
-                                                    setLoginData({
-                                                        ...loginData,
-                                                        username:
-                                                            e.target.value,
-                                                    })
-                                                }
-                                                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none transition-all duration-200 bg-white/80 text-gray-900 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
-                                                placeholder="Enter username"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2 ml-1">
-                                            Password
-                                        </label>
-                                        <div className="relative">
-                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-5 w-5 text-gray-400"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
-                                            </div>
-                                            <input
-                                                type="password"
-                                                value={loginData.password}
-                                                onChange={(e) =>
-                                                    setLoginData({
-                                                        ...loginData,
-                                                        password:
-                                                            e.target.value,
-                                                    })
-                                                }
-                                                className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none transition-all duration-200 bg-white/80 text-gray-900 backdrop-blur-sm border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
-                                                placeholder="Enter password"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <button
-                                        type="submit"
-                                        className="w-full py-3 px-4 flex items-center justify-center rounded-lg text-white font-medium transition-all duration-200 bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform hover:scale-[1.01] active:scale-[0.99]"
-                                    >
-                                        Sign In
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-                        {/* Footer text */}
-                        <p className="mt-4 text-center text-sm text-gray-500">
-                            Protected area. Only authorized personnel.
+                <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+                    <div className="text-center max-w-lg">
+                        <h1 className="text-3xl font-bold text-gray-900">
+                            Edit Dashboard Is Disabled
+                        </h1>
+                        <p className="mt-3 text-gray-700">
+                            Portfolio editing is available only in local development mode.
                         </p>
+                        <div className="mt-6 flex justify-center">
+                            <Button onClick={() => router.push("/")} type="primary">
+                                Go Home
+                            </Button>
+                        </div>
                     </div>
-
-                    {/* CSS for grid pattern */}
-                    <style jsx global>{`
-                        .bg-grid-pattern {
-                            background-image: linear-gradient(
-                                    to right,
-                                    rgba(0,0,0,0.05) 1px,
-                                    transparent 1px
-                                ),
-                                linear-gradient(
-                                    to bottom,
-                                    rgba(0,0,0,0.05) 1px,
-                                    transparent 1px
-                                );
-                        }
-
-                        .bg-size-200 {
-                            background-size: 200% 200%;
-                        }
-
-                        .animate-shimmer {
-                            animation: shimmer 3s linear infinite;
-                        }
-
-                        @keyframes shimmer {
-                            0% {
-                                background-position: 0% 50%;
-                            }
-                            50% {
-                                background-position: 100% 50%;
-                            }
-                            100% {
-                                background-position: 0% 50%;
-                            }
-                        }
-                    `}</style>
                 </div>
             </>
         );
     }
-
     // Project Handler
     const editProjects = (projectIndex, editProject) => {
         const copyProjects = data.projects.map((project, index) =>
