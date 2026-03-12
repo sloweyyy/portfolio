@@ -3,7 +3,7 @@
 [![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://www.slowey.works)
 ![Next.js](https://img.shields.io/badge/Next.js-15.1.6-blue)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.3-blueviolet)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsloweyyy%2Fportfolio&env=MONGODB_URI,MONGODB_DB,JWT_SECRET,GITHUB_TOKEN,GITHUB_OWNER,GITHUB_REPO&demo-title=SloWey%20Portfolio&demo-url=https%3A%2F%2Fwww.slowey.works%2F)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsloweyyy%2Fportfolio&env=GITHUB_TOKEN,GITHUB_OWNER,GITHUB_REPO&demo-title=SloWey%20Portfolio&demo-url=https%3A%2F%2Fwww.slowey.works%2F)
 
 This is a modern and performant personal portfolio website and blog, built with Next.js and Tailwind CSS. It features a clean, minimal design with dark mode support, showcasing projects, skills, and blog posts.
 
@@ -18,9 +18,9 @@ This is a modern and performant personal portfolio website and blog, built with 
 - **Smooth Animations:** Implemented with GSAP and Framer Motion.
 - **Interactive UI:** Smooth animations and transitions.
 - **Contact Form:** Integrated with Google Sheets API for easy data collection.
-- **Admin Panel:** Basic login to edit portfolio data and blogs.
+- **Local Dev Editor:** Edit portfolio, resume, and blogs in local development only.
 - **Custom Cursor:** Enabled a custom cursor on hoverable elements.
-- **Konami Code:** Secret key combination to navigate to admin panel.
+- **Editor Shortcut:** Hidden shortcut can navigate to the editor locally.
 - **Easy Customization:**  Portfolio data, resume and blog posts are managed via files or API and a simple editor.
 
 ## Tech Stack 💻
@@ -31,7 +31,6 @@ This is a modern and performant personal portfolio website and blog, built with 
 - **State Management:** React Context
 - **Markdown Processing:** Gray Matter & Remark
 - **Form Handling:** Nodemailer + Google Sheets API
-- **Database:** MongoDB (for user authentication)
 - **Deployment:** Vercel
 
 ## Getting Started 🚀
@@ -59,9 +58,6 @@ This is a modern and performant personal portfolio website and blog, built with 
     Create a `.env.local` file in the root directory and add the following variables:
 
     ```env
-    MONGODB_URI=<your_mongodb_uri>
-    MONGODB_DB=<your_mongodb_db>
-    JWT_SECRET=<your_jwt_secret>
     GITHUB_TOKEN=<your_github_token>
     GITHUB_OWNER=<your_github_username>
     GITHUB_REPO=<your_github_repo>
@@ -70,9 +66,6 @@ This is a modern and performant personal portfolio website and blog, built with 
     EMAIL_APP_PASSWORD=<your_email_app_password>
     ```
 
-    - **MONGODB_URI:** Your MongoDB connection string.
-    - **MONGODB_DB:** The name of your MongoDB database.
-    - **JWT_SECRET:** A secret key for JWT token generation.
     - **GITHUB_TOKEN:** A personal access token for GitHub API.
     - **GITHUB_OWNER:** Your GitHub username.
     - **GITHUB_REPO:** The repository name for the blog posts.
@@ -91,14 +84,14 @@ This is a modern and performant personal portfolio website and blog, built with 
 
 - **`data/portfolio.json`:** Contains the main data for the portfolio (projects, services, about, socials, etc.).
 - **`_posts/`:** Directory holding all blog posts as Markdown files.
-- **`pages/api/`:** API routes for user authentication, contact form handling and data management.
+- **`pages/api/`:** API routes for contact form handling and local-development content editing.
 - **`components/`:** Contains all the reusable react components.
 
-## Admin Access
+## Local Editing
 
-- **Login Page:** Access by navigating to `/edit` while the development environment is running.
-- **Credentials:** You can seed a new admin user by using `npm run seed` in terminal.
-- **Konami Code:** Special key combination `Up, Up, Down, Down, Left, Right, Left, Right, B, A` can also be used to navigate to the admin panel.
+- **Edit Page:** Access `/edit` in local development (`npm run dev`).
+- **Production:** Editing APIs are disabled outside local development.
+- **Shortcut:** `Ctrl + Alt + E` (or `Cmd + E`) can open the editor locally.
 
 ## Customization
 

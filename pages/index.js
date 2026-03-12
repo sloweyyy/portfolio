@@ -330,6 +330,10 @@ export default function Home() {
     const eyeY = useSpring(useTransform(mouseY, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [-30, 30]), springConfig);
 
     useEffect(() => {
+        if (process.env.NODE_ENV !== "development") {
+            return;
+        }
+
         const konamiCode = [
             "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
             "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a",
@@ -352,6 +356,10 @@ export default function Home() {
     }, [router]);
 
     useEffect(() => {
+        if (process.env.NODE_ENV !== "development") {
+            return;
+        }
+
         const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
         if (konami.length === konamiCode.length && konami.every((key, index) => key === konamiCode[index])) {
             router.push("/edit");
