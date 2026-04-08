@@ -78,6 +78,19 @@
             "period": "Mar 2025 - Apr 2025"
         },
         {
+            "id": "11",
+            "title": "Pray for T1",
+            "description": "Fan engagement web app where users can light incense and pray for T1 esports team's victory in competitions.",
+            "imageSrc": "https://img.upanhnhanh.com/11aa6bd5377c163e3474bcb0afe3a2be",
+            "url": "https://t1-pray.vercel.app",
+            "tags": ["TypeScript", "Next.js", "Vercel"],
+            "period": "Apr 2026",
+            "highlights": [
+                "Reached 15,000 visitors and 30,000 page views in the first week.",
+                "Peaked at 150 concurrent users in production."
+            ]
+        },
+        {
             "id": "4",
             "title": "Resort Management System",
             "description": "Comprehensive management system with NestJS, React, and OAuth2.",
