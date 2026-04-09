@@ -88,5 +88,5 @@
 /* Image */
 
 .markdown-class img {
-  @apply max-h-96 w-full my-10 object-cover rounded-lg shadow-lg;
+  @apply my-0 rounded-xl;
 }

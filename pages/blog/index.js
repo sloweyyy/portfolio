@@ -8,15 +8,10 @@ import Header from "../../components/Header";
 import data from "../../data/portfolio.json";
 import { ISOToDate } from "../../utils";
 import Footer from "../../components/Footer";
-import { useLanguage } from "../../utils/i18n";
-
-const Blog = ({ allPosts }) => {
+const Blog = ({ posts }) => {
     const showBlog = useRef(data.showBlog);
     const router = useRouter();
     const [mounted, setMounted] = useState(false);
-    const { lang } = useLanguage();
-
-    const posts = allPosts[lang] || allPosts.en || [];
 
     useEffect(() => {
         setMounted(true);
@@ -54,7 +49,7 @@ const Blog = ({ allPosts }) => {
                 <title>Blog</title>
             </Head>
             <div className="w-full max-w-[1440px] mx-auto px-4 laptop:px-14 relative z-10">
-                <Header isBlog={true} />
+                <Header />
             </div>
             <main className="flex-grow pb-56 tablet:pb-48 container mx-auto px-4 laptop:px-0 w-full">
                 <div className="mt-16">
@@ -133,15 +128,11 @@ export async function getStaticProps() {
     const { getAllPosts } = await import("../../utils/api");
     const fields = ["slug", "title", "image", "preview", "author", "date"];
 
-    const enPosts = getAllPosts(fields, "en");
-    const viPosts = getAllPosts(fields, "vi");
+    const posts = getAllPosts(fields, "en");
 
     return {
         props: {
-            allPosts: {
-                en: [...enPosts],
-                vi: [...viPosts],
-            },
+            posts: [...posts],
         },
     };
 }
