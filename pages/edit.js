@@ -207,7 +207,7 @@ const Edit = () => {
                     data.showCursor && "cursor-none"
                 }`}
             >
-                <Header isBlog></Header>
+                <Header></Header>
                 {data.showCursor && <Cursor />}
                 <div className="mt-10">
                     <div

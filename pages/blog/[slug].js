@@ -11,17 +11,11 @@ import BlogEditor from "../../components/BlogEditor";
 import { useRouter } from "next/router";
 import Cursor from "../../components/Cursor";
 import data from "../../data/portfolio.json";
-import { useLanguage } from "../../utils/i18n";
-
-const BlogPost = ({ allPosts }) => {
+const BlogPost = ({ post }) => {
     const [showEditor, setShowEditor] = useState(false);
     const textOne = useRef();
     const textTwo = useRef();
     const router = useRouter();
-    const { lang } = useLanguage();
-    
-    // Get post for current language, fallback to English
-    const post = allPosts[lang] || allPosts.en || {};
 
     useIsomorphicLayoutEffect(() => {
         stagger([textOne.current, textTwo.current], { y: 30 }, { y: 0 });
@@ -35,7 +29,7 @@ const BlogPost = ({ allPosts }) => {
             </Head>
             {data.showCursor && <Cursor />}
             <div className="container mx-auto relative z-10 px-4">
-                <Header isBlog={true} />
+                <Header />
             </div>
             <main className="flex-grow pt-10 pb-48 w-full container mx-auto px-4 laptop:px-0">
                 <div className="flex flex-col">
@@ -76,13 +70,7 @@ const BlogPost = ({ allPosts }) => {
             )}
             {showEditor && (
                 <BlogEditor
-                    post={{
-                        slug: post.slug,
-                        date: post.date,
-                        image: post.image,
-                        en: allPosts.en,
-                        vi: allPosts.vi,
-                    }}
+                    post={post}
                     close={() => setShowEditor(false)}
                     refresh={() => router.reload(window.location.pathname)}
                 />
@@ -98,21 +86,15 @@ export async function getStaticProps({ params }) {
         "preview",
         "title",
         "tagline",
-        "preview",
         "image",
         "content",
     ];
-    
-    // Get post for both languages
-    const enPost = getPostBySlug(params.slug, fields, 'en');
-    const viPost = getPostBySlug(params.slug, fields, 'vi');
-    
+
+    const post = getPostBySlug(params.slug, fields, 'en');
+
     return {
         props: {
-            allPosts: {
-                en: { ...enPost },
-                vi: { ...viPost },
-            },
+            post: { ...post },
         },
     };
 }
