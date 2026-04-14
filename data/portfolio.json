@@ -36,6 +36,22 @@
     ],
     "projects": [
         {
+            "id": "12",
+            "title": "llmfit - Hardware-Aware LLM Dashboard",
+            "description": "Web dashboard for the llmfit open-source project (23k+ stars) providing hardware-aware LLM model recommendation, filtering, comparison, and download workflows.",
+            "imageSrc": "https://opengraph.githubassets.com/1/AlexsJones/llmfit",
+            "url": "https://github.com/AlexsJones/llmfit",
+            "tags": ["React", "JavaScript", "CSS", "REST APIs"],
+            "period": "Feb 2026 - Apr 2026",
+            "role": "Full-stack Engineer, Open Source Contributor",
+            "highlights": [
+                "Contributed to llmfit-web, the web dashboard of a 23k+ star open-source project for hardware-aware LLM model recommendation.",
+                "Refactored the dashboard from a monolithic frontend into a modular component-based architecture with advanced filtering and side-by-side model comparison.",
+                "Added multi-theme support and integrated frontend with backend APIs for richer model metadata, runtime states, and download flows.",
+                "Improved dashboard accessibility through embedded web UI and CLI-linked experience, collaborating with a global open-source community."
+            ]
+        },
+        {
             "id": "7",
             "title": "Katalon Support Assistant",
             "description": "24/7 AI-powered support chat for Katalon users, providing fast and contextual answers across product details, how-to guides, best practices, and troubleshooting.",
