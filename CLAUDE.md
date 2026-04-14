@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A personal portfolio website with an integrated blog system and i18n support (English/Vietnamese). Built with Next.js (Pages Router), React 19, Tailwind CSS, and multiple animation libraries (Framer Motion, GSAP, React Spring). Live at https://slowey.dev.
+A personal portfolio website with an integrated blog system. Built with Next.js (Pages Router), React 19, Tailwind CSS, and multiple animation libraries (Framer Motion, GSAP, React Spring). Live at https://slowey.dev.
 
 ## Commands
 
@@ -26,8 +26,8 @@ Uses **Next.js Pages Router** (not App Router). Pages live in `pages/`, API rout
 ### Data Flow
 
 - **Portfolio content:** All data is in `data/portfolio.json` — projects, resume, services, social links, etc. No database.
-- **Blog posts:** Markdown files with YAML frontmatter in `_posts/{en,vi}/`. File I/O utilities in `utils/api.js`. Rendered with remark + react-markdown.
-- **Translations:** JSON files in `data/locales/{en,vi}.json`. Custom React Context system in `utils/i18n.js` provides `t()`, `tArray()`, `tObject()` hooks.
+- **Blog posts:** Markdown files with YAML frontmatter in `_posts/en/`. File I/O utilities in `utils/api.js`. Rendered with remark + react-markdown.
+- **Translations:** English strings in `data/locales/en.json`.
 
 ### Dev-Only Features
 
