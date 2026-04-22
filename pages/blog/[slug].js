@@ -33,9 +33,9 @@ const BlogPost = ({ post }) => {
             </div>
             <main className="flex-grow pt-10 pb-48 w-full container mx-auto px-4 laptop:px-0">
                 <div className="flex flex-col">
-                    <div className="w-full overflow-hidden max-h-[500px] rounded-t-xl border-4 border-neo-black bg-white flex items-center justify-center">
+                    <div className="w-full overflow-hidden rounded-t-xl border-4 border-neo-black bg-neo-black flex items-center justify-center" style={{height: '460px'}}>
                         <img
-                            className="w-full object-cover max-h-[500px]"
+                            className="max-w-full max-h-full w-auto h-auto block"
                             src={post.image}
                             alt={post.title}
                         />
