@@ -70,7 +70,7 @@
             "id": "1",
             "title": "Cloud-Native E-Commerce",
             "description": "Cloud-native microservices commerce platform on AWS EKS with Istio, Helm, and observability stack.",
-            "imageSrc": "https://upanhnhanh.com/4273f660b67c282dd569e5642180d59c",
+            "imageSrc": "https://img.upanhnhanh.com/86caafca24d13b12559bde572549f7f3",
             "url": "https://github.com/sloweyyy/cloud-native-ecommerce-platform",
             "tags": [".NET 8", "EKS", "Istio", "Helm"],
             "period": "Sep 2024 - Jan 2026"
@@ -79,7 +79,7 @@
             "id": "2",
             "title": "GreenLedger",
             "description": "Carbon Credit Management Platform using Go, Microservices, and Kubernetes.",
-            "imageSrc": "https://upanhnhanh.com/1f6404f02066abaa2b4560b97fe5d5c1",
+            "imageSrc": "https://img.upanhnhanh.com/593c1fbc5970f8c80894f8e054cc4d2c",
             "url": "https://github.com/sloweyyy/greenledger",
             "tags": ["Go", "Microservices", "K8s"],
             "period": "Mar 2025 - Jun 2025"
@@ -119,7 +119,7 @@
             "id": "5",
             "title": "Blockchain Notarization",
             "description": "Secure digital notarization using Ethereum and IPFS.",
-            "imageSrc": "https://i.imgur.com/SAcA5ZG.png",
+            "imageSrc": "https://img.upanhnhanh.com/ba0574b7851507c9daab2e0467380fda",
             "url": "https://www.trustify.works/",
             "tags": ["Ethereum", "IPFS", "Web3"],
             "period": "Sep 2024 - Dec 2024"
