@@ -14,6 +14,7 @@ const ProjectSection = ({ projects = [] }) => {
     const initialProjectId = projects[0]?.id || null;
     const [activeProjectId, setActiveProjectId] = useState(initialProjectId);
     const [hoveredProjectId, setHoveredProjectId] = useState(initialProjectId);
+    const [imageModalSrc, setImageModalSrc] = useState(null);
     const containerRef = useRef(null);
     const activeProject =
         projects.find((project) => project.id === activeProjectId) ||
@@ -52,6 +53,7 @@ const ProjectSection = ({ projects = [] }) => {
     }
 
     return (
+        <>
         <section
             ref={containerRef}
             className="relative"
@@ -124,12 +126,15 @@ const ProjectSection = ({ projects = [] }) => {
                                             <div className="w-3 h-3 rounded-full border border-black bg-[#28C840]"></div>
                                         </div>
 
-                                        <div className="relative aspect-[4/3] overflow-hidden p-2 bg-white">
-                                            <div className="w-full h-full border-2 border-black rounded-lg overflow-hidden relative">
+                                        <div className="relative aspect-[16/9] overflow-hidden p-2 bg-white">
+                                            <div
+                                                className="w-full h-full border-2 border-black rounded-lg overflow-hidden relative cursor-zoom-in"
+                                                onClick={() => setImageModalSrc(activeProject.imageSrc || FALLBACK_IMAGE)}
+                                            >
                                                 <img
                                                     src={activeProject.imageSrc || FALLBACK_IMAGE}
                                                     alt={activeProject.title}
-                                                    className="w-full h-full object-cover"
+                                                    className="w-full h-full object-contain"
                                                     loading="lazy"
                                                     onError={handleImageError}
                                                 />
@@ -298,11 +303,11 @@ const ProjectSection = ({ projects = [] }) => {
                                         ))}
                                     </div>
 
-                                    <div className="mt-6 laptop:hidden rounded-xl overflow-hidden border border-white/20">
+                                    <div className="mt-6 laptop:hidden rounded-xl overflow-hidden border border-white/20 bg-white">
                                         <img
                                             src={project.imageSrc || FALLBACK_IMAGE}
                                             alt={project.title}
-                                            className="w-full h-52 object-cover"
+                                            className="w-full h-52 object-contain"
                                             loading="lazy"
                                             onError={handleImageError}
                                         />
@@ -330,6 +335,43 @@ const ProjectSection = ({ projects = [] }) => {
                 </div>
             </div>
         </section>
+
+        <AnimatePresence mode="wait">
+            {imageModalSrc && (
+                <motion.div
+                    className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setImageModalSrc(null)}
+                    style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
+                >
+                    <motion.div
+                        initial={{ scale: 0.85, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.85, opacity: 0 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                        className="relative max-w-[90vw] max-h-[90vh]"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <img
+                            src={imageModalSrc}
+                            alt="Project preview"
+                            className="max-w-full max-h-[90vh] object-contain rounded-xl"
+                            style={{ border: "3px solid black", boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)" }}
+                        />
+                        <button
+                            onClick={() => setImageModalSrc(null)}
+                            className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-white border-2 border-black flex items-center justify-center font-bold text-lg hover:bg-yellow-300 transition-colors"
+                            aria-label="Close image"
+                        >
+                            ×
+                        </button>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+        </>
     );
 };
 
