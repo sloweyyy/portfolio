@@ -4,6 +4,16 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 const components = {
+    p({ node, children }) {
+        if (
+            node.children.length === 1 &&
+            node.children[0].type === "element" &&
+            node.children[0].tagName === "img"
+        ) {
+            return <>{children}</>;
+        }
+        return <p>{children}</p>;
+    },
     code({ node, inline, className, children, ...props }) {
         const match = /language-(\w+)/.exec(className || "");
         return !inline && match ? (
