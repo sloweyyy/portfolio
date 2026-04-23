@@ -49,6 +49,19 @@ h6 {
     font-family: 'Sharp Grotesk', "Oswald", sans-serif;
 }
 
+/* Resume body — override condensed heading font for readability */
+.resume-body,
+.resume-body h2,
+.resume-body h3,
+.resume-body h4,
+.resume-body h5,
+.resume-body h6,
+.resume-body p,
+.resume-body li,
+.resume-body span {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
 /* Byooooob Gradient Text Animation */
 .gradient-text {
     background: linear-gradient(to right,

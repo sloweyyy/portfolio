@@ -9,31 +9,13 @@ import "react-datepicker/dist/react-datepicker.css";
 const BlogEditor = ({ post, close, refresh }) => {
     const { theme } = useTheme();
     const [currentTabs, setCurrentTabs] = useState("BLOGDETAILS");
-    const [currentLang, setCurrentLang] = useState("en");
-    
-    // Shared fields (same for both languages)
-    const [sharedFields, setSharedFields] = useState({
-        date: post.date || new Date().toISOString(),
-        image: post.image || "",
-    });
-    
-    // Language-specific content
-    const [enContent, setEnContent] = useState({
-        title: post.en?.title || post.title || "",
-        tagline: post.en?.tagline || post.tagline || "",
-        preview: post.en?.preview || post.preview || "",
-        content: post.en?.content || post.content || "",
-    });
-    
-    const [viContent, setViContent] = useState({
-        title: post.vi?.title || post.title || "",
-        tagline: post.vi?.tagline || post.tagline || "",
-        preview: post.vi?.preview || post.preview || "",
-        content: post.vi?.content || post.content || "",
-    });
 
-    const currentContent = currentLang === "en" ? enContent : viContent;
-    const setCurrentContent = currentLang === "en" ? setEnContent : setViContent;
+    const [date, setDate] = useState(post.date || new Date().toISOString());
+    const [image, setImage] = useState(post.image || "");
+    const [title, setTitle] = useState(post.title || "");
+    const [tagline, setTagline] = useState(post.tagline || "");
+    const [preview, setPreview] = useState(post.preview || "");
+    const [content, setContent] = useState(post.content || "");
 
     const savePost = async () => {
         if (process.env.NODE_ENV === "development") {
@@ -44,9 +26,12 @@ const BlogEditor = ({ post, close, refresh }) => {
                 },
                 body: JSON.stringify({
                     slug: post.slug,
-                    shared: sharedFields,
-                    en: enContent,
-                    vi: viContent,
+                    date,
+                    image,
+                    title,
+                    tagline,
+                    preview,
+                    content,
                 }),
             }).then((data) => {
                 if (data.status === 200) {
@@ -71,10 +56,10 @@ const BlogEditor = ({ post, close, refresh }) => {
                 <div className="mt-10">
                     <div className="z-10 sticky top-12">
                         <div className="flex items-center justify-between">
-                            <h1 className="text-4xl">{currentContent.title || "Untitled"}</h1>
+                            <h1 className="text-4xl">{title || "Untitled"}</h1>
                             <div className="flex items-center">
                                 <Button onClick={savePost} type="primary">
-                                    Save Both Languages
+                                    Save
                                 </Button>
                                 <Button onClick={close}>Close</Button>
                             </div>
@@ -93,143 +78,73 @@ const BlogEditor = ({ post, close, refresh }) => {
                                 Content
                             </Button>
                         </div>
-                        {/* Language Toggle */}
-                        <div className="flex items-center mt-4 gap-2">
-                            <span className="text-sm opacity-50 mr-2">Language:</span>
-                            <button
-                                onClick={() => setCurrentLang("en")}
-                                className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${
-                                    currentLang === "en" 
-                                        ? "bg-blue-500 text-white border-blue-500" 
-                                        : "bg-transparent border-gray-300 hover:border-blue-400"
-                                }`}
-                            >
-                                🇺🇸 English
-                            </button>
-                            <button
-                                onClick={() => setCurrentLang("vi")}
-                                className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${
-                                    currentLang === "vi" 
-                                        ? "bg-green-500 text-white border-green-500" 
-                                        : "bg-transparent border-gray-300 hover:border-green-400"
-                                }`}
-                            >
-                                🇻🇳 Vietnamese
-                            </button>
-                        </div>
                     </div>
                 </div>
-                
+
                 {currentTabs === "BLOGDETAILS" && (
                     <div className="mt-10">
-                        {/* Shared Fields */}
-                        <div className="bg-gray-50 p-4 rounded-lg mb-6">
-                            <h3 className="font-bold text-lg mb-4 opacity-70">Shared Fields (Same for all languages)</h3>
-                            <div className="mt-5 flex flex-col items-center">
-                                <label className="w-full text-sx opacity-50">Date</label>
-                                <DatePicker
-                                    selected={new Date(sharedFields.date)}
-                                    className={inputClass}
-                                    onChange={(date) => {
-                                        setSharedFields({
-                                            ...sharedFields,
-                                            date: date.toISOString(),
-                                        });
-                                    }}
-                                />
-                            </div>
-                            <div className="mt-5 flex flex-col items-center">
-                                <label className="w-full text-sx opacity-50">Image URL</label>
-                                <input
-                                    value={sharedFields.image}
-                                    onChange={(e) =>
-                                        setSharedFields({
-                                            ...sharedFields,
-                                            image: e.target.value,
-                                        })
-                                    }
-                                    className={inputClass}
-                                    type="text"
-                                    placeholder="https://example.com/image.jpg"
-                                />
-                            </div>
+                        <div className="mt-5 flex flex-col items-center">
+                            <label className="w-full text-sx opacity-50">Date</label>
+                            <DatePicker
+                                selected={new Date(date)}
+                                className={inputClass}
+                                onChange={(d) => setDate(d.toISOString())}
+                            />
                         </div>
-                        
-                        {/* Language-specific Fields */}
-                        <div className={`p-4 rounded-lg border-2 ${currentLang === "en" ? "border-blue-200" : "border-green-200"}`}>
-                            <h3 className="font-bold text-lg mb-4">
-                                {currentLang === "en" ? "🇺🇸 English Content" : "🇻🇳 Vietnamese Content"}
-                            </h3>
-                            <div className="mt-5 flex flex-col items-center">
-                                <label className="w-full text-sx opacity-50">Title</label>
-                                <input
-                                    value={currentContent.title}
-                                    onChange={(e) =>
-                                        setCurrentContent({
-                                            ...currentContent,
-                                            title: e.target.value,
-                                        })
-                                    }
-                                    className={inputClass}
-                                    type="text"
-                                    placeholder={currentLang === "en" ? "Enter English title..." : "Nhập tiêu đề tiếng Việt..."}
-                                />
-                            </div>
-                            <div className="mt-5 flex flex-col items-center">
-                                <label className="w-full text-sx opacity-50">Tagline</label>
-                                <input
-                                    value={currentContent.tagline}
-                                    onChange={(e) =>
-                                        setCurrentContent({
-                                            ...currentContent,
-                                            tagline: e.target.value,
-                                        })
-                                    }
-                                    className={inputClass}
-                                    type="text"
-                                    placeholder={currentLang === "en" ? "Enter English tagline..." : "Nhập mô tả ngắn tiếng Việt..."}
-                                />
-                            </div>
-                            <div className="mt-5 flex flex-col items-center">
-                                <label className="w-full text-sx opacity-50">Preview (SEO)</label>
-                                <textarea
-                                    value={currentContent.preview}
-                                    onChange={(e) =>
-                                        setCurrentContent({
-                                            ...currentContent,
-                                            preview: e.target.value,
-                                        })
-                                    }
-                                    className={inputClass}
-                                    placeholder={currentLang === "en" ? "Enter English preview..." : "Nhập mô tả SEO tiếng Việt..."}
-                                    rows={3}
-                                />
-                            </div>
+                        <div className="mt-5 flex flex-col items-center">
+                            <label className="w-full text-sx opacity-50">Image URL</label>
+                            <input
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
+                                className={inputClass}
+                                type="text"
+                                placeholder="https://example.com/image.jpg"
+                            />
+                        </div>
+                        <div className="mt-5 flex flex-col items-center">
+                            <label className="w-full text-sx opacity-50">Title</label>
+                            <input
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                className={inputClass}
+                                type="text"
+                                placeholder="Enter title..."
+                            />
+                        </div>
+                        <div className="mt-5 flex flex-col items-center">
+                            <label className="w-full text-sx opacity-50">Tagline</label>
+                            <input
+                                value={tagline}
+                                onChange={(e) => setTagline(e.target.value)}
+                                className={inputClass}
+                                type="text"
+                                placeholder="Enter tagline..."
+                            />
+                        </div>
+                        <div className="mt-5 flex flex-col items-center">
+                            <label className="w-full text-sx opacity-50">Preview (SEO)</label>
+                            <textarea
+                                value={preview}
+                                onChange={(e) => setPreview(e.target.value)}
+                                className={inputClass}
+                                placeholder="Enter preview..."
+                                rows={3}
+                            />
                         </div>
                     </div>
                 )}
 
                 {currentTabs === "CONTENT" && (
                     <div className="mt-10">
-                        <div className={`p-4 rounded-lg border-2 ${currentLang === "en" ? "border-blue-200" : "border-green-200"}`}>
-                            <h3 className="font-bold text-lg mb-4">
-                                {currentLang === "en" ? "🇺🇸 English Content (Markdown)" : "🇻🇳 Vietnamese Content (Markdown)"}
-                            </h3>
-                            <div className="flex flex-col items-center">
-                                <label className="w-full text-sx opacity-50">Content</label>
-                                <TextareaAutosize
-                                    className="w-full h-auto mt-5 p-4 border hover:border-blue-400 rounded-xl shadow-xl"
-                                    value={currentContent.content}
-                                    onChange={(e) =>
-                                        setCurrentContent({
-                                            ...currentContent,
-                                            content: e.target.value,
-                                        })
-                                    }
-                                    placeholder={currentLang === "en" ? "Write your blog post in English..." : "Viết bài blog bằng tiếng Việt..."}
-                                    minRows={10}
-                                />
-                            </div>
+                        <div className="flex flex-col items-center">
+                            <label className="w-full text-sx opacity-50">Content (Markdown)</label>
+                            <TextareaAutosize
+                                className="w-full h-auto mt-5 p-4 border hover:border-blue-400 rounded-xl shadow-xl"
+                                value={content}
+                                onChange={(e) => setContent(e.target.value)}
+                                placeholder="Write your blog post..."
+                                minRows={10}
+                            />
                         </div>
                     </div>
                 )}
@@ -239,4 +154,3 @@ const BlogEditor = ({ post, close, refresh }) => {
 };
 
 export default BlogEditor;
-

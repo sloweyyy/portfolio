@@ -54,6 +54,11 @@
     "viewProject": "View Project",
     "items": [
       {
+        "id": "12",
+        "title": "llmfit - Hardware-Aware LLM Dashboard",
+        "description": "Web dashboard for the llmfit open-source project (23k+ stars) providing hardware-aware LLM model recommendation, filtering, comparison, and download workflows."
+      },
+      {
         "id": "7",
         "title": "Katalon Support Assistant",
         "description": "24/7 AI-powered support chat for Katalon users, providing fast and contextual answers across product details, how-to guides, best practices, and troubleshooting."

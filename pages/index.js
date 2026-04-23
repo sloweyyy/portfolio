@@ -297,12 +297,11 @@ export default function Home() {
 
     const [currentRole, setCurrentRole] = useState(0);
     const roles = [
+        "PRODUCT ENGINEER",
         "SOFTWARE ENGINEER",
         "DEVOPS ENGINEER",
-        "PRODUCT OWNER",
-        "PROBLEM SOLVER",
-        "TECH ENTHUSIAST",
-        "INNOVATOR",
+        "PRODUCT MANAGER",
+        "PRODUCT BUILDER",
     ];
 
     useEffect(() => {
@@ -414,36 +413,36 @@ export default function Home() {
                         <DecorativeShapes />
 
                         {/* Team Member Stickers - Personal Branding */}
-                        <TeamMemberCard 
-                            name="Backend" 
-                            role="Java/.NET Expert" 
+                        <TeamMemberCard
+                            name="Backend"
+                            role="Java / .NET"
                             image="https://upanhnhanh.com/c87d21d8353d691d90bca572c5984e82"
                             rotation={-12}
                             position="top-[12%] right-[6%]"
                             color="orange"
                             delay={0.5}
                         />
-                        <TeamMemberCard 
-                            name="DevOps" 
-                            role="CI/CD Wizard" 
+                        <TeamMemberCard
+                            name="DevOps"
+                            role="CI/CD"
                             image="https://img.upanhnhanh.com/5cf7f26ee76abd79b1229be0ba6aeeec"
                             rotation={-8}
                             position="bottom-[18%] left-[4%]"
                             color="yellow"
                             delay={0.7}
                         />
-                        <TeamMemberCard 
-                            name="Cloud" 
-                            role="AWS/Azure Pro" 
+                        <TeamMemberCard
+                            name="Cloud"
+                            role="Enthusiast"
                             image="https://img.upanhnhanh.com/2bd0afcb9d01348d305513c934ff3104"
                             rotation={14}
                             position="bottom-[8%] right-[10%]"
                             color="purple"
                             delay={0.9}
                         />
-                        <TeamMemberCard 
-                            name="Problem" 
-                            role="Solver" 
+                        <TeamMemberCard
+                            name="Problem Solver"
+                            role="Hackathon"
                             image="https://img.upanhnhanh.com/da69d6e693faf839f67b2e8d7ac73e8a"
                             rotation={-6}
                             position="top-[35%] left-[8%]"
@@ -553,108 +552,163 @@ export default function Home() {
                 <ShowcaseSection />
 
 
-                {/* ABOUT SECTION - Creative Layout */}
-                <div className="bg-neo-black text-white py-20 laptop:py-32 relative overflow-hidden" ref={aboutRef}>
-                    {/* Decorative elements for About section */}
-                    <motion.div 
-                        className="absolute top-[10%] right-[5%] hidden laptop:block"
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    >
-                        <svg width="40" height="40" viewBox="0 0 100 100" fill="#FA9DCD">
-                            <polygon points="50,5 61,35 95,35 67,55 78,85 50,65 22,85 33,55 5,35 39,35"/>
-                        </svg>
-                    </motion.div>
+                {/* ABOUT SECTION - Bento Grid */}
+                <div className="bg-neo-pink text-neo-black py-20 laptop:py-32 relative overflow-hidden" ref={aboutRef}>
+                    <div className="max-w-[1440px] mx-auto px-4 laptop:px-14 relative z-10">
+                        {/* Section label */}
+                        <motion.div
+                            className="flex items-center gap-3 mb-12"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <div className="w-2 h-2 rounded-full bg-neo-pink animate-pulse" />
+                            <span className="text-xs uppercase tracking-[0.3em] text-black/40 font-heading">About me</span>
+                            <div className="flex-1 h-px bg-black/10" />
+                        </motion.div>
 
-                    <motion.div 
-                        className="absolute bottom-[15%] left-[8%] hidden laptop:block"
-                        animate={{ y: [0, -15, 0] }}
-                        transition={{ duration: 4, repeat: Infinity }}
-                    >
-                        <svg width="35" height="35" viewBox="0 0 100 100" fill="#EBD22F">
-                            <circle cx="50" cy="50" r="45" />
-                        </svg>
-                    </motion.div>
+                        {/* Bento Grid */}
+                        <div className="grid grid-cols-1 laptop:grid-cols-12 gap-4 laptop:gap-5">
 
-                    <motion.div 
-                        className="absolute top-[50%] left-[3%] hidden laptop:block"
-                        animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                    >
-                        <svg width="30" height="30" viewBox="0 0 100 100" fill="none" stroke="#1F8D42" strokeWidth="4">
-                            <rect x="10" y="10" width="80" height="80" />
-                        </svg>
-                    </motion.div>
-
-                    <motion.div 
-                        className="absolute top-[20%] left-[12%] hidden laptop:block"
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                    >
-                        <svg width="25" height="25" viewBox="0 0 24 24" fill="#FF6B35">
-                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-                        </svg>
-                    </motion.div>
-
-                    <motion.div 
-                        className="absolute bottom-[25%] right-[10%] hidden laptop:block"
-                        animate={{ x: [0, 10, 0] }}
-                        transition={{ duration: 5, repeat: Infinity }}
-                    >
-                        <svg width="45" height="45" viewBox="0 0 100 100" fill="#4D17F5">
-                            <path d="M10,50 L40,50 L40,30 L70,50 L40,70 L40,50 L10,50 Z"/>
-                        </svg>
-                    </motion.div>
-
-                    <div className="max-w-[1440px] mx-auto px-4 laptop:px-14">
-                        <div className="flex flex-col laptop:flex-row gap-12 laptop:gap-20 items-center">
-                            {/* Left - Image/Visual */}
-                            <motion.div 
-                                className="w-full laptop:w-2/5"
-                                initial={{ opacity: 0, x: -30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                            {/* Card 1 — Avatar + Name (large, spans 5 cols) */}
+                            <motion.div
+                                className="laptop:col-span-5 laptop:row-span-2 group relative bg-white rounded-3xl border-2 border-neo-black p-8 laptop:p-10 overflow-hidden shadow-neo-sm hover:shadow-neo transition-shadow duration-300"
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
                             >
-                                <div className="relative">
-                                    <div className="bg-neo-pink rounded-2xl p-4 border-2 border-white/20 transform -rotate-3">
-                                        <div className="bg-neo-deep-purple rounded-xl p-8 transform rotate-3">
-                                            <div className="text-8xl laptop:text-9xl text-center">👨‍💻</div>
-                                        </div>
+                                <div className="relative z-10 flex flex-col h-full">
+                                    <div className="flex-1 flex items-center justify-center py-6">
+                                        <motion.div
+                                            className="relative"
+                                            whileHover={{ scale: 1.05, rotate: -2 }}
+                                            transition={{ type: "spring", stiffness: 300 }}
+                                        >
+                                            <div className="bg-neo-pink/20 rounded-2xl p-8 laptop:p-12 border-2 border-neo-black">
+                                                <div className="text-7xl laptop:text-8xl text-center">👨‍💻</div>
+                                            </div>
+                                        </motion.div>
                                     </div>
-                                    {/* Decorative elements */}
-                                    <div className="absolute -top-4 -right-4 bg-neo-yellow w-12 h-12 rounded-full border-2 border-white/20"></div>
-                                    <div className="absolute -bottom-4 -left-4 bg-neo-green w-8 h-8 rounded-full border-2 border-white/20"></div>
-                                    <motion.div 
-                                        className="absolute -top-6 -left-6 bg-neo-pink w-10 h-10 rounded-full border-2 border-white/20"
-                                        animate={{ scale: [1, 1.2, 1] }}
-                                        transition={{ duration: 2, repeat: Infinity }}
-                                    ></motion.div>
+                                    <div className="mt-auto">
+                                        <h2 className="text-3xl laptop:text-4xl font-heading font-bold uppercase leading-tight">
+                                            Truong Le<br/>
+                                            <span className="text-neo-deep-purple">Vinh Phuc</span>
+                                        </h2>
+                                        <p className="text-black/40 text-sm mt-2 uppercase tracking-widest font-heading">Product Engineer</p>
+                                    </div>
                                 </div>
                             </motion.div>
 
-                            {/* Right - Content */}
-                            <motion.div 
-                                className="w-full laptop:w-3/5"
-                                initial={{ opacity: 0, x: 30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                            {/* Card 2 — Bio (spans 7 cols) */}
+                            <motion.div
+                                className="laptop:col-span-7 relative bg-white rounded-3xl border-2 border-neo-black p-8 laptop:p-10 overflow-hidden group shadow-neo-sm hover:shadow-neo transition-shadow duration-300"
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.1 }}
                             >
-                                <h1 className="text-4xl laptop:text-6xl font-heading font-bold uppercase mb-6">
-                                    About <span className="text-neo-pink">Me</span>
-                                </h1>
-                                <p className="text-xl laptop:text-2xl leading-relaxed text-white/80 mb-8">
-                                    {data.aboutpara}
-                                </p>
-                                <div className="flex flex-wrap gap-4">
-                                    <div className="bg-neo-deep-purple px-4 py-2 rounded-full border border-white/20">
-                                        <span className="font-heading uppercase text-sm">Full Stack</span>
+                                <div className="relative z-10">
+                                    <div className="inline-flex items-center gap-2 bg-neo-green/10 rounded-full px-3 py-1 mb-6 border border-neo-green/30">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-neo-green animate-pulse" />
+                                        <span className="text-xs text-neo-green uppercase tracking-wider font-semibold">Open to opportunities</span>
                                     </div>
-                                    <div className="bg-neo-pink px-4 py-2 rounded-full border border-white/20 text-neo-black">
-                                        <span className="font-heading uppercase text-sm">Product Owner</span>
-                                    </div>
-                                    <div className="bg-neo-yellow px-4 py-2 rounded-full border border-white/20 text-neo-black">
-                                        <span className="font-heading uppercase text-sm">Problem Solver</span>
-                                    </div>
+                                    <p className="text-lg laptop:text-xl leading-relaxed text-black/70">
+                                        {data.aboutpara}
+                                    </p>
+                                </div>
+                            </motion.div>
+
+                            {/* Card 3 — Roles (spans 7 cols) */}
+                            <motion.div
+                                className="laptop:col-span-7 relative bg-white rounded-3xl border-2 border-neo-black p-8 shadow-neo-sm hover:shadow-neo transition-shadow duration-300"
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                            >
+                                <p className="text-xs uppercase tracking-[0.2em] text-black/40 mb-5 font-heading">What I do</p>
+                                <div className="flex flex-wrap gap-3">
+                                    {[
+                                        { label: "Product Management", color: "bg-neo-pink", text: "text-neo-black" },
+                                        { label: "Software Engineer", color: "bg-neo-black", text: "text-white" },
+                                        { label: "DevOps Enthusiast", color: "bg-neo-yellow", text: "text-neo-black" },
+                                    ].map((role) => (
+                                        <motion.div
+                                            key={role.label}
+                                            className={`${role.color} ${role.text} px-5 py-2.5 rounded-full border-2 border-neo-black cursor-default shadow-neo-sm`}
+                                            whileHover={{ scale: 1.05, y: -2 }}
+                                            transition={{ type: "spring", stiffness: 400 }}
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                        >
+                                            <span className="font-heading uppercase text-sm tracking-wider">{role.label}</span>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </motion.div>
+
+                            {/* Card 4 — Stat: Years */}
+                            <motion.div
+                                className="laptop:col-span-4 group relative bg-white rounded-3xl border-2 border-neo-black p-6 laptop:p-8 overflow-hidden cursor-default shadow-neo-sm hover:shadow-neo transition-shadow duration-300"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
+                                whileHover={{ y: -4 }}
+                            >
+                                <div className="relative z-10">
+                                    <motion.p
+                                        className="text-4xl laptop:text-5xl font-heading font-bold"
+                                        initial={{ scale: 0.5 }}
+                                        whileInView={{ scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ type: "spring", stiffness: 200, delay: 0.4 }}
+                                    >3+</motion.p>
+                                    <p className="text-black/40 text-sm mt-2 uppercase tracking-wider font-heading">Years Building</p>
+                                </div>
+                            </motion.div>
+
+                            {/* Card 5 — Stat: Projects */}
+                            <motion.div
+                                className="laptop:col-span-4 group relative bg-white rounded-3xl border-2 border-neo-black p-6 laptop:p-8 overflow-hidden cursor-default shadow-neo-sm hover:shadow-neo transition-shadow duration-300"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.4 }}
+                                whileHover={{ y: -4 }}
+                            >
+                                <div className="relative z-10">
+                                    <motion.p
+                                        className="text-4xl laptop:text-5xl font-heading font-bold"
+                                        initial={{ scale: 0.5 }}
+                                        whileInView={{ scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ type: "spring", stiffness: 200, delay: 0.5 }}
+                                    >10+</motion.p>
+                                    <p className="text-black/40 text-sm mt-2 uppercase tracking-wider font-heading">Projects Shipped</p>
+                                </div>
+                            </motion.div>
+
+                            {/* Card 6 — Stat: Location */}
+                            <motion.div
+                                className="laptop:col-span-4 group relative bg-white rounded-3xl border-2 border-neo-black p-6 laptop:p-8 overflow-hidden cursor-default shadow-neo-sm hover:shadow-neo transition-shadow duration-300"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.5 }}
+                                whileHover={{ y: -4 }}
+                            >
+                                <div className="relative z-10">
+                                    <motion.p
+                                        className="text-4xl laptop:text-5xl font-heading font-bold"
+                                        initial={{ scale: 0.5 }}
+                                        whileInView={{ scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ type: "spring", stiffness: 200, delay: 0.6 }}
+                                    >HCM</motion.p>
+                                    <p className="text-black/40 text-sm mt-2 uppercase tracking-wider font-heading">Based in Vietnam</p>
                                 </div>
                             </motion.div>
                         </div>

@@ -91,13 +91,13 @@ const Resume = () => {
                 <Header />
                 <div className="mt-16 w-full flex justify-center">
                     <div className="w-full max-w-6xl flex flex-col laptop:flex-row laptop:items-start gap-6">
-                        <div className="w-full bg-gray-50 p-20 mob:p-5 desktop:p-20 rounded-lg shadow-sm border border-black/10">
+                        <div className="resume-body w-full bg-gray-50 p-20 mob:p-5 desktop:p-20 rounded-lg shadow-sm border border-black/10">
                             <h1 className="text-4xl font-bold">{data.name}</h1>
                             <p className="text-xl mt-8">{resume.tagline}</p>
                             <div className="mt-6 flex flex-wrap gap-3 laptop:hidden">
                                 {actionButtons}
                             </div>
-                            <p className="w-full text-xl mt-8 opacity-75 leading-relaxed tracking-wide max-w-4xl font-body">
+                            <p className="w-full text-xl mt-8 opacity-75 leading-relaxed tracking-wide max-w-4xl">
                                 {resume.description}
                             </p>
                             <div className="mt-6">
@@ -123,16 +123,19 @@ const Resume = () => {
                                 <h2 id="resume-education-heading" className="text-2xl font-bold">
                                     {resume.educationTitle || "Education"}
                                 </h2>
-                                <div className="mt-5">
-                                    <h3 className="text-lg font-semibold">
-                                        {resume.education?.universityName || ""}
-                                    </h3>
-                                    <p className="text-sm text-black/70 mt-2">
-                                        {resume.education?.universityDate || ""}
-                                    </p>
-                                    <p className="text-sm mt-4 text-black/80 leading-relaxed">
-                                        {resume.education?.universityPara || ""}
-                                    </p>
+                                <div className="mt-5 flex items-start justify-between gap-4">
+                                    <div>
+                                        <h3 className="text-lg font-semibold">
+                                            {resume.education?.universityName || ""}
+                                        </h3>
+                                        <p className="text-sm text-black/60 mt-0.5">
+                                            Bachelor of Software Engineering &middot; {resume.education?.universityDate || ""}
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2 shrink-0">
+                                        <span className="text-xs px-2.5 py-1 rounded-full bg-black/5 font-semibold">GPA: 8.72/10</span>
+                                        <span className="text-xs px-2.5 py-1 rounded-full bg-black/5 font-semibold">Thesis: 9.5/10</span>
+                                    </div>
                                 </div>
                             </section>
 
@@ -179,7 +182,7 @@ const Resume = () => {
                                                     {group.items.map((item, itemIndex) => (
                                                         <span
                                                             key={`${group.id || "skill"}-${itemIndex}`}
-                                                            className="inline-flex text-xs px-2.5 py-1 rounded-full bg-white/95 border border-black/10 font-medium"
+                                                            className="inline-flex text-xs px-2.5 py-1.5 rounded-full bg-white border border-black/15 font-semibold text-black/80"
                                                         >
                                                             {item}
                                                         </span>
