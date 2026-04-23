@@ -6,7 +6,7 @@ import { Toaster } from "../components/Toaster";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import PageTransition from "../components/PageTransition";
-import { LanguageProvider } from "../utils/i18n";
+
 
 const App = ({ Component, pageProps }) => {
     const router = useRouter();
@@ -39,15 +39,13 @@ const App = ({ Component, pageProps }) => {
     }, [router]);
 
     return (
-        <LanguageProvider>
-            <ThemeProvider attribute="class" forcedTheme="light" enableSystem={false}>
-                {isLoading && <PageTransition />}
-                <Component {...pageProps} />
-                <Analytics />
-                <SpeedInsights />
-                <Toaster />
-            </ThemeProvider>
-        </LanguageProvider>
+        <ThemeProvider attribute="class" forcedTheme="light" enableSystem={false}>
+            {isLoading && <PageTransition />}
+            <Component {...pageProps} />
+            <Analytics />
+            <SpeedInsights />
+            <Toaster />
+        </ThemeProvider>
     );
 };
 
