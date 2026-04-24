@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../Button";
+import ProjectBanner, { hasBanner } from "../ProjectBanner";
 
 const FALLBACK_IMAGE = "/images/demo.png";
 
@@ -15,6 +16,7 @@ const ProjectSection = ({ projects = [] }) => {
     const [activeProjectId, setActiveProjectId] = useState(initialProjectId);
     const [hoveredProjectId, setHoveredProjectId] = useState(initialProjectId);
     const [imageModalSrc, setImageModalSrc] = useState(null);
+    const [bannerModalId, setBannerModalId] = useState(null);
     const containerRef = useRef(null);
     const activeProject =
         projects.find((project) => project.id === activeProjectId) ||
@@ -129,15 +131,25 @@ const ProjectSection = ({ projects = [] }) => {
                                         <div className="relative aspect-[16/9] overflow-hidden p-2 bg-white">
                                             <div
                                                 className="w-full h-full border-2 border-black rounded-lg overflow-hidden relative cursor-zoom-in"
-                                                onClick={() => setImageModalSrc(activeProject.imageSrc || FALLBACK_IMAGE)}
+                                                onClick={() => {
+                                                    if (hasBanner(activeProject.id)) {
+                                                        setBannerModalId(activeProject.id);
+                                                    } else {
+                                                        setImageModalSrc(activeProject.imageSrc || FALLBACK_IMAGE);
+                                                    }
+                                                }}
                                             >
-                                                <img
-                                                    src={activeProject.imageSrc || FALLBACK_IMAGE}
-                                                    alt={activeProject.title}
-                                                    className="w-full h-full object-contain"
-                                                    loading="lazy"
-                                                    onError={handleImageError}
-                                                />
+                                                {hasBanner(activeProject.id) ? (
+                                                    <ProjectBanner projectId={activeProject.id} />
+                                                ) : (
+                                                    <img
+                                                        src={activeProject.imageSrc || FALLBACK_IMAGE}
+                                                        alt={activeProject.title}
+                                                        className="w-full h-full object-contain"
+                                                        loading="lazy"
+                                                        onError={handleImageError}
+                                                    />
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -304,13 +316,17 @@ const ProjectSection = ({ projects = [] }) => {
                                     </div>
 
                                     <div className="mt-6 laptop:hidden rounded-xl overflow-hidden border border-white/20 bg-white">
-                                        <img
-                                            src={project.imageSrc || FALLBACK_IMAGE}
-                                            alt={project.title}
-                                            className="w-full h-52 object-contain"
-                                            loading="lazy"
-                                            onError={handleImageError}
-                                        />
+                                        {hasBanner(project.id) ? (
+                                            <ProjectBanner projectId={project.id} />
+                                        ) : (
+                                            <img
+                                                src={project.imageSrc || FALLBACK_IMAGE}
+                                                alt={project.title}
+                                                className="w-full h-52 object-contain"
+                                                loading="lazy"
+                                                onError={handleImageError}
+                                            />
+                                        )}
                                     </div>
 
                                     <div className="laptop:hidden mt-4">
@@ -364,6 +380,38 @@ const ProjectSection = ({ projects = [] }) => {
                             onClick={() => setImageModalSrc(null)}
                             className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-white border-2 border-black flex items-center justify-center font-bold text-lg hover:bg-yellow-300 transition-colors"
                             aria-label="Close image"
+                        >
+                            ×
+                        </button>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+            {bannerModalId && (
+                <motion.div
+                    className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setBannerModalId(null)}
+                    style={{ backgroundColor: "rgba(0,0,0,0.85)" }}
+                >
+                    <motion.div
+                        initial={{ scale: 0.85, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.85, opacity: 0 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                        className="relative w-[92vw] max-w-[1400px] rounded-xl overflow-hidden"
+                        style={{ border: "3px solid black", boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)" }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <ProjectBanner projectId={bannerModalId} />
+                        <button
+                            onClick={() => setBannerModalId(null)}
+                            className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-white border-2 border-black flex items-center justify-center font-bold text-lg hover:bg-yellow-300 transition-colors z-10"
+                            aria-label="Close banner"
                         >
                             ×
                         </button>
