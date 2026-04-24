@@ -73,14 +73,25 @@
   @apply text-base opacity-80 list-disc py-1;
 }
 
-/* BlockQuote */
+/* BlockQuote — neobrutalist yellow callout */
 
 .markdown-class blockquote {
-  @apply p-6 my-8 border-l-8 rounded-lg shadow-lg text-sm bg-slate-200 text-black;
+  margin: 2rem 0;
+  padding: 20px 28px;
+  background: var(--neo-yellow);
+  border: none;
+  border-left: 6px solid var(--neo-black);
+  border-radius: 0 14px 14px 0;
+  box-shadow: 4px 4px 0px 0px var(--neo-border);
+  color: var(--neo-black);
 }
 
 .markdown-class blockquote p {
-  @apply text-black text-sm mt-0 mb-0;
+  @apply mt-0 mb-0 opacity-100;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--neo-black);
 }
 
 
