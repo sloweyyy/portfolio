@@ -71,7 +71,7 @@ const Footer = () => {
                             Your Back
                         </h1>
                         
-                        {/* Badge - Byooooob style circle */}
+                        {/* Badge — sticker-style circle */}
                         <motion.div 
                             className="absolute -top-4 -right-8 laptop:-top-8 laptop:-right-20 hidden tablet:flex"
                             initial={{ scale: 0, rotate: -20 }}

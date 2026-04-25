@@ -68,7 +68,7 @@ const Ticker = () => {
 
 
 
-// Team Member Card Component - Byooooob style with floating animation
+// Team Member Card — neobrutalist sticker with floating animation
 const TeamMemberCard = ({ name, role, image, rotation, position, color = "yellow", delay = 0 }) => {
     const bgColors = {
         yellow: "bg-neo-yellow",
@@ -396,7 +396,7 @@ export default function Home() {
                     <meta property="twitter:image" content="https://upanhnhanh.com/f017edfad4ed46e04742b8a416580e77" />
                 </Head>
 
-                {/* HERO SECTION - BYOOOOOB STYLE */}
+                {/* HERO SECTION */}
                 <div className="bg-neo-bg h-screen flex flex-col relative overflow-hidden" style={{ 
                     backgroundImage: 'linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)',
                     backgroundSize: '40px 40px'
@@ -475,7 +475,7 @@ export default function Home() {
                                     Slowey
                                 </h1>
                                 
-                                {/* Eye Container - Byooooob style */}
+                                {/* Eye Container */}
                                 <motion.div 
                                     className="eye-container hidden tablet:flex"
                                     style={{ x: eyeX, y: eyeY, rotate: 15 }}

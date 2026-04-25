@@ -16,7 +16,7 @@
     --popover-foreground: #333;
     --border: #000;
 
-    /* Exact Byooooob Color Palette */
+    /* Neobrutalist color palette */
     --neo-yellow: #EBD22F;
     --neo-pink: #FA9DCD;
     --neo-purple: #5918FC;
@@ -33,7 +33,7 @@
     font-family: 'Sharp Grotesk', 'Oswald', system-ui, sans-serif;
 }
 
-/* Byooooob Typography - Oswald for bold headings */
+/* Typography — Oswald for bold headings */
 h1,
 .font-heading {
     font-family: "Oswald", sans-serif;
@@ -62,7 +62,7 @@ h6 {
     font-family: 'Space Grotesk', sans-serif;
 }
 
-/* Byooooob Gradient Text Animation */
+/* Gradient text animation */
 .gradient-text {
     background: linear-gradient(to right,
             #FC9ACD 0.13%,
@@ -84,7 +84,7 @@ h6 {
     }
 }
 
-/* Byooooob Eye Animation Styles */
+/* Eye animation styles */
 .eye-container {
     background-color: var(--neo-pink);
     border: 2.41px solid black;
