@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import "../styles/banners.css";
+import "../styles/blog-banners.css";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
