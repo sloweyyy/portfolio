@@ -1,61 +1,47 @@
-# SloWey Portfolio Website
+# Neobrutalist Portfolio Template
 
-[![Live](https://img.shields.io/badge/live-slowey.dev-EBD22F?style=flat-square&labelColor=000)](https://slowey.dev)
+[![Live demo](https://img.shields.io/badge/demo-slowey.dev-EBD22F?style=flat-square&labelColor=000)](https://slowey.dev)
 [![Next.js](https://img.shields.io/badge/Next.js-16.0-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2-149ECA?style=flat-square&logo=react)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38BDF8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
-[![Vercel](https://img.shields.io/badge/Deployed-Vercel-000?style=flat-square&logo=vercel)](https://vercel.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-Personal portfolio + blog for **Truong Le Vinh Phuc (sloweyyy)** — Technical Product Manager & Software Engineer. Built with Next.js (Pages Router), React 19, Tailwind CSS, and a neobrutalist "Byooooob" design system. Live at [slowey.dev](https://slowey.dev).
+An open-source personal portfolio + blog template built with Next.js (Pages Router), React 19, and Tailwind CSS. Comes with a custom neobrutalist design system, a six-template project banner system, info-graphic blog hero banners, and a local-only authoring UI so you can edit content without touching code. Live demo at [slowey.dev](https://slowey.dev).
 
 ![Portfolio Demo](public/images/demo.png)
 
+## Quick start
+
+```bash
+git clone https://github.com/sloweyyy/portfolio.git my-portfolio
+cd my-portfolio
+yarn install
+yarn dev
+```
+
+App runs at `http://localhost:3000`. The repo uses **yarn** (`packageManager` is pinned to `yarn@1.22.19`); Vercel auto-detects it from `yarn.lock`.
+
 ## What's inside
 
-### Homepage
+**Homepage.** Rotating tagline, animated eye, big Oswald headlines. The project section ("Damn! I did this?") gives every project a 1600×900 banner instead of a stock thumbnail; pick one of six layouts (Big Type, Gradient Headline, Sticker Collage, Terminal/Code, Stats, Split/Evolution). Banners scale into the card and open full-size when clicked. Hall of fame, services, and work timeline sit below — all sourced from `data/portfolio.json`.
 
-- **Hero** with animated taglines, custom Byooooob eye SVGs, and an Oswald + Sharp Grotesk type pairing.
-- **"Damn! I did this?" project section** — 12 projects, each rendered as a real **1600×900 banner canvas** in the project card (six neobrutalist templates: Big Type, Gradient Headline, Sticker Collage, Terminal/Code, Stats, Split/Evolution). Banners auto-scale via `ResizeObserver` and zoom into a full-size modal on click.
-- **Hall of Fame, services, work timeline** — all driven by a single `data/portfolio.json`.
+**Blog.** Plain markdown in `_posts/en/`. Each post shows a reading-time estimate, neobrutalist yellow blockquotes, a "Get in touch" pill at the bottom, and a three-card "Keep reading" strip. Any post can opt into a custom info-graphic hero by adding a single entry to `components/BlogBanner` (the bundled "Claude Code Insights" post is an example). Code blocks use Dracula via `react-syntax-highlighter`.
 
-### Blog
+**Resume.** A `/resume` page sourced from the same `portfolio.json`.
 
-- Markdown-based posts in `_posts/en/` with YAML frontmatter, rendered via `react-markdown` + `remark`.
-- **Reading-time estimate** computed from stripped markdown in `getStaticProps`.
-- **Neobrutalist quote callouts** — yellow fill, 6px black left border, drop shadow.
-- **"Get in touch" CTA** at the post foot, opens the contact modal.
-- **"Keep reading" section** — 3 related posts as neobrutalist cards with deterministic accent colors.
-- **Custom hero banner** for the [Claude Code Insights post](https://slowey.dev/blog/9c25e36f-0811-4d6d-803c-0fb3818d75f0): a full info-graphic (impact card, metrics strip, usage list, response-time chart, friction/satisfaction breakdown, bottom callout) replaces the standard image hero. Slug-keyed via `components/BlogBanner` so adding more is a one-liner.
-- Code blocks syntax-highlighted with Dracula via `react-syntax-highlighter`.
+**Local-only authoring.** In dev (`NODE_ENV === "development"`) there's an `/edit` page for editing portfolio + resume content, CRUD endpoints under `pages/api/blog/`, and a `Cmd + E` shortcut to open the editor from anywhere on the site. None of this ships in production.
 
-### Resume
+**Contact.** A modal opened from the header or the blog post CTA. Sends mail through Nodemailer + Gmail, and writes to a Google Sheet if `googleapis` creds are configured.
 
-- Standalone `/resume` page driven by the same `portfolio.json`.
-
-### Local-only authoring
-
-- `/edit` page (gated to `NODE_ENV === "development"`) for editing portfolio + resume in-app.
-- Blog create / edit / delete via `pages/api/blog/*` (also dev-only).
-- **Keyboard shortcut:** `Ctrl + Alt + E` (or `Cmd + E`) anywhere to open the editor.
-
-### Contact
-
-- Modal-based form opened from the header (and the blog post CTA).
-- Sends email via **Nodemailer + Gmail**, optionally logs to **Google Sheets** if creds are present.
-
-### Misc
-
-- Custom mouse cursor on hoverable elements (toggle via `data.showCursor`).
-- Vercel Analytics + Speed Insights wired up.
-- Playwright UX / WCAG accessibility tests in `tests/playwright/`.
+**Other bits.** Custom mouse cursor (toggle via `data.showCursor`), Vercel Analytics + Speed Insights, and Playwright accessibility tests in `tests/playwright/`.
 
 ## Tech stack
 
 | Layer | Tech |
 | --- | --- |
 | Framework | Next.js 16 (Pages Router), React 19, TypeScript 5 |
-| Styling | Tailwind CSS 3, scoped CSS files for banner systems, custom Byooooob design tokens |
-| Animation | Framer Motion + GSAP + React Spring (page transitions, eye blink, ticker, springs) |
+| Styling | Tailwind CSS 3, scoped CSS for banner systems, custom design tokens |
+| Animation | Framer Motion + GSAP + React Spring |
 | Markdown | gray-matter + remark + react-markdown + react-syntax-highlighter |
 | Forms | Nodemailer (Gmail), googleapis (Sheets, optional) |
 | Editor (dev only) | react-textarea-autosize, react-datepicker, custom CRUD APIs |
@@ -64,11 +50,11 @@ Personal portfolio + blog for **Truong Le Vinh Phuc (sloweyyy)** — Technical P
 
 ## Project structure
 
-```
+```text
 pages/
-  index.js              # Homepage (hero + projects + services + hall + work)
+  index.js              # Homepage
   resume.js             # Resume page
-  edit.js               # Dev-only portfolio editor
+  edit.js               # Dev-only content editor
   blog/
     index.js            # Blog listing
     [slug].js           # Blog post (banner-aware)
@@ -77,8 +63,8 @@ pages/
     blog/               # Dev-only blog CRUD
     portfolio.js        # Dev-only portfolio CRUD
 components/
-  ProjectBanner/        # 12-project banner system (6 templates, slug-keyed)
-  BlogBanner/           # Slug-keyed blog hero banners (e.g. Claude Code Insights)
+  ProjectBanner/        # Project banner system (6 templates, slug-keyed)
+  BlogBanner/           # Slug-keyed blog hero banners
   ProjectSection/       # Homepage projects with banner-driven cards
   ContentSection/       # Markdown renderer with custom code/img/link/blockquote
   BlogEditor/           # Dev-only blog editor modal
@@ -86,35 +72,38 @@ components/
   ...                   # Header, Footer, Cursor, ServiceCard, Toaster, etc.
 data/
   portfolio.json        # All non-blog content
-  locales/en.json       # English UI strings
+  locales/en.json       # UI strings
 _posts/en/              # Markdown blog posts
 styles/
-  globals.css           # Byooooob design tokens, typography, base
+  globals.css           # Design tokens, typography, base
   banners.css           # Project-banner design system (b1–b6, scoped to .project-banner-root)
   blog-banners.css      # Blog hero banners (scoped to .blog-banner-root)
   markdown.css          # Markdown content styles (incl. neobrutalist blockquote)
-tests/playwright/       # UX / WCAG specs
+tests/playwright/       # UX / accessibility specs
 ```
 
-## Getting started
+## Make it yours
 
-This project uses **yarn** (`packageManager: "yarn@1.22.19"` is pinned). Vercel auto-detects yarn from `yarn.lock`.
+Most of what you'll change lives in three files:
 
-```bash
-git clone https://github.com/sloweyyy/portfolio.git
-cd portfolio
-yarn install
-yarn dev
-```
+1. **`data/portfolio.json`** — name, taglines, projects, services, hall of fame, work timeline, socials. Editable in-app via `/edit` (dev only, `Cmd + E`).
+2. **`_posts/en/*.md`** — your blog posts. The dev-only blog editor can scaffold a new post for you, or just drop in a markdown file with YAML frontmatter.
+3. **`components/ProjectBanner/index.js`** — the JSX content for each project banner, keyed by project `id`. Pick one of `b1`–`b6` (defined in `styles/banners.css`) and fill in the slots.
 
-App runs at `http://localhost:3000`.
+Other things you might tweak:
 
-### Environment variables
+- **Blog hero banners** — add an entry in `components/BlogBanner/index.js` keyed by post slug; styles go in `styles/blog-banners.css`.
+- **Color palette** — `--neo-pink`, `--neo-yellow`, `--neo-purple`, etc. are defined in `styles/globals.css` and referenced from `tailwind.config.js`.
+- **Theme** — `pages/_app.js` runs `forcedTheme="light"`. Remove the prop (or change to `"dark"`) to re-enable `next-themes` toggling.
+- **Cursor / animations** — toggle the custom cursor with `data.showCursor` in `portfolio.json`. Animation libraries are wired but only used where they earn their keep — strip what you don't want.
+- **SEO** — update the `<title>`, `<meta>` tags, OG image, and the Vercel project's domain to match yours.
+
+## Environment variables
 
 Create `.env.local`:
 
 ```env
-# Email (required for contact form)
+# Email (required for the contact form)
 EMAIL_USER=<gmail-address>
 EMAIL_APP_PASSWORD=<gmail-app-password>
 EMAIL_FROM_NAME=<your-name>
@@ -129,41 +118,36 @@ GITHUB_REPO=<repo-name>
 | --- | --- |
 | `EMAIL_USER` / `EMAIL_APP_PASSWORD` | Gmail account + [App Password](https://myaccount.google.com/apppasswords) for outbound mail. |
 | `EMAIL_FROM_NAME` | Display name on outgoing emails. |
-| `GITHUB_TOKEN` / `GITHUB_OWNER` / `GITHUB_REPO` | Used by `/api/blog` to round-trip markdown changes back to the repo (dev only). |
+| `GITHUB_TOKEN` / `GITHUB_OWNER` / `GITHUB_REPO` | Used by `/api/blog` to commit markdown changes back to your repo (dev only). |
 
-### Scripts
+The contact form fails closed if `EMAIL_*` are missing. The blog APIs only run when `NODE_ENV === "development"`, so the GitHub vars are optional in production.
+
+## Scripts
 
 | Command | What it does |
 | --- | --- |
 | `yarn dev` | Start the Next.js dev server on port 3000. |
 | `yarn build` | Production build. |
 | `yarn start` | Run the built app. |
-| `yarn lint` | ESLint over the project. |
-| `npx playwright test` | Run the full UX / WCAG suite. |
+| `yarn lint` | ESLint. |
+| `npx playwright test` | Run the full accessibility / UX suite. |
 | `npx playwright test --project=desktop` | Desktop viewport only. |
 | `npx playwright test --project=mobile` | Mobile viewport only. |
 
 Playwright auto-starts the dev server if it isn't running.
 
-## Customizing
+## Deploy
 
-- **Portfolio data** — edit `data/portfolio.json`. The `/edit` page (dev only, `Cmd + E`) writes back to it through `/api/portfolio`.
-- **Add a blog post** — drop a markdown file with YAML frontmatter into `_posts/en/`. The `/edit` page can scaffold one via `/api/blog`.
-- **Add a project banner** — pre-bake the JSX in `components/ProjectBanner/index.js` keyed by the project's `id`. Six templates (`b1`–`b6`) live in `styles/banners.css`.
-- **Add a blog hero banner** — add an entry to `components/BlogBanner/index.js` keyed by the post's slug; styles go in `styles/blog-banners.css`.
-- **Design tokens** — `--neo-pink`, `--neo-yellow`, `--neo-purple`, etc. are defined in `styles/globals.css` and referenced from `tailwind.config.js`.
-- **Theme** — the app currently runs `forcedTheme="light"` in `pages/_app.js`. Flip it to enable dark-mode toggling via `next-themes`.
+Easiest path: push to your own GitHub repo and import it on [Vercel](https://vercel.com/new). The build step runs `yarn install` followed by `yarn build` automatically. Set `EMAIL_USER`, `EMAIL_APP_PASSWORD`, and `EMAIL_FROM_NAME` in the Vercel project's environment variables for the contact form to work in production.
 
-## Deployment
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsloweyyy%2Fportfolio&env=EMAIL_USER,EMAIL_APP_PASSWORD,EMAIL_FROM_NAME&envDescription=Gmail%20App%20Password%20for%20the%20contact%20form&project-name=my-portfolio&repository-name=my-portfolio)
 
-Deployed on Vercel. The `vercel build` step runs `yarn install` followed by `yarn build`. No special configuration needed — `yarn.lock` is the source of truth, `package-lock.json` is gitignored to prevent accidental npm contamination.
+`yarn.lock` is the source of truth; `package-lock.json` is gitignored so an accidental `npm install` won't sneak it back in.
 
-```bash
-vercel
-```
+## Contributing
 
-…or use the [import flow](https://vercel.com/new) for first-time setup. Make sure `EMAIL_USER`, `EMAIL_APP_PASSWORD`, and `EMAIL_FROM_NAME` are set in the Vercel project's environment variables for the contact form to work in production.
+Issues and PRs are welcome. If you build something with this template, drop a link — it's nice to see what people make.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). Use it, fork it, ship your own thing.
