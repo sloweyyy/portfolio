@@ -2,6 +2,7 @@
   "name": "react-portfolio-template",
   "version": "3.0",
   "private": true,
+  "packageManager": "yarn@1.22.19",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
