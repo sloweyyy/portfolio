@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import ContentSection from "../../components/ContentSection";
 import Footer from "../../components/Footer";
 import ContactForm from "../../components/ContactForm";
+import BlogBanner, { hasBlogBanner } from "../../components/BlogBanner";
 import Head from "next/head";
 import { useIsomorphicLayoutEffect, ISOToDate } from "../../utils";
 import { stagger } from "../../animations";
@@ -45,13 +46,22 @@ const BlogPost = ({ post, relatedPosts, readingTime }) => {
             </div>
             <main className="flex-grow pt-10 pb-24 w-full container mx-auto px-4 laptop:px-0">
                 <div className="flex flex-col">
-                    <div className="w-full overflow-hidden rounded-t-xl border-4 border-neo-black bg-neo-black flex items-center justify-center" style={{height: '460px'}}>
-                        <img
-                            className="max-w-full max-h-full w-auto h-auto block"
-                            src={post.image}
-                            alt={post.title}
-                        />
-                    </div>
+                    {hasBlogBanner(post.slug) ? (
+                        <div className="w-full overflow-hidden rounded-xl border-4 border-neo-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                            <BlogBanner slug={post.slug} />
+                        </div>
+                    ) : (
+                        <div
+                            className="w-full overflow-hidden rounded-t-xl border-4 border-neo-black bg-neo-black flex items-center justify-center"
+                            style={{ height: "460px" }}
+                        >
+                            <img
+                                className="max-w-full max-h-full w-auto h-auto block"
+                                src={post.image}
+                                alt={post.title}
+                            />
+                        </div>
+                    )}
                     <h1
                         ref={textOne}
                         className="mt-14 text-4xl mob:text-2xl laptop:text-6xl text-bold text-neo-black font-heading font-extrabold"
