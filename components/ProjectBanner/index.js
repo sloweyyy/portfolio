@@ -1,6 +1,333 @@
 import React, { useEffect, useRef } from "react";
 
 const BANNERS = {
+    // 14 · Kally — Ambient AI Teammate (Slack mock + identity chain)
+    "14": (
+        <div className="pb-banner b8">
+            <div className="pb8-chrome">
+                <div className="pb8-logo">K</div>
+                <div className="pb8-ws">
+                    Acme <span className="sub">· #pr-reviews</span>
+                </div>
+                <div className="pb8-spacer" />
+                <div className="pb8-live">
+                    <span className="pb8-live-dot" />
+                    AMBIENT · ACTING AS YOU
+                </div>
+            </div>
+
+            <div className="pb8-body">
+                <div className="pb8-left">
+                    <span className="pb8-eyebrow">Summoned, Not Deployed</span>
+
+                    <div className="pb8-hero">
+                        <h2 className="pb8-h2">KAL<em>LY.</em></h2>
+                        <div className="pb8-tagchip">v0.8 · prod · <b>9</b> Cloud Run services</div>
+                    </div>
+
+                    <p className="pb8-tagline">
+                        An <b>ambient AI teammate</b> that lives in Slack and acts on GitHub, Jira, Confluence &amp; the agent browser <b>as the human who summoned it</b> — every action attributable, auditable, revocable.
+                    </p>
+
+                    <div className="pb8-slack">
+                        <div className="pb8-slack-head">
+                            <span className="pb8-hash">#</span>
+                            <span className="pb8-channelname">pr-reviews</span>
+                            <span className="pb8-members">12 members</span>
+                        </div>
+
+                        <div className="pb8-msg">
+                            <div className="pb8-avatar">PT</div>
+                            <div>
+                                <div className="pb8-msg-head">
+                                    <span className="pb8-name">Phuc Truong</span>
+                                    <span className="pb8-time">3:20 PM</span>
+                                </div>
+                                <div className="pb8-msg-body">
+                                    <span className="pb8-mention">@Kally</span> do impact analysis of <span className="pb8-code">acme/console#3024</span> &amp; verify the preview URL with agent browser — record video as evidence.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="pb8-msg pb8-msg-tight">
+                            <div className="pb8-avatar pb8-kally">K</div>
+                            <div>
+                                <div className="pb8-msg-head">
+                                    <span className="pb8-name pb8-bot">Kally</span>
+                                    <span className="pb8-bot-tag">APP</span>
+                                    <span className="pb8-time">3:39 PM</span>
+                                </div>
+                                <div className="pb8-msg-body">
+                                    Checked out the PR worktree, ran agent browser. Attached <b>findings.md</b> &amp; <b>pr-3024-preview.webm</b> — one caveat in the report. Ready to post the review:
+                                </div>
+
+                                <div className="pb8-approval">
+                                    <div className="pb8-approval-head">
+                                        <div className="pb8-pad-icon">!</div>
+                                        <div className="pb8-approval-title">Approval required · post review to GitHub</div>
+                                    </div>
+                                    <div className="pb8-approval-meta">
+                                        → <span className="pb8-act">POST REVIEW</span> on <span className="pb8-target">acme/console#3024</span> · verdict <span className="pb8-target">REQUEST_CHANGES</span>
+                                        <br />
+                                        → requester:&nbsp;<span className="pb8-requester">PT · @phuc.truong</span> · policy:&nbsp;<b>org-domain ✓</b>
+                                    </div>
+                                    <div className="pb8-approval-btns">
+                                        <span className="pb8-btn pb8-btn-yes"><span className="pb8-mini-av" /> Approve as me</span>
+                                        <span className="pb8-btn pb8-btn-no">✕ Reject</span>
+                                    </div>
+                                </div>
+
+                                <div className="pb8-typing">
+                                    <span className="pb8-tdot" />
+                                    <span className="pb8-tdot" />
+                                    <span className="pb8-tdot" />
+                                    <span>Kally is watching CI on its own commit to #3024…</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="pb8-right">
+                    <div className="pb8-panel">
+                        <div className="pb8-panel-head">
+                            <span className="pb8-ttl">{"// IDENTITY CHAIN · "}<b>writes authenticate as you</b></span>
+                        </div>
+                        <div className="pb8-chain">
+                            <div className="pb8-chain-node">
+                                <div className="pb8-chain-av pb8-chain-user">PT</div>
+                                <div className="pb8-chain-lbl">@phuc.truong</div>
+                                <div className="pb8-chain-sub">SLACK UID</div>
+                            </div>
+                            <div className="pb8-chain-arrow">→</div>
+                            <div className="pb8-chain-node">
+                                <div className="pb8-chain-av pb8-chain-kal">K</div>
+                                <div className="pb8-chain-lbl">Kally</div>
+                                <div className="pb8-chain-sub">PROXY · CREDS INJECT</div>
+                            </div>
+                            <div className="pb8-chain-arrow">→</div>
+                            <div className="pb8-chain-node">
+                                <div className="pb8-chain-av pb8-chain-tgt">GH</div>
+                                <div className="pb8-chain-lbl">GitHub</div>
+                                <div className="pb8-chain-sub">REVIEW · AUTHOR: PT</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="pb8-panel">
+                        <div className="pb8-panel-head">
+                            <span className="pb8-ttl">{"// VAULT + "}<b>audit.jsonl</b></span>
+                            <span className="pb8-ttl pb8-ttl-acc">APPEND-ONLY</span>
+                        </div>
+                        <div className="pb8-vault-row">
+                            <div className="pb8-vault-icon">🔒</div>
+                            <div className="pb8-vault-body">
+                                <div className="pb8-vault-title">AES-256-GCM · per-record IV</div>
+                                <div className="pb8-vault-desc">Internal-only, no host port. Auth tag detects tampering. Plaintext never logged.</div>
+                            </div>
+                        </div>
+                        <div className="pb8-audit">
+                            <div className="pb8-audit-row">
+                                <span className="pb8-ats">15:32.04</span>
+                                <span className="pb8-aglyph pb8-a-r">R</span>
+                                <span className="pb8-abody"><b>worktree.add</b> · <em>acme/console/pr-3024</em> · as @phuc.truong</span>
+                                <span className="pb8-asys">gh-app</span>
+                            </div>
+                            <div className="pb8-audit-row">
+                                <span className="pb8-ats">15:38.21</span>
+                                <span className="pb8-aglyph pb8-a-r">R</span>
+                                <span className="pb8-abody"><b>browser.record</b> · preview-url · 7.2s webm</span>
+                                <span className="pb8-asys">agent-browser</span>
+                            </div>
+                            <div className="pb8-audit-row">
+                                <span className="pb8-ats">15:39.10</span>
+                                <span className="pb8-aglyph pb8-a-w">W</span>
+                                <span className="pb8-abody"><b>pr.review.post</b> · <em>#3024</em> · REQUEST_CHANGES · as @phuc.truong</span>
+                                <span className="pb8-asys">gh-app</span>
+                            </div>
+                            <div className="pb8-audit-row">
+                                <span className="pb8-ats">15:39.42</span>
+                                <span className="pb8-aglyph pb8-a-x">X</span>
+                                <span className="pb8-abody"><b>policy.deny</b> · @ext.user · domain check failed</span>
+                                <span className="pb8-asys">gate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="pb8-stats">
+                        <div className="pb8-stat"><div className="n">11</div><div className="l">Packages</div></div>
+                        <div className="pb8-stat"><div className="n">733</div><div className="l">Tests</div></div>
+                        <div className="pb8-stat"><div className="n">39k</div><div className="l">LOC · TS</div></div>
+                        <div className="pb8-stat"><div className="n">64</div><div className="l">My Commits</div></div>
+                    </div>
+
+                    <div className="pb8-chips">
+                        <span className="pb8-clabel">stack //</span>
+                        <span className="pb8-chip acc">TypeScript</span>
+                        <span className="pb8-chip acc">OpenCode</span>
+                        <span className="pb8-chip">Cloud Run</span>
+                        <span className="pb8-chip">MCP</span>
+                        <span className="pb8-chip">AES-GCM</span>
+                        <span className="pb8-chip">mitmproxy</span>
+                        <span className="pb8-chip">Vouch SSO</span>
+                        <span className="pb8-chip">LangSmith</span>
+                    </div>
+
+                    <div className="pb8-credit">
+                        <span>downstream of <b>scoutqa-dot-ai/thor</b> · <span className="pb8-credit-handle">@daohoangson</span></span>
+                        <span>my role: <b>co-maintainer</b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ),
+    // 13 · FiveD Pulse — Live Console
+    "13": (
+        <div className="pb-banner b7">
+            <span className="pb7-crosshair tl" />
+            <span className="pb7-crosshair tr" />
+            <span className="pb7-crosshair bl" />
+            <span className="pb7-crosshair br" />
+
+            <svg className="pb7-bg-pulse" viewBox="0 0 1600 200" preserveAspectRatio="none">
+                <path d="M0,100 L120,100 L130,80 L140,140 L150,40 L160,160 L170,100 L320,100 L330,90 L345,110 L360,100 L520,100 L530,75 L545,145 L560,50 L575,150 L590,100 L760,100 L770,95 L780,105 L790,100 L980,100 L990,70 L1005,150 L1020,30 L1035,170 L1050,100 L1240,100 L1255,90 L1270,110 L1285,100 L1450,100 L1465,85 L1480,140 L1495,50 L1510,140 L1525,100 L1600,100" />
+            </svg>
+
+            <div className="pb7-chrome">
+                <span className="pb7-dot r" />
+                <span className="pb7-dot y" />
+                <span className="pb7-dot g" />
+                <span className="pb7-path">~/fived-studio/pulse — bun dev</span>
+                <span className="pb7-badge-live">
+                    <span className="pb7-pulse-dot" />
+                    LIVE · SSE
+                </span>
+            </div>
+
+            <div className="pb7-body">
+                <div className="pb7-left">
+                    <div>
+                        <span className="pb7-eyebrow">FiveD Studio · Infrastructure</span>
+                        <h2 className="pb7-h1">
+                            PULSE<em>.</em>
+                            <span className="pb7-tag-ver">v1 · live</span>
+                        </h2>
+                        <div className="pb7-commands">
+                            <div className="pb7-line">
+                                <span className="pb7-prompt">$</span>
+                                <span className="pb7-cmd">
+                                    curl <span className="pb7-flag">-N</span>{" "}
+                                    <span className="pb7-str">&quot;https://pulse.fived.dev/v1/stream/events&quot;</span>
+                                </span>
+                            </div>
+                            <div className="pb7-line">
+                                <span className="pb7-comment">// connected — sub-second cold start · ~50ms p50 reads</span>
+                            </div>
+                            <div className="pb7-line">
+                                <span className="pb7-ok">
+                                    ✓ stream open · receiving events from Redis fan-out
+                                    <span className="pb7-cursor" />
+                                </span>
+                            </div>
+                        </div>
+                        <p className="pb7-tagline">
+                            A <b>real-time engineering pulse</b> for FiveD Studio — Bun + Hono + Postgres ingests every GitHub event across the org and fans it out to the live dashboard in <b>seconds</b>.
+                        </p>
+                    </div>
+                    <div className="pb7-stat-row">
+                        <div className="pb7-stat"><div className="n">~50ms</div><div className="l">p50 Reads</div></div>
+                        <div className="pb7-stat"><div className="n">8</div><div className="l">v1 Endpoints</div></div>
+                        <div className="pb7-stat"><div className="n">SSE</div><div className="l">Fan-Out</div></div>
+                        <div className="pb7-stat"><div className="n">6h</div><div className="l">LC Poll Cycle</div></div>
+                    </div>
+                </div>
+
+                <div className="pb7-right">
+                    <div className="pb7-ecg">
+                        <div className="pb7-ecg-head">
+                            <span className="pb7-ttl">// EVENT FREQUENCY · LAST 60s</span>
+                            <span className="pb7-bpm">214<small>/MIN</small></span>
+                        </div>
+                        <svg className="pb7-ecg-svg" viewBox="0 0 520 90" preserveAspectRatio="none">
+                            <line className="pb7-grid-h" x1="0" y1="22" x2="520" y2="22" />
+                            <line className="pb7-grid-h" x1="0" y1="45" x2="520" y2="45" />
+                            <line className="pb7-grid-h" x1="0" y1="68" x2="520" y2="68" />
+                            <path d="M0,45 L40,45 L48,35 L56,55 L62,15 L68,75 L74,40 L120,45 L128,42 L136,48 L144,45 L200,45 L208,28 L216,62 L222,10 L228,80 L234,45 L290,45 L298,38 L306,52 L314,45 L370,45 L378,20 L386,70 L392,5 L398,85 L404,45 L460,45 L468,35 L476,55 L482,30 L490,60 L498,45 L520,45" />
+                        </svg>
+                    </div>
+
+                    <div className="pb7-log">
+                        <div className="pb7-log-head">
+                            <span className="pb7-ttl">// GET /v1/events · STREAM</span>
+                            <span className="pb7-stream-tag">SSE OPEN</span>
+                        </div>
+                        <div className="pb7-log-list">
+                            <div className="pb7-log-row">
+                                <span className="ts">00:00.04</span>
+                                <span className="glyph g-push">▲</span>
+                                <span className="body"><b>push</b> · <em>@sloweyyy</em> → <em>fived-studio/pulse</em></span>
+                                <span className="repo">main</span>
+                            </div>
+                            <div className="pb7-log-row">
+                                <span className="ts">00:00.12</span>
+                                <span className="glyph g-pr">⌥</span>
+                                <span className="body"><b>pr.opened</b> · #142 <em>add redis fan-out backpressure</em></span>
+                                <span className="repo">+184/-12</span>
+                            </div>
+                            <div className="pb7-log-row">
+                                <span className="ts">00:00.41</span>
+                                <span className="glyph g-rev">✓</span>
+                                <span className="body"><b>review</b> · <em>@hgbaooo</em> approved #138</span>
+                                <span className="repo">approved</span>
+                            </div>
+                            <div className="pb7-log-row">
+                                <span className="ts">00:01.08</span>
+                                <span className="glyph g-push">▲</span>
+                                <span className="body"><b>push</b> · <em>@thvnhtai</em> → <em>fived-studio.github.io</em></span>
+                                <span className="repo">live</span>
+                            </div>
+                            <div className="pb7-log-row">
+                                <span className="ts">00:01.32</span>
+                                <span className="glyph g-rel">★</span>
+                                <span className="body"><b>release</b> · <em>fived-studio/pulse</em> v1.7.0 cut</span>
+                                <span className="repo">v1.7.0</span>
+                            </div>
+                            <div className="pb7-log-row dim">
+                                <span className="ts">00:02.04</span>
+                                <span className="glyph g-pr">⌥</span>
+                                <span className="body"><b>pr.review_requested</b> · #143 <em>idempotent webhook</em></span>
+                                <span className="repo">@TrTueTah</span>
+                            </div>
+                            <div className="pb7-log-row dim">
+                                <span className="ts">00:02.27</span>
+                                <span className="glyph g-push">▲</span>
+                                <span className="body"><b>push</b> · <em>@nquynqthanq</em> → <em>@nquynqthanq/leetcode-grind</em></span>
+                                <span className="repo">+1</span>
+                            </div>
+                            <div className="pb7-log-row dimmer">
+                                <span className="ts">00:03.10</span>
+                                <span className="glyph g-rev">✓</span>
+                                <span className="body"><b>review.comment</b> · #142 <em>&quot;LGTM, ship it&quot;</em></span>
+                                <span className="repo">@hgbaooo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="pb7-stack">
+                        <span className="pb7-stack-label">stack //</span>
+                        <span className="pb7-chip acc">Bun 1.3</span>
+                        <span className="pb7-chip acc">Hono 4</span>
+                        <span className="pb7-chip">Postgres 16</span>
+                        <span className="pb7-chip">Drizzle</span>
+                        <span className="pb7-chip">Redis</span>
+                        <span className="pb7-chip">Cloud Run</span>
+                        <span className="pb7-chip">SSE</span>
+                        <span className="pb7-chip">GH App</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ),
     // 12 · llmfit — Terminal
     "12": (
         <div className="pb-banner b4">

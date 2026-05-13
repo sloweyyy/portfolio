@@ -36,6 +36,42 @@
     ],
     "projects": [
         {
+            "id": "14",
+            "title": "Kally — Ambient AI Teammate (downstream of Thor)",
+            "description": "An ambient AI teammate that lives in Slack and acts on Salesforce, Jira, Confluence, and GitHub as the human who summoned it — every action attributable, auditable, and revocable. Downstream of scoutqa-dot-ai/thor by @daohoangson.",
+            "imageSrc": "https://opengraph.githubassets.com/1/sloweyyy/kally",
+            "url": "https://github.com/sloweyyy/kally",
+            "tags": ["TypeScript", "OpenCode", "MCP", "Cloud Run", "Slack", "AES-GCM"],
+            "period": "Mar 2026 - Present",
+            "role": "Contributor / Co-maintainer of downstream",
+            "highlights": [
+                "Downstream of scoutqa-dot-ai/thor — original architecture (gateway → runner → opencode → remote-cli, mitmproxy outbound, vouch ingress) authored by @daohoangson at ScoutQA.ai. My scope: 64 commits rebranding and extending the system as Kally.",
+                "Per-user credential injection in two modes: args mode (Kally-owned Salesforce MCP, plaintext lives one Python subprocess) and connection mode (hosted Atlassian MCP, per-user StreamableHTTP session pool, 30-min idle TTL).",
+                "Approval flow stamps the requester's Slack UID; at resolve time the proxy re-fetches the requester's vault credentials so week-old approvals still authenticate as the person who proposed them — not the reviewer, not a service account.",
+                "AES-256-GCM vault with per-record IV, append-only audit.jsonl, bearer auth with timingSafeEqual, no host port. Plaintext credentials never appear in the audit log.",
+                "PR review protocol uses real git worktrees — every diff, grep, test, and type-check runs against `git worktree add /workspace/worktrees/<repo>/pr-<N>`. CI failures: pulls failed logs, classifies defect vs flake, auto-fixes up to 3 attempts per branch before escalating.",
+                "Scale: 11 packages, 45 test files, 733 tests, ~39k LOC TypeScript, 9 Cloud Run services."
+            ]
+        },
+        {
+            "id": "13",
+            "title": "FiveD Pulse — Live Engineering Platform",
+            "description": "Real-time engineering pulse for FiveD Studio — Bun + Hono + Postgres backend that ingests every GitHub event across the org and fans it out to the live dashboard over SSE in seconds.",
+            "imageSrc": "https://opengraph.githubassets.com/1/fived-studio/pulse",
+            "url": "https://github.com/fived-studio/pulse",
+            "tags": ["Bun", "Hono", "Postgres", "Redis", "SSE", "Cloud Run"],
+            "period": "2026",
+            "role": "Backend Engineer",
+            "highlights": [
+                "Designed a single ingest pipeline: GitHub App webhook → HMAC verify → normalize → Postgres event stream, with Redis fan-out to SSE clients and daily rollups.",
+                "Real-time fan-out via Redis stream so multiple Cloud Run instances broadcast consistently and reconnecting clients catch up cleanly.",
+                "Idempotent ingest — delivery IDs are unique-keyed, redeliveries no-op; repo upserts target full_name so migrated repos converge.",
+                "Schema-first with Drizzle migrations; sub-second cold starts and ~50ms p50 reads on Bun + Hono.",
+                "LeetCode leaderboard worker polls leetcode.com/graphql every 6h and caches in Postgres; weighted score easy×1 + medium×2 + hard×4.",
+                "Powers the live /live page at fived-studio.github.io — a Next.js 15 static export streaming events from the Pulse SSE endpoint."
+            ]
+        },
+        {
             "id": "12",
             "title": "llmfit - Hardware-Aware LLM Dashboard",
             "description": "Web dashboard for the llmfit open-source project (23k+ stars) providing hardware-aware LLM model recommendation, filtering, comparison, and download workflows.",
