@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../Button";
 import ProjectBanner, { hasBanner } from "../ProjectBanner";
@@ -37,6 +37,43 @@ const ProjectSection = ({ projects = [] }) => {
         setActiveProjectId(project.id);
         setHoveredProjectId(project.id);
     };
+
+    const bannerProjects = useMemo(
+        () => projects.filter((project) => hasBanner(project.id)),
+        [projects]
+    );
+
+    const stepBanner = useCallback(
+        (delta) => {
+            if (!bannerModalId || bannerProjects.length === 0) return;
+            const currentIndex = bannerProjects.findIndex((p) => p.id === bannerModalId);
+            if (currentIndex === -1) return;
+            const nextIndex =
+                (currentIndex + delta + bannerProjects.length) % bannerProjects.length;
+            const next = bannerProjects[nextIndex];
+            setBannerModalId(next.id);
+            setActiveProjectId(next.id);
+            setHoveredProjectId(next.id);
+        },
+        [bannerModalId, bannerProjects]
+    );
+
+    useEffect(() => {
+        if (!bannerModalId) return;
+        const onKey = (event) => {
+            if (event.key === "ArrowRight") {
+                event.preventDefault();
+                stepBanner(1);
+            } else if (event.key === "ArrowLeft") {
+                event.preventDefault();
+                stepBanner(-1);
+            } else if (event.key === "Escape") {
+                setBannerModalId(null);
+            }
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [bannerModalId, stepBanner]);
 
     if (!projects.length) {
         return (
@@ -416,6 +453,38 @@ const ProjectSection = ({ projects = [] }) => {
                             ×
                         </button>
                     </motion.div>
+
+                    {bannerProjects.length > 1 && (
+                        <>
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    stepBanner(-1);
+                                }}
+                                className="absolute left-4 laptop:left-8 top-1/2 -translate-y-1/2 w-12 h-12 laptop:w-14 laptop:h-14 rounded-full bg-white border-2 border-black flex items-center justify-center hover:bg-yellow-300 transition-colors z-10 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                                aria-label="Previous project"
+                            >
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <polyline points="15 18 9 12 15 6" />
+                                </svg>
+                            </button>
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    stepBanner(1);
+                                }}
+                                className="absolute right-4 laptop:right-8 top-1/2 -translate-y-1/2 w-12 h-12 laptop:w-14 laptop:h-14 rounded-full bg-white border-2 border-black flex items-center justify-center hover:bg-yellow-300 transition-colors z-10 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                                aria-label="Next project"
+                            >
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                            </button>
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-white border-2 border-black text-[11px] font-mono font-bold uppercase tracking-wider z-10 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                                {bannerProjects.findIndex((p) => p.id === bannerModalId) + 1} / {bannerProjects.length} · ← → keys
+                            </div>
+                        </>
+                    )}
                 </motion.div>
             )}
         </AnimatePresence>
