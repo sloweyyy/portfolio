@@ -1,6 +1,140 @@
 import React, { useEffect, useRef } from "react";
 
 const BANNERS = {
+    // 15 · Scriptorium — Approval card + AI-native improvement loop
+    "15": (
+        <div className="pb-banner b9">
+            <div className="pb9-top">
+                <div className="pb9-brand">
+                    <span className="pb9-shield">✓</span>
+                    scriptorium
+                </div>
+                <div className="pb9-pills">
+                    <span className="pb9-pill">MIT · open source</span>
+                    <span className="pb9-pill">Node 22 · TypeScript strict</span>
+                    <span className="pb9-pill pb9-pill-accent">Claude · Vertex · Gemini</span>
+                </div>
+            </div>
+
+            <div className="pb9-body">
+                <div className="pb9-left">
+                    <span className="pb9-eyebrow">AI teammate for Slack · Jira · Confluence · GitHub</span>
+                    <h2 className="pb9-h2">
+                        Nothing changes until a person <em>approves.</em>
+                    </h2>
+                    <p className="pb9-tagline">
+                        Rules enforced <b>in code, not by prompt</b>: one policy check per tool call,
+                        signed single-use approvals, and <b>no citation, no claim</b>.
+                    </p>
+                    <div className="pb9-stats">
+                        <div><b>253</b><span>commits</span></div>
+                        <div><b>500+</b><span>evals</span></div>
+                        <div><b>11</b><span>skills</span></div>
+                        <div><b>1</b><span>container</span></div>
+                    </div>
+                </div>
+
+                <div className="pb9-right">
+                    <div className="pb9-card">
+                        <div className="pb9-card-head">
+                            <span className="pb9-dot" /> Approval · <b>jira.create_issue</b>
+                        </div>
+                        <div className="pb9-args">
+                            <div><span>project</span>PLAT</div>
+                            <div><span>summary</span>Checkout 500s after deploy 4.2</div>
+                            <div><span>args</span>sha256 9f3c…a1e0 · single-use</div>
+                        </div>
+                        <div className="pb9-policy">approver: <b>@eng-lead</b> · requester can&rsquo;t approve</div>
+                        <div className="pb9-btns">
+                            <span className="pb9-btn pb9-yes">Approve exact change</span>
+                            <span className="pb9-btn">Reject</span>
+                        </div>
+                    </div>
+                    <div className="pb9-card pb9-cite">
+                        <div className="pb9-card-head">Answer · grounded</div>
+                        <p>Rollback is safe; the migration is additive <sup>[1]</sup> and the runbook covers it <sup>[2]</sup>.</p>
+                        <div className="pb9-refs">
+                            <span>[1] github:acme/api#812</span>
+                            <span>[2] confluence:Deploy-Runbook</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="pb9-loop">
+                <div className="pb9-loop-label">
+                    <b>AI-native build loop</b>
+                    <span>every 30 min · ≤ 5 changes / tick · a person merges</span>
+                </div>
+                <div className="pb9-steps">
+                    <div className="pb9-step"><i>01</i>Research</div>
+                    <div className="pb9-step"><i>02</i>Build + eval</div>
+                    <div className="pb9-step"><i>03</i>Break it</div>
+                    <div className="pb9-step"><i>04</i>Prove the guard</div>
+                    <div className="pb9-step pb9-step-ship"><i>05</i>Ship</div>
+                </div>
+            </div>
+        </div>
+    ),
+
+    // 16 · TrueTest — Traffic → tests + internal console mock
+    "16": (
+        <div className="pb-banner b10">
+            <div className="pb10-left">
+                <span className="pb10-eyebrow">Katalon · Autonomous E2E Testing</span>
+                <h2 className="pb10-h2">
+                    TRAFFIC<br /><em>→ TESTS</em>
+                </h2>
+                <p className="pb10-tagline">
+                    Turns real production web traffic into executable end-to-end suites.
+                    I run support <b>and</b> ship the fix — customer to code, same person.
+                </p>
+                <div className="pb10-flow">
+                    <span>User sessions</span>
+                    <i>→</i>
+                    <span>Traffic Agent</span>
+                    <i>→</i>
+                    <span className="pb10-hot">Test suites</span>
+                </div>
+                <div className="pb10-chips">
+                    <span>Java · Quarkus</span>
+                    <span>React</span>
+                    <span>ClickHouse</span>
+                    <span>AWS Athena</span>
+                    <span>Jest</span>
+                </div>
+            </div>
+
+            <div className="pb10-right">
+                <div className="pb10-console">
+                    <div className="pb10-bar">
+                        <span className="pb10-lights"><i /><i /><i /></span>
+                        <span className="pb10-title">[PROD] Acme Storefront · ACME-WEB | Sessions</span>
+                    </div>
+                    <div className="pb10-search">
+                        <span className="pb10-kbd">⌘K</span>
+                        <span className="pb10-query">acme web<span className="pb10-caret" /></span>
+                    </div>
+                    <div className="pb10-results">
+                        <div className="pb10-row"><b>ACME-WEB</b> Acme Storefront<span className="pb10-on">Active</span></div>
+                        <div className="pb10-row"><b>ACME-WEB-STG</b> Acme Staging<span className="pb10-on">Active</span></div>
+                        <div className="pb10-row pb10-dim"><b>acme-web-v1</b> Legacy site<span className="pb10-off">Inactive</span></div>
+                        <div className="pb10-more">Showing 20 of 34 matches · per-token match · active first</div>
+                    </div>
+                    <div className="pb10-session">
+                        <div className="pb10-toggle"><span className="pb10-sel">ClickHouse</span><span>Athena</span></div>
+                        <code>session_id = &apos;7f2c…d91&apos;</code>
+                        <span className="pb10-ok">✓ validated server-side</span>
+                    </div>
+                    <div className="pb10-raw">
+                        <span>raw</span> {"{"} &quot;event&quot;: &quot;click&quot;, &quot;selector&quot;: &quot;#checkout&quot;, … {"}"}
+                    </div>
+                </div>
+                <div className="pb10-role">Product Engineer · Support Lead</div>
+            </div>
+        </div>
+    ),
+
     // 14 · Kally — Ambient AI Teammate (Slack mock + identity chain)
     "14": (
         <div className="pb-banner b8">
@@ -394,26 +528,26 @@ const BANNERS = {
             <div className="left">
                 <div className="card main-card">
                     <div>
-                        <div className="eyebrow">// Microservices Thesis · .NET 8 + AWS EKS</div>
+                        <div className="eyebrow">// Microservices · .NET 10 + AWS EKS</div>
                         <h2>
                             CLOUD-<br />NATIVE<br />COMMERCE
                         </h2>
                     </div>
                     <p className="tagline">
-                        Enterprise-grade microfrontend + .NET 8 microservices reference implementation with Istio, Prometheus, Grafana, ELK, and three deployment profiles.
+                        Microfrontend + .NET 10 microservices on EKS with Istio, Terraform, Kustomize, full observability, and unit, integration &amp; k6 load tests.
                     </p>
                 </div>
                 <div className="info-bar">
                     <span>
-                        <span className="dot-live" />v0.11.1 · MIT
+                        <span className="dot-live" />v0.11.8 · MIT · 23★
                     </span>
-                    <span>Mar 2025 → Mar 2026</span>
+                    <span>Mar 2025 → Present</span>
                 </div>
             </div>
             <div className="right">
                 <div className="stat p">
-                    <span className="big">577</span>
-                    <span className="lbl">Commits</span>
+                    <span className="big">10</span>
+                    <span className="lbl">CI/CD Workflows</span>
                 </div>
                 <div className="stat y">
                     <span className="big">5 + 4</span>

@@ -54,7 +54,7 @@ const Resume = () => {
 
     const handleViewPdf = () => {
         window.open(
-            "/Truong-Le-Vinh-Phuc-Product-Manager.pdf",
+            "https://resume.slowey.dev/",
             "_blank",
             "noopener,noreferrer"
         );

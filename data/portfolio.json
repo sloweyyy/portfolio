@@ -36,6 +36,56 @@
     ],
     "projects": [
         {
+            "id": "16",
+            "title": "TrueTest — Autonomous E2E Testing",
+            "description": "Katalon's autonomous testing platform that turns production web traffic into executable end-to-end test suites. I ship full-stack into the product and the internal operations console as Product Engineer and Support Lead.",
+            "imageSrc": "/images/projects/truetest.png",
+            "url": "https://katalon.com/truetest",
+            "tags": ["Java", "Quarkus", "React", "ClickHouse", "AWS Athena", "Jest"],
+            "period": "2025 - Present",
+            "role": "Product Engineer • Support Lead",
+            "highlights": [
+                "Closed the loop from customer to code: ran support communication and triage, then implemented the fixes and shipped the features myself.",
+                "Built session search across both the Athena and ClickHouse execution paths with server-side query validation, plus session-ID search and a raw-data inspection view that support uses to triage live customer sessions.",
+                "Shipped global AUT search by client code or name — per-token keyword matching (\"iGO nlg\" finds \"iGO-NLG\"), active AUTs ranked by the status users actually see, then reused it on the Support Mode client page.",
+                "Exposed Smart text exclusions in TrueTest Mode with a newline-delimited selector input, so CSS selectors containing commas and spaces are never silently corrupted.",
+                "AI-native delivery: small PRs paired with coding agents, each landing with unit coverage across React components and Java query builders so support-critical paths cannot silently regress."
+            ]
+        },
+        {
+            "id": "15",
+            "title": "Scriptorium — AI Teammate That Asks Before It Acts",
+            "description": "Open-source AI teammate for Slack, Jira, Confluence, and GitHub. It answers with citations or says it doesn't know, proposes tickets, pages, and edits, and changes nothing until a named person approves the exact change. Built AI-native: an agent loop ships it every half hour behind a gate a human controls.",
+            "imageSrc": "/images/projects/scriptorium.png",
+            "url": "https://github.com/sloweyyy/scriptorium",
+            "tags": ["TypeScript", "Node 22", "Slack", "MCP", "Claude", "Cloud Run"],
+            "period": "Aug 2026 - Present",
+            "role": "Creator & Maintainer",
+            "highlights": [
+                "Rules are enforced in code, not by prompt: every tool call passes one policy check, unlisted tools are denied and never offered, and every write waits on a signed, single-use approval bound by hash to the exact arguments shown on the Slack card.",
+                "Grounding contract — no citation, no claim. Answers must cite a Jira issue, Confluence page, PR, Slack message, or doc a tool actually fetched; unsupported claims are refused and the gap becomes a ticket.",
+                "Exactly-once writes across lost responses and restarts, separation of duties across Slack/Jira/GitHub identities, a hash-chained audit log that detects edited or reordered lines, plus kill switch, spend caps, and rate-limit backoff for operators.",
+                "AI-native build loop: an agent ships up to five changes every 30 minutes — research against production needs, small commits each with the eval that proves it, an adversarial review that tries to break each feature, then typecheck, 500+ evals, and CI before a pull request a person merges.",
+                "Every safety rule has a mutant that must be caught — mutation tests break each guardrail on purpose in CI to prove the guard is real.",
+                "Scale: 253 commits since Aug 2026, 8 packages + 1 app in a strict-TypeScript monorepo, 11 skills as reviewable markdown, 500+ tests and evals; runs as one container on Anthropic API, Claude on Vertex, or Gemini."
+            ]
+        },
+        {
+            "id": "7",
+            "title": "Katalon Support Assistant",
+            "description": "24/7 AI-powered support chat for Katalon users, providing fast and contextual answers across product details, how-to guides, best practices, and troubleshooting.",
+            "imageSrc": "/images/projects/katalon-assistant.png",
+            "url": "https://assistant.katalon.com/",
+            "tags": ["FastAPI", "LangGraph", "AWS ECS", "Salesforce"],
+            "period": "Apr 2025 - Present",
+            "role": "Product Owner • Engineering Lead",
+            "highlights": [
+                "Launched publicly at assistant.katalon.com as the first support touchpoint across the Katalon suite.",
+                "Integrated Claude 4.5 Haiku and web search to deliver faster answers and reduce support case volume by 30%.",
+                "Enabled seamless ticket creation with full conversation handoff to human support (Enterprise customers)."
+            ]
+        },
+        {
             "id": "14",
             "title": "Kally — Ambient AI Teammate (downstream of Thor)",
             "description": "An ambient AI teammate that lives in Slack and acts on Salesforce, Jira, Confluence, and GitHub as the human who summoned it — every action attributable, auditable, and revocable. Downstream of scoutqa-dot-ai/thor by @daohoangson.",
@@ -51,24 +101,6 @@
                 "AES-256-GCM vault with per-record IV, append-only audit.jsonl, bearer auth with timingSafeEqual, no host port. Plaintext credentials never appear in the audit log.",
                 "PR review protocol uses real git worktrees — every diff, grep, test, and type-check runs against `git worktree add /workspace/worktrees/<repo>/pr-<N>`. CI failures: pulls failed logs, classifies defect vs flake, auto-fixes up to 3 attempts per branch before escalating.",
                 "Scale: 11 packages, 45 test files, 733 tests, ~39k LOC TypeScript, 9 Cloud Run services."
-            ]
-        },
-        {
-            "id": "13",
-            "title": "FiveD Pulse — Live Engineering Platform",
-            "description": "Real-time engineering pulse for FiveD Studio — Bun + Hono + Postgres backend that ingests every GitHub event across the org and fans it out to the live dashboard over SSE in seconds.",
-            "imageSrc": "/images/projects/fived-pulse.png",
-            "url": "https://github.com/fived-studio/pulse",
-            "tags": ["Bun", "Hono", "Postgres", "Redis", "SSE", "Cloud Run"],
-            "period": "2026",
-            "role": "Backend Engineer",
-            "highlights": [
-                "Designed a single ingest pipeline: GitHub App webhook → HMAC verify → normalize → Postgres event stream, with Redis fan-out to SSE clients and daily rollups.",
-                "Real-time fan-out via Redis stream so multiple Cloud Run instances broadcast consistently and reconnecting clients catch up cleanly.",
-                "Idempotent ingest — delivery IDs are unique-keyed, redeliveries no-op; repo upserts target full_name so migrated repos converge.",
-                "Schema-first with Drizzle migrations; sub-second cold starts and ~50ms p50 reads on Bun + Hono.",
-                "LeetCode leaderboard worker polls leetcode.com/graphql every 6h and caches in Postgres; weighted score easy×1 + medium×2 + hard×4.",
-                "Powers the live /live page at fived-studio.github.io — a Next.js 15 static export streaming events from the Pulse SSE endpoint."
             ]
         },
         {
@@ -88,28 +120,38 @@
             ]
         },
         {
-            "id": "7",
-            "title": "Katalon Support Assistant",
-            "description": "24/7 AI-powered support chat for Katalon users, providing fast and contextual answers across product details, how-to guides, best practices, and troubleshooting.",
-            "imageSrc": "/images/projects/katalon-assistant.png",
-            "url": "https://assistant.katalon.com/",
-            "tags": ["FastAPI", "LangGraph", "AWS ECS", "Salesforce"],
-            "period": "Apr 2025 - Present",
-            "role": "Product Owner • Engineering Lead",
+            "id": "1",
+            "title": "Cloud-Native E-Commerce",
+            "description": "Cloud-native microservices commerce platform: React microfrontends and .NET 10 services on AWS EKS with Istio, Terraform, Kustomize/Helm, and a full observability stack.",
+            "imageSrc": "/images/projects/cloud-native-ecommerce.png",
+            "url": "https://github.com/sloweyyy/cloud-native-ecommerce-platform",
+            "tags": [".NET 10", "EKS", "Istio", "Terraform", "Module Federation"],
+            "period": "Sep 2024 - Present",
             "highlights": [
-                "Launched publicly at assistant.katalon.com as the first support touchpoint across the Katalon suite.",
-                "Integrated Claude 4.5 Haiku and web search to deliver faster answers and reduce support case volume by 30%.",
-                "Enabled seamless ticket creation with full conversation handoff to human support (Enterprise customers)."
+                "4 .NET 10 microservices (Catalog, Basket, Discount, Ordering) on Clean Architecture + CQRS behind an Ocelot gateway, event-driven via RabbitMQ/MassTransit with gRPC between Basket and Discount.",
+                "5-app React microfrontend (Module Federation + Nx): host shell plus Store, Checkout, Account, and Admin remotes sharing auth and layout packages.",
+                "AWS EKS provisioned with Terraform and IRSA; single Kustomize tree with manifest validation in CI, Helm charts for services and data stores, Istio mTLS, and Prometheus/Grafana/Jaeger/Elastic observability.",
+                "Hardened the backend with RFC 7807 problem details, fail-fast startup, and data-integrity fixes; unit, integration, and k6 load tests plus an e2e smoke test on a fresh compose stack.",
+                "10 GitHub Actions workflows (CI/CD, Docker, Terraform, K8s deployment test, performance, SBOM and license, release), an Astro Starlight docs site, and 23 GitHub stars."
             ]
         },
         {
-            "id": "1",
-            "title": "Cloud-Native E-Commerce",
-            "description": "Cloud-native microservices commerce platform on AWS EKS with Istio, Helm, and observability stack.",
-            "imageSrc": "/images/projects/cloud-native-ecommerce.png",
-            "url": "https://github.com/sloweyyy/cloud-native-ecommerce-platform",
-            "tags": [".NET 8", "EKS", "Istio", "Helm"],
-            "period": "Sep 2024 - Jan 2026"
+            "id": "13",
+            "title": "FiveD Pulse — Live Engineering Platform",
+            "description": "Real-time engineering pulse for FiveD Studio — Bun + Hono + Postgres backend that ingests every GitHub event across the org and fans it out to the live dashboard over SSE in seconds.",
+            "imageSrc": "/images/projects/fived-pulse.png",
+            "url": "https://github.com/fived-studio/pulse",
+            "tags": ["Bun", "Hono", "Postgres", "Redis", "SSE", "Cloud Run"],
+            "period": "2026",
+            "role": "Backend Engineer",
+            "highlights": [
+                "Designed a single ingest pipeline: GitHub App webhook → HMAC verify → normalize → Postgres event stream, with Redis fan-out to SSE clients and daily rollups.",
+                "Real-time fan-out via Redis stream so multiple Cloud Run instances broadcast consistently and reconnecting clients catch up cleanly.",
+                "Idempotent ingest — delivery IDs are unique-keyed, redeliveries no-op; repo upserts target full_name so migrated repos converge.",
+                "Schema-first with Drizzle migrations; sub-second cold starts and ~50ms p50 reads on Bun + Hono.",
+                "LeetCode leaderboard worker polls leetcode.com/graphql every 6h and caches in Postgres; weighted score easy×1 + medium×2 + hard×4.",
+                "Powers the live /live page at fived-studio.github.io — a Next.js 15 static export streaming events from the Pulse SSE endpoint."
+            ]
         },
         {
             "id": "2",
@@ -169,7 +211,6 @@
             "tags": ["React Native", "Firebase", "Mobile"],
             "period": "Mar 2024 - Jun 2024"
         },
-        
         {
             "id": "8",
             "title": "Online Contest Management",
@@ -237,7 +278,8 @@
                     "Delivered a cloud-native platform across 9 Google Cloud Run services, including a multi-container runner with an OpenCode sidecar and isolated Daytona sandboxes for untrusted command execution.",
                     "Maintained an 11-package TypeScript monorepo with strict typing, shared schemas, 733 automated tests across 45 test files, and CI/CD through GitHub Actions, Cloud Build, Artifact Registry, and Workload Identity Federation.",
                     "Product Engineer and Support Lead for TrueTest, Katalon's autonomous testing platform that turns production web traffic into executable end-to-end test suites — ran customer-facing communication and issue triage, then closed the loop by implementing the fixes and shipping the features myself.",
-                    "Shipped full-stack into TrueTest's production stack — Java/Quarkus backend services and the internal React operations console — including session search across both the Athena and ClickHouse execution paths with server-side query validation, a raw-data inspection view, and global AUT search.",
+                    "Shipped full-stack into TrueTest's production stack — Java/Quarkus backend services and the internal React operations console — including session search across both the Athena and ClickHouse execution paths with server-side query validation, a raw-data inspection view, and global AUT search with per-token matching and active-first ranking, reused on the Support Mode console.",
+                "Exposed Smart text exclusions in TrueTest Mode with a newline-delimited selector input, so CSS selectors containing commas and spaces round-trip without silent corruption.",
                     "Built the diagnosis tooling support and operations use to triage live customer sessions, cutting time-to-root-cause on escalations and removing the back-and-forth that used to block every investigation.",
                     "Held a test-first bar on a large multi-team codebase, pairing every TrueTest change with unit coverage across React components and Java query builders so support-critical paths could not silently regress.",
                     "Partnered with Product, Engineering, and Account Management to surface customer insights, prioritize improvements, and expand internal/self-service support knowledge."
