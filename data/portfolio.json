@@ -220,28 +220,34 @@
     ],
     "aboutpara": "I'm Truong Le Vinh Phuc, a Technical Product Manager with a strong software engineering background. I lead cross-functional teams to deliver end-to-end product solutions, turning technical complexity into measurable business value across SaaS, cloud-native systems, blockchain, and AI products.",
     "resume": {
-        "tagline": "👋  I'm a Technical Product Manager & Software Engineer.",
-        "description": "Technical Product Manager with proven experience leading cross-functional teams and delivering end-to-end product solutions. Strong background in software engineering, Agile execution, and translating technical complexity into business value.",
+        "tagline": "👋  I'm an AI Product Engineer • Product, AI/LLM & Cloud Platform.",
+        "description": "Technical Product Manager and Product Engineer who owns products end-to-end — from PRDs and roadmap to production code. Currently leads the Katalon Support Assistant as PO + engineering lead, where a multi-agent LLM system deflects 30% of customer cases without human escalation. Background spans AI/LLM products, cloud-native microservices, and blockchain platforms.",
         "experiences": [
             {
                 "id": "1",
-                "dates": "Feb 2025 - Present",
+                "dates": "2025 - Present",
                 "type": "Full Time",
-                "position": "AI Product Support Engineer at KATALON",
+                "position": "AI Product Engineer at KATALON",
                 "bullets": [
-                    "Serve as Product Manager and Engineering Lead for the Katalon Support Assistant, owning roadmap, delivery, and technical execution.",
-                    "Delivered automation and AI workflows that reduced support case volume by 30 percent.",
-                    "Collaborate with Product, Engineering, and Account teams to turn customer feedback into product improvements.",
-                    "Handle complex customer inquiries, diagnose technical issues, and provide high-confidence solutions.",
-                    "Maintain and expand the support knowledge base with high-value FAQs and support playbooks.",
-                    "Continuously evaluate new features and technologies to improve support quality and product adoption."
+                    "Product Owner and Engineering Lead for Kally and the Katalon Support Assistant; own roadmap, architecture, delivery, and hands-on execution.",
+                    "Led Kally, a Slack-native ambient AI teammate that helps product and support engineers triage cases, analyze logs, create Jira tickets, draft Confluence articles, review GitHub pull requests, and monitor CI workflows.",
+                    "Designed the core security model where AI acts through each user's own authorized credentials instead of a shared service account, with approval-gated write actions, encrypted credential storage, access policies, and audit logs.",
+                    "Built multi-agent workflows powered by OpenCode for runbook execution, ticket creation, knowledge-base drafting, log analysis, GitHub PR review, CI analysis, and autonomous fix attempts.",
+                    "Architected a secure MCP proxy layer connecting Salesforce, Jira, Confluence, Google Drive, Slack, GitHub, Grafana, Metabase, PostHog, and LaunchDarkly while enforcing policy checks before upstream systems are touched.",
+                    "Delivered a cloud-native platform across 9 Google Cloud Run services, including a multi-container runner with an OpenCode sidecar and isolated Daytona sandboxes for untrusted command execution.",
+                    "Maintained an 11-package TypeScript monorepo with strict typing, shared schemas, 733 automated tests across 45 test files, and CI/CD through GitHub Actions, Cloud Build, Artifact Registry, and Workload Identity Federation.",
+                    "Product Engineer and Support Lead for TrueTest, Katalon's autonomous testing platform that turns production web traffic into executable end-to-end test suites — ran customer-facing communication and issue triage, then closed the loop by implementing the fixes and shipping the features myself.",
+                    "Shipped full-stack into TrueTest's production stack — Java/Quarkus backend services and the internal React operations console — including session search across both the Athena and ClickHouse execution paths with server-side query validation, a raw-data inspection view, and global AUT search.",
+                    "Built the diagnosis tooling support and operations use to triage live customer sessions, cutting time-to-root-cause on escalations and removing the back-and-forth that used to block every investigation.",
+                    "Held a test-first bar on a large multi-team codebase, pairing every TrueTest change with unit coverage across React components and Java query builders so support-critical paths could not silently regress.",
+                    "Partnered with Product, Engineering, and Account Management to surface customer insights, prioritize improvements, and expand internal/self-service support knowledge."
                 ]
             },
             {
                 "id": "2",
-                "dates": "Nov 2024 - Jan 2025",
+                "dates": "2024 - 2025",
                 "type": "Intern",
-                "position": "Java Backend Developer Intern at FPT SOFTWARE",
+                "position": "Software Engineer Intern at FPT SOFTWARE",
                 "bullets": [
                     "Supported CI/CD improvements and streamlined deployment workflows for a Spring Boot API system.",
                     "Optimized PostgreSQL queries and improved system efficiency through performance-oriented fixes.",
@@ -250,9 +256,9 @@
             }
         ],
         "education": {
-            "universityName": "University of Information Technology - VNUHCM",
-            "universityDate": "Sep 2022 - Mar 2026",
-            "universityPara": "Bachelor of Software Engineering. GPA: 8.72/10. Graduation thesis score: 9.5/10 (Cloud-Native Microservices E-Commerce Platform). Achieved 'Excellent' in Semester 1 and 2, Academic Year 2024-2025."
+            "universityName": "University of Information Technology - Vietnam National University, Ho Chi Minh city",
+            "universityDate": "2022 - 2026",
+            "universityPara": "Bachelor of Science in Software Engineering • GPA 3.8/4"
         },
         "languages": [
             "Java",
@@ -295,56 +301,73 @@
                 "title": "Product & Delivery",
                 "description": "Strategy, execution, and cross-functional collaboration",
                 "items": [
-                    "Product Roadmapping",
-                    "Stakeholder Alignment",
-                    "Customer Feedback Loops",
-                    "Agile / Scrum",
-                    "Jira"
+                    "PRD Writing",
+                    "User Stories & Acceptance Criteria",
+                    "Backlog Prioritization",
+                    "Roadmap Planning",
+                    "Release Planning",
+                    "Agile/Scrum",
+                    "Stakeholder Communication",
+                    "Jira",
+                    "Confluence",
+                    "Notion"
                 ]
             },
             {
                 "id": "engineering",
-                "title": "Backend & Architecture",
+                "title": "Software Engineering",
                 "description": "Designing scalable services and APIs",
                 "items": [
+                    ".NET",
                     "Java",
-                    "C#",
-                    ".NET Core",
-                    "Spring Boot",
-                    "FastAPI",
-                    "Microservices",
+                    "Node.js",
+                    "Go",
+                    "Python",
+                    "TypeScript",
+                    "React",
+                    "Next.js",
+                    "Tailwind",
+                    "REST",
                     "gRPC",
-                    "OAuth2 / JWT"
+                    "Microservices",
+                    "Event-driven Systems",
+                    "System Design",
+                    "Databricks SQL",
+                    "OAuth2/JWT"
                 ]
             },
             {
                 "id": "cloud",
-                "title": "Cloud & DevOps",
+                "title": "Cloud, Platform & DevOps",
                 "description": "Platform operations, automation, and reliability",
                 "items": [
-                    "AWS",
-                    "Azure",
+                    "AWS (EKS/ECS/CloudFormation)",
+                    "Google Cloud Run",
                     "Docker",
                     "Kubernetes",
                     "Helm",
-                    "CI/CD",
-                    "Terraform (Lab)",
-                    "Prometheus / Grafana"
+                    "Istio",
+                    "Terraform",
+                    "Terragrunt/Atlantis",
+                    "GitHub Actions",
+                    "Jenkins",
+                    "ArgoCD",
+                    "SOPS/Secrets Manager"
                 ]
             },
             {
                 "id": "ai-data",
-                "title": "AI & Data Systems",
+                "title": "AI & LLM",
                 "description": "AI workflow orchestration and data infrastructure",
                 "items": [
-                    "LangGraph / LangChain",
-                    "Python",
-                    "Kafka",
-                    "ELK / Jaeger",
-                    "PostgreSQL",
-                    "MongoDB",
-                    "Redis",
-                    "English (B2)"
+                    "LangGraph",
+                    "LangChain",
+                    "Anthropic Claude",
+                    "Multi-agent Systems",
+                    "MCP",
+                    "RAG",
+                    "Prompt Engineering",
+                    "LLM Observability & Evals"
                 ]
             }
         ]

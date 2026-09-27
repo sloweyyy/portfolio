@@ -129,12 +129,11 @@ const Resume = () => {
                                             {resume.education?.universityName || ""}
                                         </h3>
                                         <p className="text-sm text-black/60 mt-0.5">
-                                            Bachelor of Software Engineering &middot; {resume.education?.universityDate || ""}
+                                            Bachelor of Science in Software Engineering &middot; {resume.education?.universityDate || ""}
                                         </p>
                                     </div>
                                     <div className="flex flex-wrap gap-2 shrink-0">
-                                        <span className="text-xs px-2.5 py-1 rounded-full bg-black/5 font-semibold">GPA: 8.72/10</span>
-                                        <span className="text-xs px-2.5 py-1 rounded-full bg-black/5 font-semibold">Thesis: 9.5/10</span>
+                                        <span className="text-xs px-2.5 py-1 rounded-full bg-black/5 font-semibold">GPA: 3.8/4</span>
                                     </div>
                                 </div>
                             </section>
