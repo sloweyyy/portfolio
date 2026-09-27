@@ -387,13 +387,13 @@ export default function Home() {
                     <meta property="og:url" content="https://slowey.dev/" />
                     <meta property="og:title" content="SloWey | Portfolio" />
                     <meta property="og:description" content="Portfolio of Slowey - Full Stack Developer & Product Owner. Specializing in building scalable web applications and crafting intuitive user experiences" />
-                    <meta property="og:image" content="https://upanhnhanh.com/f017edfad4ed46e04742b8a416580e77" />
+                    <meta property="og:image" content="https://slowey.dev/images/og-image.jpg" />
 
                     <meta property="twitter:card" content="summary_large_image" />
                     <meta property="twitter:url" content="https://slowey.dev/" />
                     <meta property="twitter:title" content="SloWey | Portfolio" />
                     <meta property="twitter:description" content="Portfolio of Slowey - Full Stack Developer & Product Owner. Specializing in building scalable web applications and crafting intuitive user experiences" />
-                    <meta property="twitter:image" content="https://upanhnhanh.com/f017edfad4ed46e04742b8a416580e77" />
+                    <meta property="twitter:image" content="https://slowey.dev/images/og-image.jpg" />
                 </Head>
 
                 {/* HERO SECTION */}
@@ -416,7 +416,7 @@ export default function Home() {
                         <TeamMemberCard
                             name="Backend"
                             role="Java / .NET"
-                            image="https://upanhnhanh.com/c87d21d8353d691d90bca572c5984e82"
+                            image="/images/hero/backend.jpg"
                             rotation={-12}
                             position="top-[12%] right-[6%]"
                             color="orange"
@@ -425,7 +425,7 @@ export default function Home() {
                         <TeamMemberCard
                             name="DevOps"
                             role="CI/CD"
-                            image="https://img.upanhnhanh.com/5cf7f26ee76abd79b1229be0ba6aeeec"
+                            image="/images/hero/devops.jpg"
                             rotation={-8}
                             position="bottom-[18%] left-[4%]"
                             color="yellow"
@@ -434,7 +434,7 @@ export default function Home() {
                         <TeamMemberCard
                             name="Cloud"
                             role="Enthusiast"
-                            image="https://img.upanhnhanh.com/2bd0afcb9d01348d305513c934ff3104"
+                            image="/images/hero/cloud.jpg"
                             rotation={14}
                             position="bottom-[8%] right-[10%]"
                             color="purple"
@@ -443,7 +443,7 @@ export default function Home() {
                         <TeamMemberCard
                             name="Problem Solver"
                             role="Hackathon"
-                            image="https://img.upanhnhanh.com/da69d6e693faf839f67b2e8d7ac73e8a"
+                            image="/images/hero/problem-solver.jpg"
                             rotation={-6}
                             position="top-[35%] left-[8%]"
                             color="green"

@@ -11,7 +11,7 @@ const ShowcaseSection = () => {
             id: 1,
             title: "First Prize at IT Hackathon 2025 – Solana Pragmatic",
             description: "Won First Prize at IT Hackathon 2025 (Solana Pragmatic) with \"Trustify\", a blockchain-powered online notarization platform leveraging Solana for NFT certificates.",
-            image: "https://upanhnhanh.com/9dec643ea554052a8412b7ba7086fe88",
+            image: "/images/awards/it-hackathon-2025.jpg",
             theme: "purple",
             tag: "🏆 1st Place",
             date: "May 2025"
@@ -20,7 +20,7 @@ const ShowcaseSection = () => {
             id: 2,
             title: "Top 30 at Web3 HackFest 2025 - Web3 & AI Convergence",
             description: "Achieved Top 30 in the Web3 HackFest 2025 with \"Trustify\", a decentralized platform developed for secure and transparent online notarization leveraging blockchain technology and AI. Issued by VBI Academy · Jan 2025",
-            image: "https://upanhnhanh.com/5086eb6e03158050f2a72e334cb81b48",
+            image: "/images/awards/web3-hackfest-2025.jpg",
             theme: "orange",
             tag: "⭐ Top 30",
             date: "Jan 2025"
@@ -30,7 +30,7 @@ const ShowcaseSection = () => {
             id: 3,
             title: "Consolation Prize at SEAPP Contest 2024",
             description: "Awarded the Consolation Prize for the project \"Enigma - A Dropshipping Design and Sales Platform,\" recognized as one of the top innovations. The platform showcased advanced mobile development, seamless integration of AI-powered machine learning, and e-commerce solutions.",
-            image: "https://upanhnhanh.com/30598d7dec205b6d42d72d274d62f937",
+            image: "/images/awards/seapp-2024.jpg",
             theme: "orange",
             tag: "🏅 Consolation",
             date: "Nov 2024"
@@ -39,7 +39,7 @@ const ShowcaseSection = () => {
             id: 4,
             title: "Third Place at GDSC Idea Contest 2023: THiNK",
             description: "Achieved Third Place in the GDSC IDEA CONTEST 2023 with FutureConnect, a platform designed to bridge the gap between students and businesses.",
-            image: "https://upanhnhanh.com/53e69b797ba461a29d2ae14810fa5082",
+            image: "/images/awards/gdsc-idea-contest-2023.jpg",
             theme: "blue",
             tag: "🥉 3rd Place",
             date: "Jun 2023"
