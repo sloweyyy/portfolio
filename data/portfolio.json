@@ -57,7 +57,7 @@
             "title": "Scriptorium — AI Teammate That Asks Before It Acts",
             "description": "Open-source AI teammate for Slack, Jira, Confluence, and GitHub. It answers with citations or says it doesn't know, proposes tickets, pages, and edits, and changes nothing until a named person approves the exact change. Built AI-native: an agent loop ships it every half hour behind a gate a human controls.",
             "imageSrc": "/images/projects/scriptorium.png",
-            "url": "https://github.com/sloweyyy/scriptorium",
+            "url": "https://scriptorium-teammate.vercel.app",
             "tags": ["TypeScript", "Node 22", "Slack", "MCP", "Claude", "Cloud Run"],
             "period": "Aug 2026 - Present",
             "role": "Creator & Maintainer",
@@ -124,7 +124,7 @@
             "title": "Cloud-Native E-Commerce",
             "description": "Cloud-native microservices commerce platform: React microfrontends and .NET 10 services on AWS EKS with Istio, Terraform, Kustomize/Helm, and a full observability stack.",
             "imageSrc": "/images/projects/cloud-native-ecommerce.png",
-            "url": "https://github.com/sloweyyy/cloud-native-ecommerce-platform",
+            "url": "https://cloud-native-ecommerce-docs.vercel.app",
             "tags": [".NET 10", "EKS", "Istio", "Terraform", "Module Federation"],
             "period": "Sep 2024 - Present",
             "highlights": [
