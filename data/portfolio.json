@@ -90,7 +90,6 @@
             "title": "Kally — Ambient AI Teammate (downstream of Thor)",
             "description": "An ambient AI teammate that lives in Slack and acts on Salesforce, Jira, Confluence, and GitHub as the human who summoned it — every action attributable, auditable, and revocable. Downstream of scoutqa-dot-ai/thor by @daohoangson.",
             "imageSrc": "/images/projects/kally.png",
-            "url": "https://github.com/sloweyyy/kally",
             "tags": ["TypeScript", "OpenCode", "MCP", "Cloud Run", "Slack", "AES-GCM"],
             "period": "Mar 2026 - Present",
             "role": "Contributor / Co-maintainer of downstream",

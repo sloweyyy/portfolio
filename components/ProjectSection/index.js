@@ -230,20 +230,22 @@ const ProjectSection = ({ projects = [] }) => {
                                         )}
                                     </motion.div>
 
-                                    <div className="mt-4">
-                                        <a
-                                            href={normalizeProjectUrl(activeProject.url) || "#"}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label={`View ${activeProject.title}`}
-                                        >
-                                            <Button
-                                                classes="!bg-white !text-black !border-2 !border-black !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:!translate-x-[2px] hover:!translate-y-[2px] hover:!shadow-none"
+                                    {normalizeProjectUrl(activeProject.url) && (
+                                        <div className="mt-4">
+                                            <a
+                                                href={normalizeProjectUrl(activeProject.url)}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={`View ${activeProject.title}`}
                                             >
-                                                View Project
-                                            </Button>
-                                        </a>
-                                    </div>
+                                                <Button
+                                                    classes="!bg-white !text-black !border-2 !border-black !shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:!translate-x-[2px] hover:!translate-y-[2px] hover:!shadow-none"
+                                                >
+                                                    View Project
+                                                </Button>
+                                            </a>
+                                        </div>
+                                    )}
                                 </motion.div>
                             )}
                         </AnimatePresence>
